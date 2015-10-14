@@ -24,6 +24,10 @@ pod "KCFloatingActionButton"
 To install manually the KCFloatingActionButton in an app, just drag the `KCFloatingActionButton/*.swift` file into your project.
 
 ## Usage
+### Storyboard support
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/storyboard_support1.png" height='300' alt="Storyboard support1">
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/storyboard_support2.png" height='300' alt="Storyboard support2">
+
 ### Dependent on the UIWindow.
 ```swift
 KCFABManager.defaultInstance().getButton().addItem(title: "Hello, World!")
@@ -60,6 +64,15 @@ self.view.addSubview(fab)
 ```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/handler.gif" width='187' alt="Use handler">
 
+### Use custom item
+```swift
+let item = KCFloatingActionButtonItem()
+item.buttonColor = UIColor.blueColor()
+item.title = "Custom item"
+KCFABManager.defaultInstance().getButton().addItem(item: item)
+```
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
+
 ## Methods / Properties
 ### KCFABManager
 #### Methods
@@ -79,21 +92,25 @@ self.view.addSubview(fab)
 |`open` | | | Show items. |
 |`close` | | | Hide items. |
 |`toggle` | | | Toggle show/hide. |
-|`addItem` | `title title: String` | | Add the item that has title only. |
-|`addItem` | `title: String, icon: UIImage` | | Add the item that has title and icon. |
-|`addItem` | `title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | | Add the item that has all params. |
-|`addItem` | `icon icon: UIImage` | | Add the item that has icon only. |
-|`addItem` | `icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | | Add the item that has icon and handler. |
+|`addItem` | `item item: KCFloatingActionButtonItem` | | Add the custom item. |
+|`addItem` | `title title: String` | `KCFloatingActionButtonItem` | Add the default item that has title only. |
+|`addItem` | `title: String, icon: UIImage` | `KCFloatingActionButtonItem` | Add the default item that has title and icon. |
+|`addItem` | `title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | `KCFloatingActionButtonItem` | Add the default item that has all params. |
+|`addItem` | `icon icon: UIImage` | `KCFloatingActionButtonItem` | Add the default item that has icon only. |
+|`addItem` | `icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | `KCFloatingActionButtonItem` | Add the default item that has icon and handler. |
+|`removeItem` | `item: KCFloatingActionButtonItem` | | Remove the item. |
 #### Properties
 | Property | Type | Description |
 |---|---|---|
 |`size` | `CGFloat` | Button size. |
 |`padding` | `CGFloat` | | The distance of the screen and button. |
-|`itemSpace` | `CGFloat` | | The distance of the items. |
 |`buttonColor` | `UIColor` | | Button background color. |
 |`plusColor` | `UIColor` | Plus icon color on the inside button. |
 |`overlayColor` | `UIColor` | The background color that appears when the icons show. |
 |`closed` | `Bool` | Check items open and close |
+|`itemSpace` | `CGFloat` | | The distance of the items. |
+|`itemSize` | `CGFloat` | | Default item size. |
+|`itemButtonColor` | `UIColor` | | Default item button color. |
 
 ### KCFloatingActionButtonItem
 #### Properties
@@ -108,7 +125,7 @@ self.view.addSubview(fab)
 ## TODO
 * More animate style
 * More customize style
-* Storyboard support
+* <del>Storyboard support</del>
 * Swift 1.2 support
 * Objective-C support
 
