@@ -10,14 +10,15 @@ Simple Floating Action Button for iOS
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Requirements
-* iOS 7.0+
+* iOS 8.0+
 * Swift 1.2
-* Xcode 6+
+* Xcode 7
 
 ## Installation
 ### Cocoapods
 ```ruby
-pod "KCFloatingActionButton", :git => 'https://github.com/kciter/KCFloatingActionButton.git', :branch => 'swift1.2'
+use_frameworks!
+pod "KCFloatingActionButton"
 ```
 ### Manually
 To install manually the KCFloatingActionButton in an app, just drag the `KCFloatingActionButton/*.swift` file into your project.
