@@ -47,7 +47,7 @@ self.view.addSubview(fab)
 ```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/icon.png" width='187' alt="Use icon">
 
-#### Use handler
+### Use handler
 ```swift
 let fab = KCFloatingActionButton()
 fab.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
