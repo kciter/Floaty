@@ -9,10 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let item = KCFloatingActionButtonItem()
+        item.buttonColor = UIColor.blueColor()
+        item.title = "Custom item"
+        
 //        This object is dependent on the UIWindow.
         KCFABManager.defaultInstance().getButton().addItem(title: "I got a title")
         KCFABManager.defaultInstance().getButton().addItem("I got a icon", icon: UIImage(named: "icShare")!)
@@ -22,6 +26,7 @@ class ViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             KCFABManager.defaultInstance().getButton().close()
         })
+        KCFABManager.defaultInstance().getButton().addItem(item: item)
         KCFABManager.defaultInstance().show()
         
 //        This object is dependent on the UIViewController.
@@ -32,8 +37,9 @@ class ViewController: UIViewController {
 //            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
 //            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
 //            self.presentViewController(alert, animated: true, completion: nil)
-//            fab.close()
+//            self.fab.close()
 //        })
+//        fab.addItem(item: item)
 //        self.view.addSubview(fab)
     }
 

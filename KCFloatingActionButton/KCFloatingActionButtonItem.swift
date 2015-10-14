@@ -87,7 +87,7 @@ public class KCFloatingActionButtonItem: UIView {
     
     private func createTintLayer() {
         tintLayer.frame = CGRectMake(0, 0, size, size)
-        tintLayer.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.1).CGColor
+        tintLayer.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2).CGColor
         tintLayer.cornerRadius = size/2
         layer.addSublayer(tintLayer)
     }
@@ -130,3 +130,4 @@ public class KCFloatingActionButtonItem: UIView {
         }
     }
 }
+
