@@ -1,5 +1,5 @@
 # KCFloatingActionButton
-![Swift 1.2](https://img.shields.io/badge/Swift-1.2-orange.svg)
+![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
