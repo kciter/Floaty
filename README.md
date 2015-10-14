@@ -28,29 +28,50 @@ To install manually the KCFloatingActionButton in an app, just drag the `KCFloat
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/storyboard_support2.png" height='300' alt="Storyboard support2">
 
 ### Dependent on the UIWindow.
+#### Swift
 ```swift
 KCFABManager.defaultInstance().getButton().addItem(title: "Hello, World!")
 KCFABManager.defaultInstance().show()
 ```
+#### Objective-C
+````objc
+[[[KCFABManager defaultInstance] getButton] addItemWithTitle:@"Hello, world!"];
+[[KCFABManager defaultInstance] show:true];
+````
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/dependent_on_uiwindow.gif" width='187' alt="Dependent on the UIWindow">
 
 ### Dependent on the UIViewController.
+#### Swift
 ```swift
 let fab = KCFloatingActionButton()
 fab.addItem(title: "Hello, World!")
 self.view.addSubview(fab)
 ```
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+[fab addItemWithTitle:@"Hello, World!"];
+[self.view addSubview:fab];
+```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/dependent_on_uiviewcontroller.gif" width='187' alt="Dependent on the UIViewController">
 
 ### Use icon
+#### Swift
 ```swift
 let fab = KCFloatingActionButton()
 fab.addItem("Hello, World!", icon: UIImage(named: "icon")!)
 self.view.addSubview(fab)
 ```
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+[fab addItem:@"Hello, World" icon:[UIImage imageNamed:@"icon"]];
+[self.view addSubview:fab];
+```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/icon.png" width='187' alt="Use icon">
 
 ### Use handler
+#### Swift
 ```swift
 let fab = KCFloatingActionButton()
 fab.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
@@ -61,14 +82,34 @@ fab.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
 })
 self.view.addSubview(fab)
 ```
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+__weak KCFloatingActionButton *_fab = fab;
+[fab addItem:@"I got a handler" icon:[UIImage imageNamed:@"icon"] handler:^(KCFloatingActionButtonItem *item) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hey" message:@"I'm hungry..." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Me too" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:true completion:nil];
+    [_fab close];
+}];
+[self.view addSubview:fab];
+```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/handler.gif" width='187' alt="Use handler">
 
 ### Use custom item
+#### Swift
 ```swift
 let item = KCFloatingActionButtonItem()
 item.buttonColor = UIColor.blueColor()
 item.title = "Custom item"
 KCFABManager.defaultInstance().getButton().addItem(item: item)
+```
+#### Objective-C
+```objc
+KCFloatingActionButtonItem *item = [[KCFloatingActionButtonItem alloc] init];
+item.buttonColor = [UIColor blueColor];
+item.title = @"Custom item";
+[[[KCFABManager defaultInstance] getButton] addItemWithItem:item];
 ```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
@@ -126,7 +167,7 @@ KCFABManager.defaultInstance().getButton().addItem(item: item)
 * More customize style
 * <del>Storyboard support</del>
 * <del>Swift 1.2 support</del>
-* Objective-C support
+* <del>Objective-C support</del>
 
 ## License
 The MIT License (MIT)
