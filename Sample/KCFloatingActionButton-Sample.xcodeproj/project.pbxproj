@@ -7,21 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B675871E1BCCFEBC00C4BEAF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */; settings = {ASSET_TAGS = (); }; };
-		B67587241BCD4C4900C4BEAF /* KCFABManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */; settings = {ASSET_TAGS = (); }; };
-		B67587251BCD4C4900C4BEAF /* KCFABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		B67587261BCD4C4900C4BEAF /* KCFABWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */; settings = {ASSET_TAGS = (); }; };
-		B67587271BCD4C4900C4BEAF /* KCFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */; settings = {ASSET_TAGS = (); }; };
-		B67587281BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587231BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift */; settings = {ASSET_TAGS = (); }; };
-		B675872A1BCD4CBC00C4BEAF /* PushTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587291BCD4CBB00C4BEAF /* PushTestViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */; };
+		B675871E1BCCFEBC00C4BEAF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */; };
+		B67587241BCD4C4900C4BEAF /* KCFABManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */; };
+		B67587251BCD4C4900C4BEAF /* KCFABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */; };
+		B67587261BCD4C4900C4BEAF /* KCFABWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */; };
+		B67587271BCD4C4900C4BEAF /* KCFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */; };
+		B67587281BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587231BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift */; };
+		B675872A1BCD4CBC00C4BEAF /* PushTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587291BCD4CBB00C4BEAF /* PushTestViewController.swift */; };
 		B6F66E1A1BC1017F00E47769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F66E191BC1017F00E47769 /* AppDelegate.swift */; };
 		B6F66E1C1BC1017F00E47769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F66E1B1BC1017F00E47769 /* ViewController.swift */; };
 		B6F66E1F1BC1017F00E47769 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F66E1D1BC1017F00E47769 /* Main.storyboard */; };
 		B6F66E211BC1017F00E47769 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6F66E201BC1017F00E47769 /* Assets.xcassets */; };
-		B6F66E241BC1017F00E47769 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F66E221BC1017F00E47769 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABManager.swift; path = ../../KCFloatingActionButton/KCFABManager.swift; sourceTree = "<group>"; };
 		B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABViewController.swift; path = ../../KCFloatingActionButton/KCFABViewController.swift; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		B6F66E1B1BC1017F00E47769 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B6F66E1E1BC1017F00E47769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B6F66E201BC1017F00E47769 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B6F66E231BC1017F00E47769 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6F66E251BC1017F00E47769 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,8 +75,8 @@
 				B6F66E1D1BC1017F00E47769 /* Main.storyboard */,
 				B6F66E201BC1017F00E47769 /* Assets.xcassets */,
 				B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */,
-				B6F66E221BC1017F00E47769 /* LaunchScreen.storyboard */,
 				B6F66E251BC1017F00E47769 /* Info.plist */,
+				B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */,
 			);
 			name = "KCFloatingActionButton-Sample";
 			path = KCFloatingActionButton;
@@ -151,7 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F66E241BC1017F00E47769 /* LaunchScreen.storyboard in Resources */,
+				B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */,
 				B6F66E211BC1017F00E47769 /* Assets.xcassets in Resources */,
 				B675871E1BCCFEBC00C4BEAF /* Icons.xcassets in Resources */,
 				B6F66E1F1BC1017F00E47769 /* Main.storyboard in Resources */,
@@ -185,14 +185,6 @@
 				B6F66E1E1BC1017F00E47769 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B6F66E221BC1017F00E47769 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B6F66E231BC1017F00E47769 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

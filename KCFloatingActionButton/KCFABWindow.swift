@@ -16,7 +16,7 @@ class KCFABWindow: UIWindow {
         self.windowLevel = UIWindowLevelStatusBar
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
