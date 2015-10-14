@@ -13,21 +13,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        This object is dependent on the UIWindow.
         KCFABManager.defaultInstance().getButton().addItem(title: "I got a title")
         KCFABManager.defaultInstance().getButton().addItem("I got a icon", icon: UIImage(named: "icShare")!)
         KCFABManager.defaultInstance().getButton().addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
-            print("OK!!!!!")
+            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
             KCFABManager.defaultInstance().getButton().close()
         })
         KCFABManager.defaultInstance().show()
-
-//        This object is dependent on the controller.
-//        let fab = KCFloatingActionButton(size: 56)
+        
+//        This object is dependent on the UIViewController.
+//        let fab = KCFloatingActionButton()
 //        fab.addItem(title: "I got a title")
 //        fab.addItem("I got a icon", icon: UIImage(named: "icShare")!)
 //        fab.addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
-//            self.performSegueWithIdentifier("next", sender: nil)
-//            self.fab.close()
+//            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
+//            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            fab.close()
 //        })
 //        self.view.addSubview(fab)
     }
