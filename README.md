@@ -1,5 +1,5 @@
 # KCFloatingActionButton
-![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg)
+![Swift 1.2](https://img.shields.io/badge/Swift-1.2-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
@@ -10,15 +10,14 @@ Simple Floating Action Button for iOS
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Requirements
-* iOS 8.0+
-* Swift 2
-* Xcode 7.0
+* iOS 7.0+
+* Swift 1.2
+* Xcode 6+
 
 ## Installation
 ### Cocoapods
 ```ruby
-use_frameworks!
-pod "KCFloatingActionButton"
+pod "KCFloatingActionButton", :git => 'https://github.com/kciter/KCFloatingActionButton.git', :branch => 'swift1.2'
 ```
 ### Manually
 To install manually the KCFloatingActionButton in an app, just drag the `KCFloatingActionButton/*.swift` file into your project.
@@ -126,7 +125,7 @@ KCFABManager.defaultInstance().getButton().addItem(item: item)
 * More animate style
 * More customize style
 * <del>Storyboard support</del>
-* Swift 1.2 support
+* <del>Swift 1.2 support</del>
 * Objective-C support
 
 ## License
