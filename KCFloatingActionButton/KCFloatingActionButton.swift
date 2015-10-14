@@ -23,8 +23,6 @@ public class KCFloatingActionButton: UIView {
     
     public var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
     public var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
-    public var shadowColor: UIColor = UIColor.blackColor()
-    
     public var overlayColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
     public var closed: Bool = true
@@ -248,7 +246,7 @@ public class KCFloatingActionButton: UIView {
     private func setShadow() {
         layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowRadius = 2
-        layer.shadowColor = shadowColor.CGColor
+        layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOpacity = 0.4
     }
     

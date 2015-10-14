@@ -10,8 +10,7 @@ import UIKit
 
 public class KCFloatingActionButtonItem: UIView {
     public var size: CGFloat = 42
-    public var circleColor: UIColor = UIColor.whiteColor()
-    public var shadowColor: UIColor = UIColor.blackColor()
+    public var buttonColor: UIColor = UIColor.whiteColor()
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
     
     private var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -81,7 +80,7 @@ public class KCFloatingActionButtonItem: UIView {
     
     private func createCircleLayer() {
         circleLayer.frame = CGRectMake(0, 0, size, size)
-        circleLayer.backgroundColor = circleColor.CGColor
+        circleLayer.backgroundColor = buttonColor.CGColor
         circleLayer.cornerRadius = size/2
         layer.addSublayer(circleLayer)
     }
@@ -96,7 +95,7 @@ public class KCFloatingActionButtonItem: UIView {
     private func setShadow() {
         layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowRadius = 2
-        layer.shadowColor = shadowColor.CGColor
+        layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOpacity = 0.4
     }
     
