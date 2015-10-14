@@ -71,9 +71,9 @@ public class KCFABManager: NSObject {
     
     public func toggle(animated: Bool = true) {
         if fabWindow.hidden == false {
-            self.hide(animated: animated)
+            self.hide(animated)
         } else {
-            self.show(animated: animated)
+            self.show(animated)
         }
     }
     

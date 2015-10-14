@@ -59,7 +59,7 @@ public class KCFloatingActionButton: UIView {
         setObserver()
     }
     
-    public required init(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = min(frame.size.width, frame.size.height)
         backgroundColor = UIColor.clearColor()
@@ -92,7 +92,7 @@ public class KCFloatingActionButton: UIView {
         UIView.animateWithDuration(0.3, delay: 0,
             usingSpringWithDamping: 0.55,
             initialSpringVelocity: 0.3,
-            options: .CurveEaseInOut, animations: { () -> Void in
+            options: [.CurveEaseInOut], animations: { () -> Void in
                 self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
                 self.overlayLayer.opacity = 1
             }, completion: nil)
@@ -107,7 +107,7 @@ public class KCFloatingActionButton: UIView {
             UIView.animateWithDuration(0.3, delay: delay,
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
-                options: .CurveEaseInOut, animations: { () -> Void in
+                options: [.CurveEaseInOut], animations: { () -> Void in
                     item.layer.transform = CATransform3DMakeScale(1, 1, 1)
                     item.alpha = 1
                 }, completion: nil)
@@ -121,14 +121,14 @@ public class KCFloatingActionButton: UIView {
         UIView.animateWithDuration(0.3, delay: 0,
             usingSpringWithDamping: 0.6,
             initialSpringVelocity: 0.8,
-            options: nil, animations: { () -> Void in
+            options: [], animations: { () -> Void in
                 self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
                 self.overlayLayer.opacity = 0
             }, completion: nil)
         
         var delay = 0.0
         for item in items.reverse() {
-            UIView.animateWithDuration(0.15, delay: delay, options: nil, animations: { () -> Void in
+            UIView.animateWithDuration(0.15, delay: delay, options: [], animations: { () -> Void in
                     item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
                     item.alpha = 0
                 }, completion: nil)
@@ -145,14 +145,14 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
-    public func addItem(#item: KCFloatingActionButtonItem) {
+    public func addItem(item item: KCFloatingActionButtonItem) {
         item.frame.origin = CGPointMake(size/2-item.size/2, size/2-item.size/2)
         item.alpha = 0
         items.append(item)
         addSubview(item)
     }
     
-    public func addItem(#title: String) -> KCFloatingActionButtonItem {
+    public func addItem(title title: String) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.title = title
@@ -179,7 +179,7 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
-    public func addItem(#icon: UIImage) -> KCFloatingActionButtonItem {
+    public func addItem(icon icon: UIImage) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.icon = icon
@@ -197,10 +197,9 @@ public class KCFloatingActionButton: UIView {
     }
     
     public func removeItem(item: KCFloatingActionButtonItem) {
-        if let index = find(items, item) {
-            items[index].removeFromSuperview()
-            items.removeAtIndex(index)
-        }
+        guard let index = items.indexOf(item) else { return }
+        items[index].removeFromSuperview()
+        items.removeAtIndex(index)
     }
     
     public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
@@ -312,10 +311,10 @@ public class KCFloatingActionButton: UIView {
         NSNotificationCenter.defaultCenter().removeObserver(self, name:UIKeyboardWillHideNotification, object: nil)
     }
     
-    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 setTintLayer()
@@ -323,10 +322,10 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
-    public override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesMoved(touches, withEvent: event)
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 setTintLayer()
@@ -334,12 +333,12 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
-    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
         
         tintLayer.removeFromSuperlayer()
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 toggle()
@@ -347,7 +346,7 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
-    public override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if (object as? UIView) == self.superview && keyPath == "subviews" {
             self.superview?.bringSubviewToFront(self)
         }
@@ -362,12 +361,12 @@ public class KCFloatingActionButton: UIView {
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        self.superview?.addObserver(self, forKeyPath: "subviews", options: nil, context: nil)
+        self.superview?.addObserver(self, forKeyPath: "subviews", options: [], context: nil)
     }
     
     internal func deviceOrientationDidChange(notification: NSNotification) {
         var keyboardSize: CGFloat = 0.0
-        if let size = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size {
+        if let size = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
             keyboardSize = size.height
         }
         
@@ -386,16 +385,16 @@ public class KCFloatingActionButton: UIView {
     }
     
     internal func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size {
-            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
-                self.frame = CGRectMake(
-                    UIScreen.mainScreen().bounds.width-self.size-self.padding,
-                    UIScreen.mainScreen().bounds.height-self.size-self.padding - keyboardSize.height,
-                    self.size,
-                    self.size
-                )
-                }, completion: nil)
-        }
+        guard let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size else { return }
+        
+        UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
+            self.frame = CGRectMake(
+                UIScreen.mainScreen().bounds.width-self.size-self.padding,
+                UIScreen.mainScreen().bounds.height-self.size-self.padding - keyboardSize.height,
+                self.size,
+                self.size
+            )
+            }, completion: nil)
     }
     
     internal func keyboardWillHide(notification: NSNotification) {

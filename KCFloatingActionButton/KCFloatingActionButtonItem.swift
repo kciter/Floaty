@@ -58,7 +58,7 @@ public class KCFloatingActionButtonItem: UIView {
         backgroundColor = UIColor.clearColor()
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -99,9 +99,9 @@ public class KCFloatingActionButtonItem: UIView {
         layer.shadowOpacity = 0.4
     }
     
-    public override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent?) {
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 createTintLayer()
@@ -109,9 +109,9 @@ public class KCFloatingActionButtonItem: UIView {
         }
     }
     
-    public override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent?) {
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 createTintLayer()
@@ -119,10 +119,10 @@ public class KCFloatingActionButtonItem: UIView {
         }
     }
     
-    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent?) {
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         tintLayer.removeFromSuperlayer()
         if touches.count == 1 {
-            let touch = touches.first as? UITouch
+            let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
                 handler?(self)
