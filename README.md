@@ -78,49 +78,49 @@ KCFABManager.defaultInstance().getButton().addItem(item: item)
 #### Methods
 | Method | Parameter | Return type | Description |
 |---|---|---|---|
-|`defaultInstance` | | `KCFABManager` | Return singleton object. |
-|`show` | `animated: Bool = true` | | Show `KCFloatingActionButton` object. |
-|`hide` | `animated: Bool = true` | | Hide `KCFloatingActionButton` object. |
-|`toggle` | `animated: Bool = true` | | Toggle show/hide. |
-|`isHidden` | | `Bool` | Check Floating Action Button to hidden. |
-|`getButton` | | `KCFloatingActionButton` | Return `KCFloatingActionButton` object. |
+| defaultInstance | | KCFABManager | Return singleton object. |
+| show | animated: Bool = true | | Show `KCFloatingActionButton` object. |
+| hide | animated: Bool = true | | Hide `KCFloatingActionButton` object. |
+| toggle | animated: Bool = true | | Toggle show/hide. |
+| isHidden | | Bool | Check Floating Action Button to hidden. |
+| getButton | | KCFloatingActionButton | Return `KCFloatingActionButton` object. |
 
 ### KCFloatingActionButton
 #### Methods
 | Method | Parameter | Return type | Description |
 |---|---|---|---|
-|`open` | | | Show items. |
-|`close` | | | Hide items. |
-|`toggle` | | | Toggle show/hide. |
-|`addItem` | `item item: KCFloatingActionButtonItem` | | Add the custom item. |
-|`addItem` | `title title: String` | `KCFloatingActionButtonItem` | Add the default item that has title only. |
-|`addItem` | `title: String, icon: UIImage` | `KCFloatingActionButtonItem` | Add the default item that has title and icon. |
-|`addItem` | `title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | `KCFloatingActionButtonItem` | Add the default item that has all params. |
-|`addItem` | `icon icon: UIImage` | `KCFloatingActionButtonItem` | Add the default item that has icon only. |
-|`addItem` | `icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)` | `KCFloatingActionButtonItem` | Add the default item that has icon and handler. |
-|`removeItem` | `item: KCFloatingActionButtonItem` | | Remove the item. |
+| open | | | Show items. |
+| close | | | Hide items. |
+| toggle | | | Toggle show/hide. |
+| addItem | item item: KCFloatingActionButtonItem | | Add the custom item. |
+| addItem | title title: String | KCFloatingActionButtonItem | Add the default item that has title only. |
+| addItem | title: String, icon: UIImage | KCFloatingActionButtonItem | Add the default item that has title and icon. |
+| addItem | title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void) | KCFloatingActionButtonItem | Add the default item that has all params. |
+| addItem | icon icon: UIImage | KCFloatingActionButtonItem | Add the default item that has icon only. |
+| addItem | icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void) | KCFloatingActionButtonItem | Add the default item that has icon and handler. |
+| removeItem | item: KCFloatingActionButtonItem | | Remove the item. |
 #### Properties
 | Property | Type | Description |
 |---|---|---|
-|`size` | `CGFloat` | Button size. |
-|`padding` | `CGFloat` | | The distance of the screen and button. |
-|`buttonColor` | `UIColor` | | Button background color. |
-|`plusColor` | `UIColor` | Plus icon color on the inside button. |
-|`overlayColor` | `UIColor` | The background color that appears when the icons show. |
-|`closed` | `Bool` | Check items open and close |
-|`itemSpace` | `CGFloat` | | The distance of the items. |
-|`itemSize` | `CGFloat` | | Default item size. |
-|`itemButtonColor` | `UIColor` | | Default item button color. |
+| size | CGFloat | Button size. |
+| padding | CGFloat | | The distance of the screen and button. |
+| buttonColor | UIColor | | Button background color. |
+| plusColor | UIColor | Plus icon color on the inside button. |
+| overlayColor | UIColor | The background color that appears when the icons show. |
+| closed | Bool | Check items open and close |
+| itemSpace | CGFloat | | The distance of the items. |
+| itemSize | CGFloat | | Default item size. |
+| itemButtonColor | UIColor | | Default item button color. |
 
 ### KCFloatingActionButtonItem
 #### Properties
 | Property | Type | Description |
 |---|---|---|
-|`size` | `CGFloat` | Button size. |
-|`buttonColor` | `UIColor` | | Button background color. |
-|`title` | | `String` | Item title |
-|`icon` | | `UIImage` | Icon image on the inside button. |
-|`handler` | `((KCFloatingActionButtonItem) -> Void)?` | Touch up inside event handler |
+| size | CGFloat | Button size. |
+| buttonColor | UIColor | | Button background color. |
+| title | | String | Item title |
+| icon | | UIImage | Icon image on the inside button. |
+| handler | ((KCFloatingActionButtonItem) -> Void)? | Touch up inside event handler |
 
 ## TODO
 * More animate style
