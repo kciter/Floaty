@@ -126,7 +126,7 @@ KCFABManager.defaultInstance().getButton().addItem(item: item)
 * More animate style
 * More customize style
 * <del>Storyboard support</del>
-* Swift 1.2 support
+* <del>Swift 1.2 support</del>
 * Objective-C support
 
 ## License
