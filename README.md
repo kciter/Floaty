@@ -165,7 +165,8 @@ item.title = @"Custom item";
 
 ## TODO
 * More animate style
-* More customize style
+* Highly customizable
+* Add documentation
 * <del>Storyboard support</del>
 * <del>Swift 1.2 support</del>
 * <del>Objective-C support</del>
