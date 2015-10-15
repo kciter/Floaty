@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
+[![Build Status](https://travis-ci.org/kciter/KCFloatingActionButton.svg?branch=swift1.2)](https://travis-ci.org/kciter/KCFloatingActionButton)
 
 Simple Floating Action Button for iOS
 
