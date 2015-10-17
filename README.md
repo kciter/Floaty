@@ -12,7 +12,7 @@ Simple Floating Action Button for iOS
 
 ## Requirements
 * iOS 8.0+
-* Swift 1.2
+* Swift 2.0
 * Xcode 7
 
 ## Installation
