@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
+[![Build Status](https://travis-ci.org/kciter/KCFloatingActionButton.svg?branch=master)](https://travis-ci.org/kciter/KCFloatingActionButton)
 
 Simple Floating Action Button for iOS
 
@@ -11,7 +12,7 @@ Simple Floating Action Button for iOS
 
 ## Requirements
 * iOS 8.0+
-* Swift 1.2
+* Swift 2.0
 * Xcode 7
 
 ## Installation
