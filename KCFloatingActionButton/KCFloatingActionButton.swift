@@ -100,6 +100,7 @@ public class KCFloatingActionButton: UIView {
         var itemHeight: CGFloat = 0
         var delay = 0.0
         for item in items {
+            if item.hidden == true { continue }
             itemHeight += item.size
             itemHeight += self.itemSpace
             item.frame.origin.y = -itemHeight
@@ -128,6 +129,7 @@ public class KCFloatingActionButton: UIView {
         
         var delay = 0.0
         for item in items.reverse() {
+            if item.hidden == true { continue }
             UIView.animateWithDuration(0.15, delay: delay, options: nil, animations: { () -> Void in
                     item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
                     item.alpha = 0
@@ -206,6 +208,7 @@ public class KCFloatingActionButton: UIView {
     public override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         if closed == false {
             for item in items {
+                if item.hidden == true { continue }
                 let itemPoint = item.convertPoint(point, fromView: self)
                 if CGRectContainsPoint(item.bounds, itemPoint) == true {
                     return item.hitTest(itemPoint, withEvent: event)
