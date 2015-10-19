@@ -3,11 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
-<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/kciter/KCFloatingActionButton.svg?branch=master)](https://travis-ci.org/kciter/KCFloatingActionButton)
-=======
-[![Build Status](https://travis-ci.org/kciter/KCFloatingActionButton.svg?branch=swift1.2)](https://travis-ci.org/kciter/KCFloatingActionButton)
->>>>>>> e05843208b578f9e59139ef3cff744baf2f30cca
 
 Simple Floating Action Button for iOS
 
@@ -24,11 +20,7 @@ Simple Floating Action Button for iOS
 #### Cocoapods
 ```ruby
 use_frameworks!
-<<<<<<< HEAD
 pod "KCFloatingActionButton"
-=======
-pod "KCFloatingActionButton", :git => 'https://github.com/kciter/KCFloatingActionButton.git', :branch => 'swift1.2'
->>>>>>> e05843208b578f9e59139ef3cff744baf2f30cca
 ```
 ### iOS 7
 #### Manually
