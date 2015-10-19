@@ -27,6 +27,7 @@ class ViewController: UIViewController {
             KCFABManager.defaultInstance().getButton().close()
         })
         KCFABManager.defaultInstance().getButton().addItem(item: item)
+        KCFABManager.defaultInstance().getButton().items[1].hidden = true
         KCFABManager.defaultInstance().show()
         
 //        This object is dependent on the UIViewController.
