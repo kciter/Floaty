@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 //            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
 //            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
 //            self.presentViewController(alert, animated: true, completion: nil)
-//            self.fab.close()
+//            fab.close()
 //        })
 //        fab.addItem(item: item)
 //        self.view.addSubview(fab)
