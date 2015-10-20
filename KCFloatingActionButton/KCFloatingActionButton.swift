@@ -285,18 +285,18 @@ public class KCFloatingActionButton: UIView {
         item.size = itemSize
     }
     
-    private func setRightBottomFrame() {
+    private func setRightBottomFrame(keyboardSize: CGFloat = 0) {
         if superview == nil {
             frame = CGRectMake(
                 UIScreen.mainScreen().bounds.size.width-size-padding,
-                UIScreen.mainScreen().bounds.size.height-size-padding,
+                UIScreen.mainScreen().bounds.size.height-size-padding-keyboardSize,
                 size,
                 size
             )
         } else {
             frame = CGRectMake(
                 superview!.bounds.size.width-size-padding,
-                superview!.bounds.size.height-size-padding,
+                superview!.bounds.size.height-size-padding-keyboardSize,
                 size,
                 size
             )
@@ -374,22 +374,21 @@ public class KCFloatingActionButton: UIView {
             keyboardSize = size.height
         }
         
-        self.frame = CGRectMake(
-            UIScreen.mainScreen().bounds.width-size-padding,
-            UIScreen.mainScreen().bounds.height-size-padding - keyboardSize,
-            size,
-            size
-        )
-        overlayLayer.frame = CGRectMake(
-            -UIScreen.mainScreen().bounds.width+size+padding,
-            -UIScreen.mainScreen().bounds.height+size+padding,
-            UIScreen.mainScreen().bounds.width,
-            UIScreen.mainScreen().bounds.height - keyboardSize
-        )
+        if isCustomFrame == false {
+            setRightBottomFrame(keyboardSize: keyboardSize)
+        } else {
+            size = min(frame.size.width, frame.size.height)
+        }
     }
     
     internal func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size {
+            if isCustomFrame == false {
+                setRightBottomFrame(keyboardSize: keyboardSize.height)
+            } else {
+                size = min(frame.size.width, frame.size.height)
+            }
+            
             UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
                 self.frame = CGRectMake(
                     UIScreen.mainScreen().bounds.width-self.size-self.padding,
@@ -403,12 +402,11 @@ public class KCFloatingActionButton: UIView {
     
     internal func keyboardWillHide(notification: NSNotification) {
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
-            self.frame = CGRectMake(
-                UIScreen.mainScreen().bounds.width-self.size-self.padding,
-                UIScreen.mainScreen().bounds.height-self.size-self.padding,
-                self.size,
-                self.size
-            )
+            if self.isCustomFrame == false {
+                self.setRightBottomFrame()
+            } else {
+                self.size = min(self.frame.size.width, self.frame.size.height)
+            }
             }, completion: nil)
     }
 }
