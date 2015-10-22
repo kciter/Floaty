@@ -7,43 +7,111 @@
 
 import UIKit
 
+/**
+    Floating Action Button Object. It has `KCFloatingActionButtonItem` objects.
+    KCFloatingActionButton support storyboard designable.
+*/
 @IBDesignable
 public class KCFloatingActionButton: UIView {
+    // MARK: - Properties
+    
+    /**
+        `KCFloatingActionButtonItem` objects.
+    */
     public var items: [KCFloatingActionButtonItem] = []
+    
+    /**
+        This object's button size.
+    */
     public var size: CGFloat = 56 {
         didSet {
             self.setNeedsDisplay()
         }
     }
+    
+    /**
+        Padding from bottom right of UIScreen or superview.
+    */
     public var padding: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
         }
     }
     
+    /**
+        Button color.
+    */
     @IBInspectable public var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+    
+    /**
+        Plus icon color inside button.
+    */
     @IBInspectable public var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
+    
+    /**
+        Background overlaying color.
+    */
     @IBInspectable public var overlayColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
     
+    /**
+        The space between the item and item.
+    */
     @IBInspectable public var itemSpace: CGFloat = 14
+    
+    /**
+        Child item's default size.
+    */
     @IBInspectable public var itemSize: CGFloat = 42
+    
+    /**
+        Child item's default button color.
+    */
     @IBInspectable public var itemButtonColor: UIColor = UIColor.whiteColor()
     
+    /**
+    
+    */
     public var closed: Bool = true
     
+    /**
+        Button shape layer.
+    */
     private var circleLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+        Plus icon shape layer.
+    */
     private var plusLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+        If you touch inside button, button overlaid with tint layer.
+    */
     private var tintLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+        If you show items, background overlaid with overlayColor.
+    */
     private var overlayLayer: CAShapeLayer = CAShapeLayer()
     
+    /**
+        If you created this object from storyboard or `initWithFrame`, this property set true.
+    */
     private var isCustomFrame: Bool = false
     
+    // MARK: - Initialize
+    
+    /**
+        Initialize with default property.
+    */
     public init() {
         super.init(frame: CGRectMake(0, 0, size, size))
         backgroundColor = UIColor.clearColor()
         setObserver()
     }
     
+    /**
+        Initialize with custom size.
+    */
     public init(size: CGFloat) {
         self.size = size
         super.init(frame: CGRectMake(0, 0, size, size))
@@ -51,6 +119,9 @@ public class KCFloatingActionButton: UIView {
         setObserver()
     }
     
+    /**
+        Initialize with custom frame.
+    */
     public override init(frame: CGRect) {
         super.init(frame: frame)
         size = min(frame.size.width, frame.size.height)
@@ -59,6 +130,9 @@ public class KCFloatingActionButton: UIView {
         setObserver()
     }
     
+    /**
+        Initialize from storyboard.
+    */
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         size = min(frame.size.width, frame.size.height)
@@ -68,6 +142,11 @@ public class KCFloatingActionButton: UIView {
         setObserver()
     }
     
+    // MARK: - Method
+    
+    /**
+        Set size and frame.
+    */
     public override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
@@ -80,6 +159,9 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
+    /**
+        Draw layers.
+    */
     public override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
         super.drawLayer(layer, inContext: ctx)
         setOverlayLayer()
@@ -88,6 +170,9 @@ public class KCFloatingActionButton: UIView {
         setShadow()
     }
     
+    /**
+        Items open.
+    */
     public func open() {
         UIView.animateWithDuration(0.3, delay: 0,
             usingSpringWithDamping: 0.55,
@@ -118,6 +203,9 @@ public class KCFloatingActionButton: UIView {
         closed = false
     }
     
+    /**
+        Items close.
+    */
     public func close() {
         UIView.animateWithDuration(0.3, delay: 0,
             usingSpringWithDamping: 0.6,
@@ -139,6 +227,9 @@ public class KCFloatingActionButton: UIView {
         closed = true
     }
     
+    /**
+        Items open or close.
+    */
     public func toggle() {
         if closed == true {
             open()
@@ -147,6 +238,9 @@ public class KCFloatingActionButton: UIView {
         }
     }
     
+    /**
+        Add custom item
+    */
     public func addItem(item item: KCFloatingActionButtonItem) {
         item.frame.origin = CGPointMake(size/2-item.size/2, size/2-item.size/2)
         item.alpha = 0
@@ -154,6 +248,9 @@ public class KCFloatingActionButton: UIView {
         addSubview(item)
     }
     
+    /**
+        Add item with title.
+    */
     public func addItem(title title: String) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
@@ -162,6 +259,9 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
+    /**
+        Add item with title and icon.
+    */
     public func addItem(title: String, icon: UIImage) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
@@ -171,6 +271,9 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
+    /**
+        Add item with title, icon or handler.
+    */
     public func addItem(title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
@@ -181,6 +284,9 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
+    /**
+        Add item with icon.
+    */
     public func addItem(icon icon: UIImage) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
@@ -189,6 +295,9 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
+    /**
+        Add item with icon and handler.
+    */
     public func addItem(icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
@@ -198,8 +307,19 @@ public class KCFloatingActionButton: UIView {
         return item
     }
     
-    public func removeItem(item: KCFloatingActionButtonItem) {
+    /**
+        Remove item.
+    */
+    public func removeItem(item item: KCFloatingActionButtonItem) {
         guard let index = items.indexOf(item) else { return }
+        items[index].removeFromSuperview()
+        items.removeAtIndex(index)
+    }
+    
+    /**
+        Remove item with index.
+    */
+    public func removeItem(index index: Int) {
         items[index].removeFromSuperview()
         items.removeAtIndex(index)
     }
