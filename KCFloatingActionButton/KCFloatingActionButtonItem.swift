@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    Floating Action Button Object's item.
+*/
 public class KCFloatingActionButtonItem: UIView {
     
     // MARK: - Properties
