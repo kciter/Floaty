@@ -84,7 +84,7 @@ public class KCFloatingActionButton: UIView {
     private var plusLayer: CAShapeLayer = CAShapeLayer()
     
     /**
-        If you touch inside button, button overlaid with tint layer.
+        If you keeping touch inside button, button overlaid with tint layer.
     */
     private var tintLayer: CAShapeLayer = CAShapeLayer()
     
