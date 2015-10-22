@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    KCFloatingActionButton dependent on UIWindow.
+*/
 class KCFABViewController: UIViewController {
     
     let fab = KCFloatingActionButton()

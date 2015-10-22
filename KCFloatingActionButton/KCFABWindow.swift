@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    KCFloatingActionButton dependent on UIWindow.
+*/
 class KCFABWindow: UIWindow {
     override init(frame: CGRect) {
         super.init(frame: frame)

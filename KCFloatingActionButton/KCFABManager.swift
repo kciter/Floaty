@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+    KCFloatingActionButton dependent on UIWindow.
+*/
 public class KCFABManager: NSObject {
     struct StaticInstance {
         static var dispatchToken: dispatch_once_t = 0
