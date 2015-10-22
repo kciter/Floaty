@@ -9,13 +9,37 @@
 import UIKit
 
 public class KCFloatingActionButtonItem: UIView {
+    
+    // MARK: - Properties
+    
+    /**
+        This object's button size.
+    */
     public var size: CGFloat = 42
+    
+    /**
+        Button color.
+    */
     public var buttonColor: UIColor = UIColor.whiteColor()
+    
+    /**
+        If you touch up inside button, it execute handler.
+    */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
     
+    /**
+        Shape layer of button.
+    */
     private var circleLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+        If you keeping touch inside button, button overlaid with tint layer.
+    */
     private var tintLayer: CAShapeLayer = CAShapeLayer()
     
+    /**
+        Item's title label.
+    */
     var _titleLabel: UILabel? = nil
     public var titleLabel: UILabel {
         get {
@@ -28,6 +52,9 @@ public class KCFloatingActionButtonItem: UIView {
         }
     }
     
+    /**
+        Item's title.
+    */
     public var title: String? = nil {
         didSet {
             titleLabel.text = title
@@ -37,6 +64,9 @@ public class KCFloatingActionButtonItem: UIView {
         }
     }
     
+    /**
+        Item's icon image view.
+    */
     var _iconImageView: UIImageView? = nil
     public var iconImageView: UIImageView {
         get {
@@ -47,12 +77,22 @@ public class KCFloatingActionButtonItem: UIView {
             return _iconImageView!
         }
     }
+    
+    /**
+        Item's icon.
+    */
     public var icon: UIImage? = nil {
         didSet {
             iconImageView.image = icon
         }
     }
     
+    
+    // MARK: - Initialize
+    
+    /**
+        Initialize with default property.
+    */
     public init() {
         super.init(frame: CGRectMake(0, 0, size, size))
         backgroundColor = UIColor.clearColor()
@@ -62,6 +102,9 @@ public class KCFloatingActionButtonItem: UIView {
         super.init(coder: aDecoder)
     }
     
+    /**
+        Set size, frame and draw layers.
+    */
     public override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
