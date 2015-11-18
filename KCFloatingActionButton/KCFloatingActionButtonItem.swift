@@ -26,6 +26,11 @@ public class KCFloatingActionButtonItem: UIView {
     public var buttonColor: UIColor = UIColor.whiteColor()
     
     /**
+        Shadow color.
+    */
+    public var shadowColor: UIColor = UIColor.blackColor()
+    
+    /**
         If you touch up inside button, it execute handler.
     */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
@@ -141,7 +146,7 @@ public class KCFloatingActionButtonItem: UIView {
     private func setShadow() {
         layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowRadius = 2
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = shadowColor.CGColor
         layer.shadowOpacity = 0.4
     }
     
