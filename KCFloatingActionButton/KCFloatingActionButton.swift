@@ -406,7 +406,8 @@ public class KCFloatingActionButton: UIView {
     
     private func itemDefaultSet(item: KCFloatingActionButtonItem) {
         item.buttonColor = itemButtonColor
-        item.shadowColor = itemShadowColor
+        item.circleShadowColor = itemShadowColor
+        item.titleShadowColor = itemShadowColor
         item.size = itemSize
     }
     

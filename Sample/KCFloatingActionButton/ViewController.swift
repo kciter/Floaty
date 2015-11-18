@@ -15,7 +15,8 @@ class ViewController: UIViewController {
 
         let item = KCFloatingActionButtonItem()
         item.buttonColor = UIColor.blueColor()
-        item.shadowColor = UIColor.redColor()
+        item.circleShadowColor = UIColor.redColor()
+        item.titleShadowColor = UIColor.blueColor()
         item.title = "Custom item"
         
 //        This object is dependent on the UIWindow.

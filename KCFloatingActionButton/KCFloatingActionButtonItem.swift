@@ -26,9 +26,14 @@ public class KCFloatingActionButtonItem: UIView {
     public var buttonColor: UIColor = UIColor.whiteColor()
     
     /**
-        Shadow color.
-    */
-    public var shadowColor: UIColor = UIColor.blackColor()
+     Circle Shadow color.
+     */
+    public var circleShadowColor: UIColor = UIColor.blackColor()
+    
+    /**
+     Title Shadow color.
+     */
+    public var titleShadowColor: UIColor = UIColor.blackColor()
     
     /**
         If you touch up inside button, it execute handler.
@@ -144,10 +149,15 @@ public class KCFloatingActionButtonItem: UIView {
     }
     
     private func setShadow() {
-        layer.shadowOffset = CGSizeMake(1, 1)
-        layer.shadowRadius = 2
-        layer.shadowColor = shadowColor.CGColor
-        layer.shadowOpacity = 0.4
+        circleLayer.shadowOffset = CGSizeMake(1, 1)
+        circleLayer.shadowRadius = 2
+        circleLayer.shadowColor = circleShadowColor.CGColor
+        circleLayer.shadowOpacity = 0.4
+        
+        titleLabel.layer.shadowOffset = CGSizeMake(1, 1)
+        titleLabel.layer.shadowRadius = 2
+        titleLabel.layer.shadowColor = titleShadowColor.CGColor
+        titleLabel.layer.shadowOpacity = 0.4
     }
     
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
