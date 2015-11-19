@@ -69,6 +69,11 @@ public class KCFloatingActionButton: UIView {
     @IBInspectable public var itemButtonColor: UIColor = UIColor.whiteColor()
     
     /**
+        Child item's default shadow color.
+    */
+    @IBInspectable public var itemShadowColor: UIColor = UIColor.blackColor()
+    
+    /**
     
     */
     public var closed: Bool = true
@@ -401,6 +406,8 @@ public class KCFloatingActionButton: UIView {
     
     private func itemDefaultSet(item: KCFloatingActionButtonItem) {
         item.buttonColor = itemButtonColor
+        item.circleShadowColor = itemShadowColor
+        item.titleShadowColor = itemShadowColor
         item.size = itemSize
     }
     
