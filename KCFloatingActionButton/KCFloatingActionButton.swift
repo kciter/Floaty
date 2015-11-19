@@ -426,10 +426,12 @@ public class KCFloatingActionButton: UIView {
                 size,
                 size
             )
+            print(frame)
         }
     }
     
     private func setObserver() {
+        addObserver(self, forKeyPath: "closed", options: [], context: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceOrientationDidChange:", name: UIDeviceOrientationDidChangeNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name:UIKeyboardWillHideNotification, object: nil)
@@ -477,21 +479,23 @@ public class KCFloatingActionButton: UIView {
     }
     
     public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if (object as? UIView) == self.superview && keyPath == "subviews" {
-            self.superview?.bringSubviewToFront(self)
+        if (object as? UIView) == superview && keyPath == "frame" {
+            if isCustomFrame == false {
+                setRightBottomFrame()
+            } else {
+                size = min(frame.size.width, frame.size.height)
+            }
         }
-    
-        super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
     }
     
     public override func willMoveToSuperview(newSuperview: UIView?) {
-        self.superview?.removeObserver(self, forKeyPath: "subviews")
+        superview?.removeObserver(self, forKeyPath: "frame")
         super.willMoveToSuperview(newSuperview)
     }
     
     public override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        self.superview?.addObserver(self, forKeyPath: "subviews", options: [], context: nil)
+        superview?.addObserver(self, forKeyPath: "frame", options: [], context: nil)
     }
     
     internal func deviceOrientationDidChange(notification: NSNotification) {
