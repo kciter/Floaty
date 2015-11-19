@@ -160,6 +160,8 @@ item.title = @"Custom item";
 |---|---|---|
 | size | CGFloat | Button size. |
 | buttonColor | UIColor | | Button background color. |
+| circleShadowColor | UIColor | | Circle shadow color. |
+| titleShadowColor | UIColor | | Title shadow color. |
 | title | | String | Item title |
 | icon | | UIImage | Icon image on the inside button. |
 | handler | ((KCFloatingActionButtonItem) -> Void)? | Touch up inside event handler |
