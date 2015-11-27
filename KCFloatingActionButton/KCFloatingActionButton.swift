@@ -481,6 +481,7 @@ public class KCFloatingActionButton: UIView {
         if (object as? UIView) == superview && keyPath == "frame" {
             if isCustomFrame == false {
                 setRightBottomFrame()
+                setOverlayLayer()
             } else {
                 size = min(frame.size.width, frame.size.height)
             }
