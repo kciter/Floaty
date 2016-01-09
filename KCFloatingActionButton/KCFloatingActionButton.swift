@@ -32,7 +32,12 @@ public class KCFloatingActionButton: UIView {
     /**
         Padding from bottom right of UIScreen or superview.
     */
-    public var padding: CGFloat = 14 {
+    public var paddingX: CGFloat = 14 {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    public var paddingY: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
         }
@@ -414,15 +419,15 @@ public class KCFloatingActionButton: UIView {
     private func setRightBottomFrame(keyboardSize: CGFloat = 0) {
         if superview == nil {
             frame = CGRectMake(
-                UIScreen.mainScreen().bounds.size.width-size-padding,
-                UIScreen.mainScreen().bounds.size.height-size-padding-keyboardSize,
+                UIScreen.mainScreen().bounds.size.width-size-paddingX,
+                UIScreen.mainScreen().bounds.size.height-size-paddingY-keyboardSize,
                 size,
                 size
             )
         } else {
             frame = CGRectMake(
-                superview!.bounds.size.width-size-padding,
-                superview!.bounds.size.height-size-padding-keyboardSize,
+                superview!.bounds.size.width-size-paddingX,
+                superview!.bounds.size.height-size-paddingY-keyboardSize,
                 size,
                 size
             )
@@ -522,8 +527,8 @@ public class KCFloatingActionButton: UIView {
         
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
             self.frame = CGRectMake(
-                UIScreen.mainScreen().bounds.width-self.size-self.padding,
-                UIScreen.mainScreen().bounds.height-self.size-self.padding - keyboardSize.height,
+                UIScreen.mainScreen().bounds.width-self.size-self.paddingX,
+                UIScreen.mainScreen().bounds.height-self.size-self.paddingY - keyboardSize.height,
                 self.size,
                 self.size
             )
