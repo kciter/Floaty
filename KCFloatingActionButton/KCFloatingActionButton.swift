@@ -431,7 +431,6 @@ public class KCFloatingActionButton: UIView {
                 size,
                 size
             )
-            print(frame)
         }
     }
     
