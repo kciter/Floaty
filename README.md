@@ -16,7 +16,7 @@ Simple Floating Action Button for iOS
 * Xcode 7
 
 ## Installation
-### Cocoapods
+### CocoaPods
 ```ruby
 use_frameworks!
 pod "KCFloatingActionButton"
