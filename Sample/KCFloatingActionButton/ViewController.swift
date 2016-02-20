@@ -20,30 +20,30 @@ class ViewController: UIViewController {
         item.title = "Custom item"
         
 //        This object is dependent on the UIWindow.
-        KCFABManager.defaultInstance().getButton().addItem(title: "I got a title")
-        KCFABManager.defaultInstance().getButton().addItem("I got a icon", icon: UIImage(named: "icShare")!)
-        KCFABManager.defaultInstance().getButton().addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
-            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-            KCFABManager.defaultInstance().getButton().close()
-        })
-        KCFABManager.defaultInstance().getButton().addItem(item: item)
-        KCFABManager.defaultInstance().getButton().items[1].hidden = true
-        KCFABManager.defaultInstance().show()
-        
-//        This object is dependent on the UIViewController.
-//        let fab = KCFloatingActionButton()
-//        fab.addItem(title: "I got a title")
-//        fab.addItem("I got a icon", icon: UIImage(named: "icShare")!)
-//        fab.addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
+//        KCFABManager.defaultInstance().getButton().addItem(title: "I got a title")
+//        KCFABManager.defaultInstance().getButton().addItem("I got a icon", icon: UIImage(named: "icShare")!)
+//        KCFABManager.defaultInstance().getButton().addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
 //            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
 //            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
 //            self.presentViewController(alert, animated: true, completion: nil)
-//            fab.close()
+//            KCFABManager.defaultInstance().getButton().close()
 //        })
-//        fab.addItem(item: item)
-//        self.view.addSubview(fab)
+//        KCFABManager.defaultInstance().getButton().addItem(item: item)
+//        KCFABManager.defaultInstance().getButton().items[1].hidden = true
+//        KCFABManager.defaultInstance().show()
+        
+//        This object is dependent on the UIViewController.
+        let fab = KCFloatingActionButton()
+        fab.addItem(title: "I got a title")
+        fab.addItem("I got a icon", icon: UIImage(named: "icShare")!)
+        fab.addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
+            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            fab.close()
+        })
+        fab.addItem(item: item)
+        self.view.addSubview(fab)
     }
 
     override func didReceiveMemoryWarning() {
