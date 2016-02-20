@@ -49,6 +49,11 @@ public class KCFloatingActionButton: UIView {
     @IBInspectable public var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
     
     /**
+        Button image.
+    */
+    @IBInspectable public var buttonImage: UIImage? = nil
+    
+    /**
         Plus icon color inside button.
     */
     @IBInspectable public var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
@@ -92,6 +97,11 @@ public class KCFloatingActionButton: UIView {
         Plus icon shape layer.
     */
     private var plusLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+        Button image view.
+    */
+    private var buttonImageView: UIImageView = UIImageView()
     
     /**
         If you keeping touch inside button, button overlaid with tint layer.
@@ -176,7 +186,11 @@ public class KCFloatingActionButton: UIView {
         super.drawLayer(layer, inContext: ctx)
         setOverlayLayer()
         setCircleLayer()
-        setPlusLayer()
+        if buttonImage == nil {
+            setPlusLayer()
+        } else {
+            setButtonImage()
+        }
         setShadow()
     }
     
@@ -370,6 +384,18 @@ public class KCFloatingActionButton: UIView {
         plusLayer.lineWidth = 2.0
         plusLayer.path = plusBezierPath().CGPath
         layer.addSublayer(plusLayer)
+    }
+    
+    private func setButtonImage() {
+        buttonImageView.removeFromSuperview()
+        buttonImageView = UIImageView(image: buttonImage)
+        buttonImageView.frame = CGRectMake(
+            size/2 - buttonImageView.frame.size.width/2,
+            size/2 - buttonImageView.frame.size.height/2,
+            buttonImageView.frame.size.width,
+            buttonImageView.frame.size.height
+        )
+        addSubview(buttonImageView)
     }
     
     private func setTintLayer() {
