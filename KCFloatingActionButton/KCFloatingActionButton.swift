@@ -198,32 +198,37 @@ public class KCFloatingActionButton: UIView {
         Items open.
     */
     public func open() {
-        UIView.animateWithDuration(0.3, delay: 0,
-            usingSpringWithDamping: 0.55,
-            initialSpringVelocity: 0.3,
-            options: [.CurveEaseInOut], animations: { () -> Void in
-                self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
-                self.overlayLayer.opacity = 1
-            }, completion: nil)
-        
-        var itemHeight: CGFloat = 0
-        var delay = 0.0
-        for item in items {
-            if item.hidden == true { continue }
-            itemHeight += item.size
-            itemHeight += self.itemSpace
-            item.frame.origin.y = -itemHeight
-            item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
-            UIView.animateWithDuration(0.3, delay: delay,
+        if(items.count > 0){
+            UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: [.CurveEaseInOut], animations: { () -> Void in
-                    item.layer.transform = CATransform3DMakeScale(1, 1, 1)
-                    item.alpha = 1
+                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
+                    self.overlayLayer.opacity = 1
                 }, completion: nil)
             
-            delay += 0.1
+            var itemHeight: CGFloat = 0
+            var delay = 0.0
+            for item in items {
+                if item.hidden == true { continue }
+                itemHeight += item.size
+                itemHeight += self.itemSpace
+                item.frame.origin.y = -itemHeight
+                item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                UIView.animateWithDuration(0.3, delay: delay,
+                    usingSpringWithDamping: 0.55,
+                    initialSpringVelocity: 0.3,
+                    options: [.CurveEaseInOut], animations: { () -> Void in
+                        item.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                        item.alpha = 1
+                    }, completion: nil)
+                
+                delay += 0.1
+            }
+            
+
         }
+        
         closed = false
     }
     
@@ -231,22 +236,24 @@ public class KCFloatingActionButton: UIView {
         Items close.
     */
     public func close() {
-        UIView.animateWithDuration(0.3, delay: 0,
-            usingSpringWithDamping: 0.6,
-            initialSpringVelocity: 0.8,
-            options: [], animations: { () -> Void in
-                self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-                self.overlayLayer.opacity = 0
-            }, completion: nil)
-        
-        var delay = 0.0
-        for item in items.reverse() {
-            if item.hidden == true { continue }
-            UIView.animateWithDuration(0.15, delay: delay, options: [], animations: { () -> Void in
-                    item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
-                    item.alpha = 0
+        if(items.count > 0){
+            UIView.animateWithDuration(0.3, delay: 0,
+                usingSpringWithDamping: 0.6,
+                initialSpringVelocity: 0.8,
+                options: [], animations: { () -> Void in
+                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+                    self.overlayLayer.opacity = 0
                 }, completion: nil)
-            delay += 0.1
+            
+            var delay = 0.0
+            for item in items.reverse() {
+                if item.hidden == true { continue }
+                UIView.animateWithDuration(0.15, delay: delay, options: [], animations: { () -> Void in
+                        item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                        item.alpha = 0
+                    }, completion: nil)
+                delay += 0.1
+            }
         }
         closed = true
     }
