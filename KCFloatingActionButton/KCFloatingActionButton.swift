@@ -111,7 +111,10 @@ public class KCFloatingActionButton: UIView {
     /**
         If you show items, background overlaid with overlayColor.
     */
-    private var overlayLayer: CAShapeLayer = CAShapeLayer()
+//    private var overlayLayer: CAShapeLayer = CAShapeLayer()
+     
+    private var overlayView : UIControl = UIControl();
+
     
     /**
         If you created this object from storyboard or `initWithFrame`, this property set true.
@@ -184,7 +187,7 @@ public class KCFloatingActionButton: UIView {
     */
     public override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
         super.drawLayer(layer, inContext: ctx)
-        setOverlayLayer()
+//        setOverlayLayer()
         setCircleLayer()
         if buttonImage == nil {
             setPlusLayer()
@@ -199,12 +202,19 @@ public class KCFloatingActionButton: UIView {
     */
     public func open() {
         if(items.count > 0){
+            
+            setOverlayView();
+            self.superview?.insertSubview(overlayView, aboveSubview: self);
+            self.superview?.bringSubviewToFront(self);
+            overlayView.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside);
+
+            
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: [.CurveEaseInOut], animations: { () -> Void in
                     self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
-                    self.overlayLayer.opacity = 1
+                    self.overlayView.alpha = 1
                 }, completion: nil)
             
             var itemHeight: CGFloat = 0
@@ -237,13 +247,16 @@ public class KCFloatingActionButton: UIView {
     */
     public func close() {
         if(items.count > 0){
+            self.overlayView.removeTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in
                     self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-                    self.overlayLayer.opacity = 0
-                }, completion: nil)
+                    self.overlayView.alpha = 0
+                }, completion: {(f) -> Void in
+                    self.overlayView.removeFromSuperview()
+            })
             
             var delay = 0.0
             for item in items.reverse() {
@@ -412,18 +425,16 @@ public class KCFloatingActionButton: UIView {
         layer.addSublayer(tintLayer)
     }
     
-    private func setOverlayLayer() {
-        overlayLayer.removeFromSuperlayer()
-        overlayLayer.frame = CGRectMake(
-            -UIScreen.mainScreen().bounds.width+(UIScreen.mainScreen().bounds.width-frame.origin.x),
-            -UIScreen.mainScreen().bounds.height+(UIScreen.mainScreen().bounds.height-frame.origin.y),
+    private func setOverlayView() {
+        overlayView.frame = CGRectMake(
+            0,0,
             UIScreen.mainScreen().bounds.width,
             UIScreen.mainScreen().bounds.height
-        )
-        overlayLayer.backgroundColor = overlayColor.CGColor
-        overlayLayer.opacity = 0
-        overlayLayer.zPosition = -1
-        layer.addSublayer(overlayLayer)
+        );
+        overlayView.backgroundColor = overlayColor;
+        overlayView.alpha = 0;
+        overlayView.userInteractionEnabled = true;
+        
     }
     
     private func setShadow() {
@@ -518,7 +529,7 @@ public class KCFloatingActionButton: UIView {
         if (object as? UIView) == superview && keyPath == "frame" {
             if isCustomFrame == false {
                 setRightBottomFrame()
-                setOverlayLayer()
+                setOverlayView()
             } else {
                 size = min(frame.size.width, frame.size.height)
             }
