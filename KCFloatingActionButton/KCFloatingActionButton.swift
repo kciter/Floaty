@@ -113,7 +113,7 @@ public class KCFloatingActionButton: UIView {
     */
 //    private var overlayLayer: CAShapeLayer = CAShapeLayer()
      
-    private var overlayView : UIControl = UIControl();
+    private var overlayView : UIControl = UIControl()
 
     
     /**
@@ -203,10 +203,10 @@ public class KCFloatingActionButton: UIView {
     public func open() {
         if(items.count > 0){
             
-            setOverlayView();
-            self.superview?.insertSubview(overlayView, aboveSubview: self);
-            self.superview?.bringSubviewToFront(self);
-            overlayView.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside);
+            setOverlayView()
+            self.superview?.insertSubview(overlayView, aboveSubview: self)
+            self.superview?.bringSubviewToFront(self)
+            overlayView.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
 
             
             UIView.animateWithDuration(0.3, delay: 0,
@@ -430,10 +430,10 @@ public class KCFloatingActionButton: UIView {
             0,0,
             UIScreen.mainScreen().bounds.width,
             UIScreen.mainScreen().bounds.height
-        );
-        overlayView.backgroundColor = overlayColor;
-        overlayView.alpha = 0;
-        overlayView.userInteractionEnabled = true;
+        )
+        overlayView.backgroundColor = overlayColor
+        overlayView.alpha = 0
+        overlayView.userInteractionEnabled = true
         
     }
     
