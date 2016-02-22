@@ -72,8 +72,6 @@ public class KCFloatingActionButtonItem: UIView {
         didSet {
             titleLabel.text = title
             titleLabel.sizeToFit()
-            titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
-            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
         }
     }
     
@@ -84,10 +82,10 @@ public class KCFloatingActionButtonItem: UIView {
     public var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 21, 23))
+                _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
                 _iconImageView?.center = CGPointMake(21, 21)
                 _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
-                    addSubview(_iconImageView!)
+                addSubview(_iconImageView!)
             }
             return _iconImageView!
         }
@@ -123,6 +121,14 @@ public class KCFloatingActionButtonItem: UIView {
     public override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        if title != nil {
+            frame.origin.x = -titleLabel.frame.size.width - 5
+            frame.size.width = titleLabel.frame.size.width + size + 10
+            iconImageView.frame.origin.x = frame.size.width - size
+            iconImageView.center = CGPointMake(frame.size.width - size + 21, 21)
+            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
+        }
+        
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.mainScreen().scale
         createCircleLayer()
@@ -137,14 +143,14 @@ public class KCFloatingActionButtonItem: UIView {
     }
     
     private func createCircleLayer() {
-        circleLayer.frame = CGRectMake(0, 0, size, size)
+        circleLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
         circleLayer.backgroundColor = buttonColor.CGColor
         circleLayer.cornerRadius = size/2
         layer.addSublayer(circleLayer)
     }
     
     private func createTintLayer() {
-        tintLayer.frame = CGRectMake(0, 0, size, size)
+        tintLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
         tintLayer.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2).CGColor
         tintLayer.cornerRadius = size/2
         layer.addSublayer(tintLayer)
