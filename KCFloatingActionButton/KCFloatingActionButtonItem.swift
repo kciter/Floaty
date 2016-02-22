@@ -83,7 +83,7 @@ public class KCFloatingActionButtonItem: UIView {
         get {
             if _iconImageView == nil {
                 _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
-                _iconImageView?.center = CGPointMake(21, 21)
+                _iconImageView?.center = CGPointMake(size/2, size/2)
                 _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
                 addSubview(_iconImageView!)
             }
@@ -122,11 +122,11 @@ public class KCFloatingActionButtonItem: UIView {
         super.drawRect(rect)
         
         if title != nil {
-            frame.origin.x = -titleLabel.frame.size.width - 5
+            frame.origin.x = frame.origin.x - titleLabel.frame.size.width - 10
             frame.size.width = titleLabel.frame.size.width + size + 10
             iconImageView.frame.origin.x = frame.size.width - size
-            iconImageView.center = CGPointMake(frame.size.width - size + 21, 21)
-            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
+            iconImageView.center = CGPointMake(frame.size.width - size + size/2, size/2)
+            titleLabel.frame.origin.y = size/2 - titleLabel.frame.size.height/2
         }
         
         self.layer.shouldRasterize = true
