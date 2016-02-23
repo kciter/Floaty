@@ -89,6 +89,11 @@ public class KCFloatingActionButton: UIView {
     public var closed: Bool = true
     
     /**
+     Delegate that can be used to learn more about the behavior of the FAB widget.
+    */
+    @IBOutlet public var fabDelegate: KCFloatingActionButtonDelegate?
+    
+    /**
         Button shape layer.
     */
     private var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -275,10 +280,16 @@ public class KCFloatingActionButton: UIView {
         Items open or close.
     */
     public func toggle() {
-        if closed == true {
-            open()
-        } else {
-            close()
+        if items.count > 0 {
+            if closed == true {
+                open()
+            } else {
+                close()
+            }
+        }
+        else if fabDelegate != nil
+        {
+            fabDelegate?.emptyKcfabSelected(self)
         }
     }
     
