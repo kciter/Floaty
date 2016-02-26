@@ -286,9 +286,7 @@ public class KCFloatingActionButton: UIView {
             } else {
                 close()
             }
-        }
-        else if fabDelegate != nil
-        {
+        } else {
             fabDelegate?.emptyKcfabSelected(self)
         }
     }
