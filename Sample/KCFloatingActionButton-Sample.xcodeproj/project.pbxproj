@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		699DF1681C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */; };
 		B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */; };
 		B675871E1BCCFEBC00C4BEAF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */; };
 		B67587241BCD4C4900C4BEAF /* KCFABManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButtonDelegate.swift; path = ../../KCFloatingActionButton/KCFloatingActionButtonDelegate.swift; sourceTree = "<group>"; };
 		B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABManager.swift; path = ../../KCFloatingActionButton/KCFABManager.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */,
 				B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */,
 				B67587231BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift */,
+				699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */,
 			);
 			name = KCFloatingActionButton;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				B67587281BCD4C4900C4BEAF /* KCFloatingActionButtonItem.swift in Sources */,
 				B67587271BCD4C4900C4BEAF /* KCFloatingActionButton.swift in Sources */,
 				B6F66E1A1BC1017F00E47769 /* AppDelegate.swift in Sources */,
+				699DF1681C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift in Sources */,
 				B67587251BCD4C4900C4BEAF /* KCFABViewController.swift in Sources */,
 				B67587261BCD4C4900C4BEAF /* KCFABWindow.swift in Sources */,
 				B675872A1BCD4CBC00C4BEAF /* PushTestViewController.swift in Sources */,
