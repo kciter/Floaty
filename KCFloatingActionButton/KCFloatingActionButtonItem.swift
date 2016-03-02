@@ -122,7 +122,7 @@ public class KCFloatingActionButtonItem: UIView {
         super.drawRect(rect)
         
         if title != nil {
-            frame.origin.x = frame.origin.x - titleLabel.frame.size.width - 10
+            frame.origin.x = -titleLabel.frame.size.width - 10 + 28-size/2
             frame.size.width = titleLabel.frame.size.width + size + 10
             iconImageView.frame.origin.x = frame.size.width - size
             iconImageView.center = CGPointMake(frame.size.width - size + size/2, size/2)
