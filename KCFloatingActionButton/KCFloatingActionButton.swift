@@ -42,7 +42,11 @@ public class KCFloatingActionButton: UIView {
             self.setNeedsDisplay()
         }
     }
-    
+	
+	/**
+		Degrees to rotate image
+	*/
+	@IBInspectable public var rotationDegrees: CGFloat = -45
     /**
         Button color.
     */
@@ -218,7 +222,12 @@ public class KCFloatingActionButton: UIView {
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: [.CurveEaseInOut], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
+					if self.buttonImage == nil {
+						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
+					}
+					else {
+						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(self.rotationDegrees))
+					}
                     self.overlayView.alpha = 1
                 }, completion: nil)
             
@@ -257,7 +266,12 @@ public class KCFloatingActionButton: UIView {
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+					if self.buttonImage == nil {
+						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+					}
+					else {
+						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(0))
+					}
                     self.overlayView.alpha = 0
                 }, completion: {(f) -> Void in
                     self.overlayView.removeFromSuperview()
