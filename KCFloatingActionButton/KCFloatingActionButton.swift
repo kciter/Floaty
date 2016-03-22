@@ -81,7 +81,12 @@ public class KCFloatingActionButton: UIView {
         Child item's default button color.
     */
     @IBInspectable public var itemButtonColor: UIColor = UIColor.whiteColor()
-    
+	
+	/**
+		Child item's image color
+	*/
+	@IBInspectable public var itemImageColor: UIColor = UIColor(white: 0.2, alpha: 1)
+	
     /**
         Child item's default shadow color.
     */
@@ -479,6 +484,7 @@ public class KCFloatingActionButton: UIView {
     
     private func itemDefaultSet(item: KCFloatingActionButtonItem) {
         item.buttonColor = itemButtonColor
+		item.iconImageView.tintColor = itemImageColor
         item.circleShadowColor = itemShadowColor
         item.titleShadowColor = itemShadowColor
         item.size = itemSize
