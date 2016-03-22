@@ -44,6 +44,11 @@ public class KCFloatingActionButton: UIView {
     }
 	
 	/**
+		Automatically closes child items when tapped
+	*/
+	@IBInspectable public var autoCloseOnTap: Bool = true
+	
+	/**
 		Degrees to rotate image
 	*/
 	@IBInspectable public var rotationDegrees: CGFloat = -45
@@ -316,6 +321,7 @@ public class KCFloatingActionButton: UIView {
     public func addItem(item item: KCFloatingActionButtonItem) {
         item.frame.origin = CGPointMake(size/2-item.size/2, size/2-item.size/2)
         item.alpha = 0
+		item.actionButton = self
         items.append(item)
         addSubview(item)
     }
