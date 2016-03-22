@@ -418,6 +418,7 @@ public class KCFloatingActionButton: UIView {
     private func setButtonImage() {
         buttonImageView.removeFromSuperview()
         buttonImageView = UIImageView(image: buttonImage)
+		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRectMake(
             size/2 - buttonImageView.frame.size.width/2,
             size/2 - buttonImageView.frame.size.height/2,
