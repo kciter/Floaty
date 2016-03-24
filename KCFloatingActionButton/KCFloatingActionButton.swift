@@ -42,7 +42,16 @@ public class KCFloatingActionButton: UIView {
             self.setNeedsDisplay()
         }
     }
-    
+	
+	/**
+		Automatically closes child items when tapped
+	*/
+	@IBInspectable public var autoCloseOnTap: Bool = true
+	
+	/**
+		Degrees to rotate image
+	*/
+	@IBInspectable public var rotationDegrees: CGFloat = -45
     /**
         Button color.
     */
@@ -77,7 +86,12 @@ public class KCFloatingActionButton: UIView {
         Child item's default button color.
     */
     @IBInspectable public var itemButtonColor: UIColor = UIColor.whiteColor()
-    
+	
+	/**
+		Child item's image color
+	*/
+	@IBInspectable public var itemImageColor: UIColor? = nil
+	
     /**
         Child item's default shadow color.
     */
@@ -91,7 +105,7 @@ public class KCFloatingActionButton: UIView {
     /**
      Delegate that can be used to learn more about the behavior of the FAB widget.
     */
-    @IBOutlet public var fabDelegate: KCFloatingActionButtonDelegate?
+    @IBOutlet public weak var fabDelegate: KCFloatingActionButtonDelegate?
     
     /**
         Button shape layer.
@@ -211,14 +225,19 @@ public class KCFloatingActionButton: UIView {
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubviewToFront(self)
-            overlayView.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
+            overlayView.addTarget(self, action: #selector(close), forControlEvents: UIControlEvents.TouchUpInside)
 
             
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: [.CurveEaseInOut], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(-45), 0.0, 0.0, 1.0)
+					if self.buttonImage == nil {
+						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
+					}
+					else {
+						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(self.rotationDegrees))
+					}
                     self.overlayView.alpha = 1
                 }, completion: nil)
             
@@ -252,12 +271,17 @@ public class KCFloatingActionButton: UIView {
     */
     public func close() {
         if(items.count > 0){
-            self.overlayView.removeTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
+            self.overlayView.removeTarget(self, action: #selector(close), forControlEvents: UIControlEvents.TouchUpInside)
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+					if self.buttonImage == nil {
+						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+					}
+					else {
+						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(0))
+					}
                     self.overlayView.alpha = 0
                 }, completion: {(f) -> Void in
                     self.overlayView.removeFromSuperview()
@@ -297,6 +321,7 @@ public class KCFloatingActionButton: UIView {
     public func addItem(item item: KCFloatingActionButtonItem) {
         item.frame.origin = CGPointMake(size/2-item.size/2, size/2-item.size/2)
         item.alpha = 0
+		item.actionButton = self
         items.append(item)
         addSubview(item)
     }
@@ -418,6 +443,7 @@ public class KCFloatingActionButton: UIView {
     private func setButtonImage() {
         buttonImageView.removeFromSuperview()
         buttonImageView = UIImageView(image: buttonImage)
+		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRectMake(
             size/2 - buttonImageView.frame.size.width/2,
             size/2 - buttonImageView.frame.size.height/2,
@@ -464,6 +490,10 @@ public class KCFloatingActionButton: UIView {
     
     private func itemDefaultSet(item: KCFloatingActionButtonItem) {
         item.buttonColor = itemButtonColor
+		
+		/// Use separate color (if specified) for item button image, or default to the plusColor
+		item.iconImageView.tintColor = itemImageColor ?? plusColor
+		
         item.circleShadowColor = itemShadowColor
         item.titleShadowColor = itemShadowColor
         item.size = itemSize
@@ -488,9 +518,9 @@ public class KCFloatingActionButton: UIView {
     }
     
     private func setObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceOrientationDidChange:", name: UIDeviceOrientationDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deviceOrientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     deinit {

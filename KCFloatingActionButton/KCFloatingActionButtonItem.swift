@@ -39,7 +39,12 @@ public class KCFloatingActionButtonItem: UIView {
         If you touch up inside button, it execute handler.
     */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
-    
+	
+	/**
+		Reference to parent
+	*/
+	public weak var actionButton: KCFloatingActionButton?
+	
     /**
         Shape layer of button.
     */
@@ -194,6 +199,9 @@ public class KCFloatingActionButtonItem: UIView {
             let touch = touches.first
             if touch?.tapCount == 1 {
                 if touch?.locationInView(self) == nil { return }
+				if actionButton != nil && actionButton!.autoCloseOnTap {
+					actionButton!.close()
+				}
                 handler?(self)
             }
         }
