@@ -105,7 +105,7 @@ public class KCFloatingActionButton: UIView {
     /**
      Delegate that can be used to learn more about the behavior of the FAB widget.
     */
-    @IBOutlet public var fabDelegate: KCFloatingActionButtonDelegate?
+    @IBOutlet public weak var fabDelegate: KCFloatingActionButtonDelegate?
     
     /**
         Button shape layer.
