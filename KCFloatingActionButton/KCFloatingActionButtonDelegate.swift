@@ -19,5 +19,5 @@ import Foundation
      contain any defined sub items.
      - parameter fab: The FAB widget that was selected by the user.
      */
-    func emptyKcfabSelected(fab: KCFloatingActionButton)
+    func emptyKCFABSelected(fab: KCFloatingActionButton)
 }
