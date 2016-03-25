@@ -466,17 +466,20 @@ public class KCFloatingActionButton: UIView {
     }
     
     private func setOverlayView() {
-        overlayView.frame = CGRectMake(
-            0,0,
-            UIScreen.mainScreen().bounds.width,
-            UIScreen.mainScreen().bounds.height
-        )
+		setOverlayFrame()
         overlayView.backgroundColor = overlayColor
         overlayView.alpha = 0
         overlayView.userInteractionEnabled = true
         
     }
-    
+	private func setOverlayFrame() {
+		overlayView.frame = CGRectMake(
+			0,0,
+			UIScreen.mainScreen().bounds.width,
+			UIScreen.mainScreen().bounds.height
+		)
+	}
+	
     private func setShadow() {
         layer.shadowOffset = CGSizeMake(1, 1)
         layer.shadowRadius = 2
@@ -595,7 +598,10 @@ public class KCFloatingActionButton: UIView {
         if let size = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size {
             keyboardSize = size.height
         }
-        
+		
+		/// Update overlay frame for new orientation dimensions
+		setOverlayFrame()
+		
         if isCustomFrame == false {
             setRightBottomFrame(keyboardSize)
         } else {
