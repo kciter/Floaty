@@ -115,6 +115,18 @@ item.title = @"Custom item";
 ```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
+### Animation type
+#### Pop
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Pop animation gif">
+#### Fade
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/fade_ani.gif" width='187' alt="Fade animation gif">
+#### Slide Left
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideleft_ani.gif" width='187' alt="Slide left animation gif">
+#### Slide Up
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideup_ani.gif" width='187' alt="Slide up animation gif">
+#### None
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/none_ani.gif" width='187' alt="None animation gif">
+
 ## Methods / Properties
 ### KCFABManager
 #### Methods
@@ -167,9 +179,9 @@ item.title = @"Custom item";
 | handler | ((KCFloatingActionButtonItem) -> Void)? | Touch up inside event handler |
 
 ## TODO
-* More animate style
+* <del>More animate style</del>
 * Highly customizable
-* Add documentation
+* <del>Add documentation</del>
 * <del>Storyboard support</del>
 * <del>Swift 1.2 support</del>
 * <del>Objective-C support</del>
