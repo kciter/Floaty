@@ -247,8 +247,10 @@ public class KCFloatingActionButton: UIView {
                 if item.hidden == true { continue }
                 itemHeight += item.size
                 itemHeight += self.itemSpace
-                item.frame.origin.y = -itemHeight
+//                item.frame.origin.y = -itemHeight
+//                item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
                 item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+                item.frame.origin.y = -itemHeight
                 UIView.animateWithDuration(0.3, delay: delay,
                     usingSpringWithDamping: 0.55,
                     initialSpringVelocity: 0.3,
