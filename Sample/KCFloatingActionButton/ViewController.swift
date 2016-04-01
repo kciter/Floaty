@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, KCFloatingActionButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
             fab.close()
         })
         fab.addItem(item: item)
+        fab.fabDelegate = self
         self.view.addSubview(fab)
     }
 
@@ -53,5 +54,13 @@ class ViewController: UIViewController {
 
     @IBAction func endEditing() {
         view.endEditing(true)
+    }
+    
+    func KCFABOpened(fab: KCFloatingActionButton) {
+        print("FAB Opened")
+    }
+    
+    func KCFABClosed(fab: KCFloatingActionButton) {
+        print("FAB Closed")
     }
 }

@@ -265,6 +265,7 @@ public class KCFloatingActionButton: UIView {
             }
         }
         
+        fabDelegate?.KCFABOpened?(self)
         closed = false
     }
     
@@ -302,6 +303,8 @@ public class KCFloatingActionButton: UIView {
                 noneAnimationWithClose()
             }
         }
+        
+        fabDelegate?.KCFABClosed?(self)
         closed = true
     }
     
@@ -316,7 +319,7 @@ public class KCFloatingActionButton: UIView {
                 close()
             }
         } else {
-            fabDelegate?.emptyKCFABSelected(self)
+            fabDelegate?.emptyKCFABSelected?(self)
         }
     }
     
