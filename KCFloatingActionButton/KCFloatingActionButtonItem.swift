@@ -40,6 +40,8 @@ public class KCFloatingActionButtonItem: UIView {
      */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
     
+    public var imageOffset: CGPoint = CGPoint(x: 0, y: 0)
+    
     /**
      Reference to parent
      */
@@ -91,7 +93,7 @@ public class KCFloatingActionButtonItem: UIView {
             if _iconImageView == nil {
                 _iconImageView = UIImageView(frame: CGRectMake(0, 0, 21, 23))
                 //                _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
-                _iconImageView?.center = CGPointMake(size/2, size/2)
+                _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
                 _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
                 addSubview(_iconImageView!)
             }
@@ -207,3 +209,6 @@ public class KCFloatingActionButtonItem: UIView {
     }
 }
 
+func + (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
