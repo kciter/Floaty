@@ -40,7 +40,7 @@ public class KCFloatingActionButtonItem: UIView {
      */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
     
-    public var imageOffset: CGPoint = CGPoint(x: 0, y: 0)
+    public var imageOffset: CGPoint = CGPointZero
     
     /**
      Reference to parent
