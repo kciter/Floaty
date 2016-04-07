@@ -235,7 +235,7 @@ public class KCFloatingActionButton: UIView {
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubviewToFront(self)
-            overlayView.addTarget(self, action: #selector(close), forControlEvents: UIControlEvents.TouchUpInside)
+            overlayView.addTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
             
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.55,
@@ -274,7 +274,7 @@ public class KCFloatingActionButton: UIView {
     */
     public func close() {
         if(items.count > 0){
-            self.overlayView.removeTarget(self, action: #selector(close), forControlEvents: UIControlEvents.TouchUpInside)
+            self.overlayView.removeTarget(self, action: Selector("close"), forControlEvents: UIControlEvents.TouchUpInside)
             UIView.animateWithDuration(0.3, delay: 0,
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
@@ -535,9 +535,9 @@ public class KCFloatingActionButton: UIView {
     }
     
     private func setObserver() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(deviceOrientationDidChange(_:)), name: UIDeviceOrientationDidChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceOrientationDidChange:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name:UIKeyboardWillHideNotification, object: nil)
     }
     
     deinit {
