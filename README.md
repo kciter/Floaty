@@ -19,7 +19,7 @@ Simple Floating Action Button for iOS
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "KCFloatingActionButton"
+pod "KCFloatingActionButton", :git => 'https://github.com/kciter/KCFloatingActionButton.git', :branch => 'swift2.0'
 ```
 ### Manually
 To install manually the KCFloatingActionButton in an app, just drag the `KCFloatingActionButton/*.swift` file into your project.
