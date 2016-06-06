@@ -417,7 +417,7 @@ public class KCFloatingActionButton: UIView {
                 var itemPoint = item.convertPoint(point, fromView: self)
                 let size = CGRect(x: item.titleLabel.frame.origin.x + item.bounds.origin.x,
                                   y: item.bounds.origin.y,
-                                  width: item.titleLabel.bounds.size.width + item.bounds.size.width,
+                                  width: item.titleLabel.bounds.size.width + item.bounds.size.width + 30,
                                   height: item.bounds.size.height)
                 
                 if CGRectContainsPoint(size, itemPoint) == true {
