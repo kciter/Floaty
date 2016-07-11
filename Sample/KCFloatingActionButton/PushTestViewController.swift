@@ -22,7 +22,7 @@ class PushTestViewController: UIViewController {
     }
     
     @IBAction func dismiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 

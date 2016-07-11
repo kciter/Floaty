@@ -14,9 +14,9 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         super.viewDidLoad()
 
         let item = KCFloatingActionButtonItem()
-        item.buttonColor = UIColor.blueColor()
-        item.circleShadowColor = UIColor.redColor()
-        item.titleShadowColor = UIColor.blueColor()
+        item.buttonColor = UIColor.blue()
+        item.circleShadowColor = UIColor.red()
+        item.titleShadowColor = UIColor.blue()
         item.title = "Custom item"
         
 //        This object is dependent on the UIWindow.
@@ -34,12 +34,12 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         
 //        This object is dependent on the UIViewController.
         let fab = KCFloatingActionButton()
-        fab.addItem(title: "I got a title")
-        fab.addItem("I got a icon", icon: UIImage(named: "icShare")!)
-        fab.addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
-            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+        _ = fab.addItem(title: "I got a title")
+        _ = fab.addItem(title: "I got a icon", icon: UIImage(named: "icShare")!)
+        _ = fab.addItem(title: "I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
+            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             fab.close()
         })
         fab.addItem(item: item)
@@ -56,11 +56,13 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         view.endEditing(true)
     }
     
+
+//    
     func KCFABOpened(fab: KCFloatingActionButton) {
         print("FAB Opened")
     }
-    
-    func KCFABClosed(fab: KCFloatingActionButton) {
-        print("FAB Closed")
-    }
+//
+//    func KCFABClosed(fab: KCFloatingActionButton) {
+//        print("FAB Closed")
+//    }
 }

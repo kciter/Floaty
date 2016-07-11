@@ -23,24 +23,24 @@ public class KCFloatingActionButtonItem: UIView {
     /**
      Button color.
      */
-    public var buttonColor: UIColor = UIColor.whiteColor()
+    public var buttonColor: UIColor = UIColor.white()
     
     /**
      Circle Shadow color.
      */
-    public var circleShadowColor: UIColor = UIColor.blackColor()
+    public var circleShadowColor: UIColor = UIColor.black()
     
     /**
      Title Shadow color.
      */
-    public var titleShadowColor: UIColor = UIColor.blackColor()
+    public var titleShadowColor: UIColor = UIColor.black()
     
     /**
      If you touch up inside button, it execute handler.
      */
     public var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
     
-    public var imageOffset: CGPoint = CGPointZero
+    public var imageOffset: CGPoint = CGPoint.zero
     
     /**
      Reference to parent
@@ -65,7 +65,7 @@ public class KCFloatingActionButtonItem: UIView {
         get {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
-                _titleLabel?.textColor = UIColor.whiteColor()
+                _titleLabel?.textColor = UIColor.white()
                 addSubview(_titleLabel!)
             }
             return _titleLabel!
@@ -91,10 +91,10 @@ public class KCFloatingActionButtonItem: UIView {
     public var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 21, 23))
+                _iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 21, height: 23))
                 //                _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
-                _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
-                _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
+                _iconImageView?.center = CGPoint(x: size/2, y: size/2) + imageOffset
+                _iconImageView?.contentMode = UIViewContentMode.scaleToFill
                 addSubview(_iconImageView!)
             }
             return _iconImageView!
@@ -117,8 +117,8 @@ public class KCFloatingActionButtonItem: UIView {
      Initialize with default property.
      */
     public init() {
-        super.init(frame: CGRectMake(0, 0, size, size))
-        backgroundColor = UIColor.clearColor()
+        super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        backgroundColor = UIColor.clear()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -128,27 +128,27 @@ public class KCFloatingActionButtonItem: UIView {
     /**
      Set size, frame and draw layers.
      */
-    public override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    public override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        self.layer.rasterizationScale = UIScreen.main().scale
         createCircleLayer()
         setShadow()
         
         if _titleLabel != nil {
-            bringSubviewToFront(_titleLabel!)
+            bringSubview(toFront: _titleLabel!)
         }
         if _iconImageView != nil {
-            bringSubviewToFront(_iconImageView!)
+            bringSubview(toFront: _iconImageView!)
         }
     }
     
     private func createCircleLayer() {
         //        circleLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
         let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
-        circleLayer.frame = CGRectMake(castParent.itemSize/2 - (size/2), 0, size, size)
-        circleLayer.backgroundColor = buttonColor.CGColor
+        circleLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
+        circleLayer.backgroundColor = buttonColor.cgColor
         circleLayer.cornerRadius = size/2
         layer.addSublayer(circleLayer)
     }
@@ -156,50 +156,50 @@ public class KCFloatingActionButtonItem: UIView {
     private func createTintLayer() {
         //        tintLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
         let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
-        tintLayer.frame = CGRectMake(castParent.itemSize/2 - (size/2), 0, size, size)
-        tintLayer.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2).CGColor
+        tintLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
+        tintLayer.backgroundColor = UIColor.white().withAlphaComponent(0.2).cgColor
         tintLayer.cornerRadius = size/2
         layer.addSublayer(tintLayer)
     }
     
     private func setShadow() {
-        circleLayer.shadowOffset = CGSizeMake(1, 1)
+        circleLayer.shadowOffset = CGSize(width: 1, height: 1)
         circleLayer.shadowRadius = 2
-        circleLayer.shadowColor = circleShadowColor.CGColor
+        circleLayer.shadowColor = circleShadowColor.cgColor
         circleLayer.shadowOpacity = 0.4
         
-        titleLabel.layer.shadowOffset = CGSizeMake(1, 1)
+        titleLabel.layer.shadowOffset = CGSize(width: 1, height: 1)
         titleLabel.layer.shadowRadius = 2
-        titleLabel.layer.shadowColor = titleShadowColor.CGColor
+        titleLabel.layer.shadowColor = titleShadowColor.cgColor
         titleLabel.layer.shadowOpacity = 0.4
     }
     
-    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.count == 1 {
             let touch = touches.first
             if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
+                if touch?.location(in: self) == nil { return }
                 createTintLayer()
             }
         }
     }
     
-    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.count == 1 {
             let touch = touches.first
             if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
+                if touch?.location(in: self) == nil { return }
                 createTintLayer()
             }
         }
     }
     
-    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         tintLayer.removeFromSuperlayer()
         if touches.count == 1 {
             let touch = touches.first
             if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
+                if touch?.location(in: self) == nil { return }
                 if actionButton != nil && actionButton!.autoCloseOnTap {
                     actionButton!.close()
                 }
