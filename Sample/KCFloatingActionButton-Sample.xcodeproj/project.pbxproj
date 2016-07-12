@@ -123,11 +123,14 @@
 		B6F66E0E1BC1017F00E47769 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = kciter;
 				TargetAttributes = {
 					B6F66E151BC1017F00E47769 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = CS7SZ6KGXK;
+						DevelopmentTeamName = "Philips Electronics Nederland B.V. (Ent)";
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -284,6 +287,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kciter.KCFloatingActionButton;
 				PRODUCT_NAME = "KCFloatingActionButton-Sample";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -296,6 +300,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kciter.KCFloatingActionButton;
 				PRODUCT_NAME = "KCFloatingActionButton-Sample";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
