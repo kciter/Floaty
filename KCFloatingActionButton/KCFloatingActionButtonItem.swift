@@ -91,10 +91,9 @@ public class KCFloatingActionButtonItem: UIView {
     public var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 21, 23))
-                //                _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
+                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 25, 25))
                 _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
-                _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
+                _iconImageView?.contentMode = UIViewContentMode.ScaleAspectFill
                 addSubview(_iconImageView!)
             }
             return _iconImageView!
