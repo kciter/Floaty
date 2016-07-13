@@ -415,12 +415,9 @@ public class KCFloatingActionButton: UIView {
             for item in items {
                 if item.hidden == true { continue }
                 var itemPoint = item.convertPoint(point, fromView: self)
-                let size = CGRect(x: item.titleLabel.frame.origin.x + item.bounds.origin.x,
-                                  y: item.bounds.origin.y,
-                                  width: item.titleLabel.bounds.size.width + item.bounds.size.width + 30,
-                                  height: item.bounds.size.height)
                 
-                if CGRectContainsPoint(size, itemPoint) == true {
+                let tapArea = determineTapArea(item: item)
+                if CGRectContainsPoint(tapArea, itemPoint) == true {
                     itemPoint = item.bounds.origin
                     return item.hitTest(itemPoint, withEvent: event)
                 }
@@ -428,6 +425,16 @@ public class KCFloatingActionButton: UIView {
         }
         
         return super.hitTest(point, withEvent: event)
+    }
+    
+    private func determineTapArea(item item : KCFloatingActionButtonItem) -> CGRect {
+        let tappableMargin : CGFloat = 30.0
+        let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
+        let y = item.bounds.origin.y
+        let width : CGFloat = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin
+        let height = item.bounds.size.height
+        
+        return CGRect(x: x, y: y, width: width, height: height)
     }
     
     private func setCircleLayer() {
