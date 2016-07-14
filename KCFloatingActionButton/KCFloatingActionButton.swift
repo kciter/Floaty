@@ -34,6 +34,7 @@ public class KCFloatingActionButton: UIView {
     public var size: CGFloat = 56 {
         didSet {
             self.setNeedsDisplay()
+            self.recalculateItemsOrigin()
         }
     }
     
@@ -88,7 +89,15 @@ public class KCFloatingActionButton: UIView {
     /**
         Child item's default size.
     */
-    @IBInspectable public var itemSize: CGFloat = 42
+    @IBInspectable public var itemSize: CGFloat = 42 {
+        didSet {
+            self.items.forEach { item in
+                item.size = self.itemSize
+            }
+            self.recalculateItemsOrigin()
+            self.setNeedsDisplay()
+        }
+    }
     
     /**
         Child item's default button color.
@@ -326,7 +335,9 @@ public class KCFloatingActionButton: UIView {
         Add custom item
     */
     public func addItem(item item: KCFloatingActionButtonItem) {
-        item.frame.origin = CGPointMake(size/2-item.size/2, size/2-item.size/2)
+        let big = size > item.size ? size : item.size
+        let small = size <= item.size ? size : item.size
+        item.frame.origin = CGPointMake(big/2-small/2, big/2-small/2)
         item.alpha = 0
 		item.actionButton = self
         items.append(item)
@@ -536,6 +547,14 @@ public class KCFloatingActionButton: UIView {
                 size + paddingX,
                 size + paddingY
             )
+        }
+    }
+    
+    private func recalculateItemsOrigin() {
+        for item in items {
+            let big = size > item.size ? size : item.size
+            let small = size <= item.size ? size : item.size
+            item.frame.origin = CGPointMake(big/2-small/2, big/2-small/2)
         }
     }
     
