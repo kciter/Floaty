@@ -50,7 +50,7 @@ public class KCFloatingActionButton: UIView {
             self.setNeedsDisplay()
         }
     }
-	
+    
 	/**
 		Automatically closes child items when tapped
 	*/
@@ -216,7 +216,6 @@ public class KCFloatingActionButton: UIView {
     */
     public override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
         super.drawLayer(layer, inContext: ctx)
-//        setOverlayLayer()
         setCircleLayer()
         if buttonImage == nil {
             setPlusLayer()
@@ -415,12 +414,9 @@ public class KCFloatingActionButton: UIView {
             for item in items {
                 if item.hidden == true { continue }
                 var itemPoint = item.convertPoint(point, fromView: self)
-                let size = CGRect(x: item.titleLabel.frame.origin.x + item.bounds.origin.x,
-                                  y: item.bounds.origin.y,
-                                  width: item.titleLabel.bounds.size.width + item.bounds.size.width + 30,
-                                  height: item.bounds.size.height)
                 
-                if CGRectContainsPoint(size, itemPoint) == true {
+                let tapArea = determineTapArea(item: item)
+                if CGRectContainsPoint(tapArea, itemPoint) == true {
                     itemPoint = item.bounds.origin
                     return item.hitTest(itemPoint, withEvent: event)
                 }
@@ -428,6 +424,21 @@ public class KCFloatingActionButton: UIView {
         }
         
         return super.hitTest(point, withEvent: event)
+    }
+    
+    private func determineTapArea(item item : KCFloatingActionButtonItem) -> CGRect {
+        let tappableMargin : CGFloat = 30.0
+        let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
+        let y = item.bounds.origin.y
+        var width : CGFloat
+        if isCustomFrame {
+            width = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin + paddingX
+        } else {
+            width = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin
+        }
+        let height = item.bounds.size.height
+        
+        return CGRect(x: x, y: y, width: width, height: height)
     }
     
     private func setCircleLayer() {
@@ -440,7 +451,7 @@ public class KCFloatingActionButton: UIView {
     
     private func setPlusLayer() {
         plusLayer.removeFromSuperlayer()
-        plusLayer.frame = CGRectMake(0, 0, size, size)
+        plusLayer.frame = CGRectMake(circleLayer.frame.origin.x , circleLayer.frame.origin.y, size, size)
         plusLayer.lineCap = kCALineCapRound
         plusLayer.strokeColor = plusColor.CGColor
         plusLayer.lineWidth = 2.0
@@ -453,8 +464,8 @@ public class KCFloatingActionButton: UIView {
         buttonImageView = UIImageView(image: buttonImage)
 		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRectMake(
-            size/2 - buttonImageView.frame.size.width/2,
-            size/2 - buttonImageView.frame.size.height/2,
+            circleLayer.frame.origin.x - size/2 - buttonImageView.frame.size.width/2,
+            circleLayer.frame.origin.y - size/2 - buttonImageView.frame.size.height/2,
             buttonImageView.frame.size.width,
             buttonImageView.frame.size.height
         )
@@ -462,7 +473,7 @@ public class KCFloatingActionButton: UIView {
     }
     
     private func setTintLayer() {
-        tintLayer.frame = CGRectMake(0, 0, size, size)
+        tintLayer.frame = CGRectMake(circleLayer.frame.origin.x, circleLayer.frame.origin.y, size, size)
         tintLayer.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.2).CGColor
         tintLayer.cornerRadius = size/2
         layer.addSublayer(tintLayer)
@@ -513,17 +524,17 @@ public class KCFloatingActionButton: UIView {
     private func setRightBottomFrame(keyboardSize: CGFloat = 0) {
         if superview == nil {
             frame = CGRectMake(
-                UIScreen.mainScreen().bounds.size.width-size-paddingX,
-                UIScreen.mainScreen().bounds.size.height-size-paddingY-keyboardSize,
-                size,
-                size
+                (UIScreen.mainScreen().bounds.size.width - size) - paddingX,
+                (UIScreen.mainScreen().bounds.size.height - size - keyboardSize) - paddingY,
+                size + paddingX,
+                size + paddingY
             )
         } else {
             frame = CGRectMake(
-                superview!.bounds.size.width-size-paddingX,
-                superview!.bounds.size.height-size-paddingY-keyboardSize,
-                size,
-                size
+                (superview!.bounds.size.width-size) - paddingX,
+                (superview!.bounds.size.height-size-keyboardSize) - paddingY,
+                size + paddingX,
+                size + paddingY
             )
         }
     }
@@ -542,37 +553,21 @@ public class KCFloatingActionButton: UIView {
     
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
-        if touches.count == 1 {
-            let touch = touches.first
-            if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
-                setTintLayer()
-            }
-        }
-    }
-    
-    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesMoved(touches, withEvent: event)
-        if touches.count == 1 {
-            let touch = touches.first
-            if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
-                setTintLayer()
-            }
+        if isTouched(touches) {
+            setTintLayer()
         }
     }
     
     public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesEnded(touches, withEvent: event)
-        
         tintLayer.removeFromSuperlayer()
-        if touches.count == 1 {
-            let touch = touches.first
-            if touch?.tapCount == 1 {
-                if touch?.locationInView(self) == nil { return }
-                toggle()
-            }
+        if isTouched(touches) {
+            toggle()
         }
+    }
+    
+    private func isTouched(touches: Set<UITouch>) -> Bool {
+        return touches.count == 1 && touches.first?.tapCount == 1 && touches.first?.locationInView(self) != nil
     }
     
     public override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -623,8 +618,8 @@ public class KCFloatingActionButton: UIView {
         
         UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: {
             self.frame = CGRectMake(
-                UIScreen.mainScreen().bounds.width-self.size-self.paddingX,
-                UIScreen.mainScreen().bounds.height-self.size-self.paddingY - keyboardSize.height,
+                UIScreen.mainScreen().bounds.width-self.size - self.paddingX,
+                UIScreen.mainScreen().bounds.height-self.size - keyboardSize.height - self.paddingY,
                 self.size,
                 self.size
             )
