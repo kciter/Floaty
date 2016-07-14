@@ -18,7 +18,6 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         item.circleShadowColor = UIColor.redColor()
         item.titleShadowColor = UIColor.blueColor()
         item.title = "Custom item"
-        
 //        This object is dependent on the UIWindow.
 //        KCFABManager.defaultInstance().getButton().addItem(title: "I got a title")
 //        KCFABManager.defaultInstance().getButton().addItem("I got a icon", icon: UIImage(named: "icShare")!)
@@ -44,6 +43,7 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         })
         fab.addItem(item: item)
         fab.fabDelegate = self
+        
         self.view.addSubview(fab)
     }
 

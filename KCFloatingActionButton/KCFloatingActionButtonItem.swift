@@ -18,7 +18,13 @@ public class KCFloatingActionButtonItem: UIView {
     /**
      This object's button size.
      */
-    public var size: CGFloat = 42
+    public var size: CGFloat = 42 {
+        didSet {
+            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
+            _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
+            self.setNeedsDisplay()
+        }
+    }
     
     /**
      Button color.
