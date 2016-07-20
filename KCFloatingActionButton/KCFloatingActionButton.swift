@@ -441,6 +441,7 @@ public class KCFloatingActionButton: UIView {
         let tappableMargin : CGFloat = 30.0
         let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
         let y = item.bounds.origin.y
+        
         var width : CGFloat
         if isCustomFrame {
             width = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin + paddingX
@@ -475,11 +476,12 @@ public class KCFloatingActionButton: UIView {
         buttonImageView = UIImageView(image: buttonImage)
 		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRectMake(
-            circleLayer.frame.origin.x - size/2 - buttonImageView.frame.size.width/2,
-            circleLayer.frame.origin.y - size/2 - buttonImageView.frame.size.height/2,
+            circleLayer.frame.origin.x + (size / 2 - buttonImageView.frame.size.width / 2),
+            circleLayer.frame.origin.y + (size / 2 - buttonImageView.frame.size.height / 2),
             buttonImageView.frame.size.width,
             buttonImageView.frame.size.height
         )
+        
         addSubview(buttonImageView)
     }
     
