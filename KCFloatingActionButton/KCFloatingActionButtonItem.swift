@@ -32,6 +32,15 @@ public class KCFloatingActionButtonItem: UIView {
     public var buttonColor: UIColor = UIColor.whiteColor()
     
     /**
+     Title label color.
+     */
+    public var titleColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            titleLabel.textColor = titleColor
+        }
+    }
+    
+    /**
      Circle Shadow color.
      */
     public var circleShadowColor: UIColor = UIColor.blackColor()
@@ -71,7 +80,7 @@ public class KCFloatingActionButtonItem: UIView {
         get {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
-                _titleLabel?.textColor = UIColor.whiteColor()
+                _titleLabel?.textColor = titleColor
                 addSubview(_titleLabel!)
             }
             return _titleLabel!
