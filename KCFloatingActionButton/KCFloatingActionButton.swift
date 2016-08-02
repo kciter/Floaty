@@ -69,7 +69,11 @@ public class KCFloatingActionButton: UIView {
     /**
         Button image.
     */
-    @IBInspectable public var buttonImage: UIImage? = nil
+    @IBInspectable public var buttonImage: UIImage? = nil {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     /**
         Plus icon color inside button.
@@ -254,12 +258,8 @@ public class KCFloatingActionButton: UIView {
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: [.CurveEaseInOut], animations: { () -> Void in
-					if self.buttonImage == nil {
-						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
-					}
-					else {
-						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(self.rotationDegrees))
-					}
+                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
+                    self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(self.rotationDegrees))
                     self.overlayView.alpha = 1
                 }, completion: nil)
             
@@ -292,12 +292,8 @@ public class KCFloatingActionButton: UIView {
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in
-					if self.buttonImage == nil {
-						self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-					}
-					else {
-						self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(0))
-					}
+                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+                    self.buttonImageView.transform = CGAffineTransformMakeRotation(self.degreesToRadians(0))
                     self.overlayView.alpha = 0
                 }, completion: {(f) -> Void in
                     self.overlayView.removeFromSuperview()
@@ -363,7 +359,7 @@ public class KCFloatingActionButton: UIView {
     /**
         Add item with title and icon.
     */
-    public func addItem(title: String, icon: UIImage) -> KCFloatingActionButtonItem {
+    public func addItem(title: String, icon: UIImage?) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.title = title
@@ -373,9 +369,21 @@ public class KCFloatingActionButton: UIView {
     }
     
     /**
+     Add item with title and handler.
+     */
+    public func addItem(title title: String, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
+        let item = KCFloatingActionButtonItem()
+        itemDefaultSet(item)
+        item.title = title
+        item.handler = handler
+        addItem(item: item)
+        return item
+    }
+    
+    /**
         Add item with title, icon or handler.
     */
-    public func addItem(title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
+    public func addItem(title: String, icon: UIImage?, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.title = title
@@ -388,7 +396,7 @@ public class KCFloatingActionButton: UIView {
     /**
         Add item with icon.
     */
-    public func addItem(icon icon: UIImage) -> KCFloatingActionButtonItem {
+    public func addItem(icon icon: UIImage?) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.icon = icon
@@ -399,7 +407,7 @@ public class KCFloatingActionButton: UIView {
     /**
         Add item with icon and handler.
     */
-    public func addItem(icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
+    public func addItem(icon icon: UIImage?, handler: ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
         let item = KCFloatingActionButtonItem()
         itemDefaultSet(item)
         item.icon = icon
@@ -468,7 +476,7 @@ public class KCFloatingActionButton: UIView {
     
     private func setPlusLayer() {
         plusLayer.removeFromSuperlayer()
-        plusLayer.frame = CGRectMake(circleLayer.frame.origin.x , circleLayer.frame.origin.y, size, size)
+        plusLayer.frame = CGRectMake(0, 0, size, size)
         plusLayer.lineCap = kCALineCapRound
         plusLayer.strokeColor = plusColor.CGColor
         plusLayer.lineWidth = 2.0

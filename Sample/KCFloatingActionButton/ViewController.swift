@@ -15,7 +15,7 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layoutFAB(shouldUseCustomImage: false)
+        layoutFAB()
     }
 
     @IBAction func endEditing() {
@@ -23,32 +23,33 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
     }
     
     @IBAction func customImageSwitched(sender: UISwitch) {
-        fab.removeFromSuperview()
-        layoutFAB(shouldUseCustomImage: sender.on)
+        if sender.on == true {
+            fab.buttonImage = UIImage(named: "custom-add")
+        } else {
+            fab.buttonImage = nil
+        }
     }
     
-    func layoutFAB(shouldUseCustomImage shouldUseCustomImage: Bool) {
+    func layoutFAB() {
         let item = KCFloatingActionButtonItem()
         item.buttonColor = UIColor.blueColor()
         item.circleShadowColor = UIColor.redColor()
         item.titleShadowColor = UIColor.blueColor()
         item.title = "Custom item"
+        item.handler = { item in
+            
+        }
         
-        fab = KCFloatingActionButton()
         fab.addItem(title: "I got a title")
-        fab.addItem("I got a icon", icon: UIImage(named: "icShare")!)
-        fab.addItem("I got a handler", icon: UIImage(named: "icMap")!, handler: { item in
+        fab.addItem("I got a icon", icon: UIImage(named: "icShare"))
+        fab.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
             let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             self.fab.close()
-        })
+        }
         fab.addItem(item: item)
         fab.fabDelegate = self
-        
-        if (shouldUseCustomImage) {
-            fab.buttonImage = UIImage(named: "custom-add")
-        }
         
         self.view.addSubview(fab)
 
