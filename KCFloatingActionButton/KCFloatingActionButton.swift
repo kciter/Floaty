@@ -61,6 +61,11 @@ public class KCFloatingActionButton: UIView {
 		Degrees to rotate image
 	*/
 	@IBInspectable public var rotationDegrees: CGFloat = -45
+    
+    /**
+     Animation speed of buttons
+     */
+    @IBInspectable public var animationSpeed: Double = 0.1
     /**
         Button color.
     */
@@ -697,7 +702,7 @@ extension KCFloatingActionButton {
                                         item.alpha = 1
                 }, completion: nil)
             
-            delay += 0.1
+            delay += animationSpeed
         }
     }
     
@@ -709,7 +714,7 @@ extension KCFloatingActionButton {
                 item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
                 item.alpha = 0
                 }, completion: nil)
-            delay += 0.1
+            delay += animationSpeed
         }
     }
     
@@ -730,7 +735,7 @@ extension KCFloatingActionButton {
                                         item.alpha = 1
                 }, completion: nil)
             
-            delay += 0.2
+            delay += animationSpeed * 2
         }
     }
     
@@ -744,7 +749,7 @@ extension KCFloatingActionButton {
                                        animations: { () -> Void in
                                         item.alpha = 0
                 }, completion: nil)
-            delay += 0.2
+            delay += animationSpeed * 2
         }
     }
     
@@ -767,7 +772,7 @@ extension KCFloatingActionButton {
                                         item.alpha = 1
                 }, completion: nil)
             
-            delay += 0.1
+            delay += animationSpeed
         }
     }
     
@@ -779,7 +784,7 @@ extension KCFloatingActionButton {
                 item.frame.origin.x = UIScreen.mainScreen().bounds.size.width - self.frame.origin.x
                 item.alpha = 0
                 }, completion: nil)
-            delay += 0.1
+            delay += animationSpeed
         }
     }
     
