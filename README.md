@@ -116,75 +116,23 @@ item.title = @"Custom item";
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
 ### Animation type
-#### Pop
-<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Pop animation gif">
-#### Fade
-<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/fade_ani.gif" width='187' alt="Fade animation gif">
-#### Slide Left
-<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideleft_ani.gif" width='187' alt="Slide left animation gif">
-#### Slide Up
-<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideup_ani.gif" width='187' alt="Slide up animation gif">
-#### None
-<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/none_ani.gif" width='187' alt="None animation gif">
-
-## Methods / Properties
-### KCFABManager
-#### Methods
-| Method | Parameter | Return type | Description |
-|---|---|---|---|
-| defaultInstance | | KCFABManager | Return singleton object. |
-| show | animated: Bool = true | | Show `KCFloatingActionButton` object. |
-| hide | animated: Bool = true | | Hide `KCFloatingActionButton` object. |
-| toggle | animated: Bool = true | | Toggle show/hide. |
-| isHidden | | Bool | Check Floating Action Button to hidden. |
-| getButton | | KCFloatingActionButton | Return `KCFloatingActionButton` object. |
-
-### KCFloatingActionButton
-#### Methods
-| Method | Parameter | Return type | Description |
-|---|---|---|---|
-| open | | | Show items. |
-| close | | | Hide items. |
-| toggle | | | Toggle show/hide. |
-| addItem | item item: KCFloatingActionButtonItem | | Add the custom item. |
-| addItem | title title: String | KCFloatingActionButtonItem | Add the default item that has title only. |
-| addItem | title: String, icon: UIImage | KCFloatingActionButtonItem | Add the default item that has title and icon. |
-| addItem | title: String, icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void) | KCFloatingActionButtonItem | Add the default item that has all params. |
-| addItem | icon icon: UIImage | KCFloatingActionButtonItem | Add the default item that has icon only. |
-| addItem | icon: UIImage, handler: ((KCFloatingActionButtonItem) -> Void) | KCFloatingActionButtonItem | Add the default item that has icon and handler. |
-| removeItem | item: KCFloatingActionButtonItem | | Remove the item. |
-#### Properties
-| Property | Type | Description |
-|---|---|---|
-| size | CGFloat | Button size. |
-| padding | CGFloat | | The distance of the screen and button. |
-| buttonColor | UIColor | | Button background color. |
-| plusColor | UIColor | Plus icon color on the inside button. |
-| overlayColor | UIColor | The background color that appears when the icons show. |
-| closed | Bool | Check items open and close |
-| itemSpace | CGFloat | | The distance of the items. |
-| itemSize | CGFloat | | Default item size. |
-| itemButtonColor | UIColor | | Default item button color. |
-
-### KCFloatingActionButtonItem
-#### Properties
-| Property | Type | Description |
-|---|---|---|
-| size | CGFloat | Button size. |
-| buttonColor | UIColor | | Button background color. |
-| circleShadowColor | UIColor | | Circle shadow color. |
-| titleShadowColor | UIColor | | Title shadow color. |
-| title | | String | Item title |
-| icon | | UIImage | Icon image on the inside button. |
-| handler | ((KCFloatingActionButtonItem) -> Void)? | Touch up inside event handler |
-
-## TODO
-* <del>More animate style</del>
-* Highly customizable
-* <del>Add documentation</del>
-* <del>Storyboard support</del>
-* <del>Swift 1.2 support</del>
-* <del>Objective-C support</del>
+<table>
+<tr>
+<th>Pop</th><th>Fade</th><th>Slide Left</th>
+</tr>
+<tr>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Pop animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/fade_ani.gif" width='187' alt="Fade animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideleft_ani.gif" width='187' alt="Slide left animation gif"></td>
+</tr>
+<tr>
+<th>Slide Up</th><th>None</th>
+</tr>
+<tr>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideup_ani.gif" width='187' alt="Slide up animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/none_ani.gif" width='187' alt="None animation gif"></td>
+</tr>
+</table>
 
 ## License
 The MIT License (MIT)
