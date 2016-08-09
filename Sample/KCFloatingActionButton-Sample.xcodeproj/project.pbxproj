@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		699DF1681C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */; };
-		B62A2C7D1CA5170C002C8459 /* KCFloatingActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62A2C7C1CA5170C002C8459 /* KCFloatingActionButtonItem.swift */; };
+		B65A2E431D5974FF0045483D /* KCFABManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E3D1D5974FF0045483D /* KCFABManager.swift */; };
+		B65A2E441D5974FF0045483D /* KCFABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E3E1D5974FF0045483D /* KCFABViewController.swift */; };
+		B65A2E451D5974FF0045483D /* KCFABWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E3F1D5974FF0045483D /* KCFABWindow.swift */; };
+		B65A2E461D5974FF0045483D /* KCFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E401D5974FF0045483D /* KCFloatingActionButton.swift */; };
+		B65A2E471D5974FF0045483D /* KCFloatingActionButtonDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E411D5974FF0045483D /* KCFloatingActionButtonDelegate.swift */; };
+		B65A2E481D5974FF0045483D /* KCFloatingActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A2E421D5974FF0045483D /* KCFloatingActionButtonItem.swift */; };
 		B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */; };
 		B675871E1BCCFEBC00C4BEAF /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */; };
-		B67587241BCD4C4900C4BEAF /* KCFABManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */; };
-		B67587251BCD4C4900C4BEAF /* KCFABViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */; };
-		B67587261BCD4C4900C4BEAF /* KCFABWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */; };
-		B67587271BCD4C4900C4BEAF /* KCFloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */; };
 		B675872A1BCD4CBC00C4BEAF /* PushTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67587291BCD4CBB00C4BEAF /* PushTestViewController.swift */; };
 		B6F66E1A1BC1017F00E47769 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F66E191BC1017F00E47769 /* AppDelegate.swift */; };
 		B6F66E1C1BC1017F00E47769 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F66E1B1BC1017F00E47769 /* ViewController.swift */; };
@@ -23,14 +23,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButtonDelegate.swift; path = ../../KCFloatingActionButton/KCFloatingActionButtonDelegate.swift; sourceTree = "<group>"; };
-		B62A2C7C1CA5170C002C8459 /* KCFloatingActionButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButtonItem.swift; path = ../../KCFloatingActionButton/KCFloatingActionButtonItem.swift; sourceTree = "<group>"; };
+		B65A2E3D1D5974FF0045483D /* KCFABManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABManager.swift; path = ../../Sources/KCFABManager.swift; sourceTree = "<group>"; };
+		B65A2E3E1D5974FF0045483D /* KCFABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABViewController.swift; path = ../../Sources/KCFABViewController.swift; sourceTree = "<group>"; };
+		B65A2E3F1D5974FF0045483D /* KCFABWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABWindow.swift; path = ../../Sources/KCFABWindow.swift; sourceTree = "<group>"; };
+		B65A2E401D5974FF0045483D /* KCFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButton.swift; path = ../../Sources/KCFloatingActionButton.swift; sourceTree = "<group>"; };
+		B65A2E411D5974FF0045483D /* KCFloatingActionButtonDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButtonDelegate.swift; path = ../../Sources/KCFloatingActionButtonDelegate.swift; sourceTree = "<group>"; };
+		B65A2E421D5974FF0045483D /* KCFloatingActionButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButtonItem.swift; path = ../../Sources/KCFloatingActionButtonItem.swift; sourceTree = "<group>"; };
 		B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
-		B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABManager.swift; path = ../../KCFloatingActionButton/KCFABManager.swift; sourceTree = "<group>"; };
-		B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABViewController.swift; path = ../../KCFloatingActionButton/KCFABViewController.swift; sourceTree = "<group>"; };
-		B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFABWindow.swift; path = ../../KCFloatingActionButton/KCFABWindow.swift; sourceTree = "<group>"; };
-		B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KCFloatingActionButton.swift; path = ../../KCFloatingActionButton/KCFloatingActionButton.swift; sourceTree = "<group>"; };
 		B67587291BCD4CBB00C4BEAF /* PushTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushTestViewController.swift; sourceTree = "<group>"; };
 		B6F66E161BC1017F00E47769 /* KCFloatingActionButton-Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KCFloatingActionButton-Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F66E191BC1017F00E47769 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,12 +87,12 @@
 		B6F66E2B1BC101C000E47769 /* KCFloatingActionButton */ = {
 			isa = PBXGroup;
 			children = (
-				B675871F1BCD4C4900C4BEAF /* KCFABManager.swift */,
-				B67587201BCD4C4900C4BEAF /* KCFABViewController.swift */,
-				B67587211BCD4C4900C4BEAF /* KCFABWindow.swift */,
-				B67587221BCD4C4900C4BEAF /* KCFloatingActionButton.swift */,
-				B62A2C7C1CA5170C002C8459 /* KCFloatingActionButtonItem.swift */,
-				699DF1671C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift */,
+				B65A2E3D1D5974FF0045483D /* KCFABManager.swift */,
+				B65A2E3E1D5974FF0045483D /* KCFABViewController.swift */,
+				B65A2E3F1D5974FF0045483D /* KCFABWindow.swift */,
+				B65A2E401D5974FF0045483D /* KCFloatingActionButton.swift */,
+				B65A2E411D5974FF0045483D /* KCFloatingActionButtonDelegate.swift */,
+				B65A2E421D5974FF0045483D /* KCFloatingActionButtonItem.swift */,
 			);
 			name = KCFloatingActionButton;
 			sourceTree = "<group>";
@@ -169,14 +169,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F66E1C1BC1017F00E47769 /* ViewController.swift in Sources */,
-				B62A2C7D1CA5170C002C8459 /* KCFloatingActionButtonItem.swift in Sources */,
-				B67587271BCD4C4900C4BEAF /* KCFloatingActionButton.swift in Sources */,
+				B65A2E481D5974FF0045483D /* KCFloatingActionButtonItem.swift in Sources */,
 				B6F66E1A1BC1017F00E47769 /* AppDelegate.swift in Sources */,
-				699DF1681C7CB0A8006663FE /* KCFloatingActionButtonDelegate.swift in Sources */,
-				B67587251BCD4C4900C4BEAF /* KCFABViewController.swift in Sources */,
-				B67587261BCD4C4900C4BEAF /* KCFABWindow.swift in Sources */,
 				B675872A1BCD4CBC00C4BEAF /* PushTestViewController.swift in Sources */,
-				B67587241BCD4C4900C4BEAF /* KCFABManager.swift in Sources */,
+				B65A2E451D5974FF0045483D /* KCFABWindow.swift in Sources */,
+				B65A2E441D5974FF0045483D /* KCFABViewController.swift in Sources */,
+				B65A2E431D5974FF0045483D /* KCFABManager.swift in Sources */,
+				B65A2E471D5974FF0045483D /* KCFloatingActionButtonDelegate.swift in Sources */,
+				B65A2E461D5974FF0045483D /* KCFloatingActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
