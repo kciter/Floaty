@@ -691,14 +691,17 @@ extension KCFloatingActionButton {
         for item in items {
             if item.hidden == true { continue }
             itemHeight += item.size + itemSpace
-            item.layer.transform = CATransform3DMakeScale(1, 1, 1)
+            item.layer.transform = CATransform3DIdentity
+            let big = size > item.size ? size : item.size
+            let small = size <= item.size ? size : item.size
+            item.frame.origin.x = big/2-small/2
             item.frame.origin.y = -itemHeight
             item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
             UIView.animateWithDuration(0.3, delay: delay,
                                        usingSpringWithDamping: 0.55,
                                        initialSpringVelocity: 0.3,
                                        options: [.CurveEaseInOut], animations: { () -> Void in
-                                        item.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                                        item.layer.transform = CATransform3DIdentity
                                         item.alpha = 1
                 }, completion: nil)
             
