@@ -135,6 +135,8 @@ public class KCFloatingActionButton: UIView {
     
     public var openAnimationType: KCFABOpenAnimationType = .Pop
     
+    public var friendlyTap: Bool = true
+    
     /**
      Delegate that can be used to learn more about the behavior of the FAB widget.
     */
@@ -460,7 +462,7 @@ public class KCFloatingActionButton: UIView {
         let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
         let y = item.bounds.origin.y
         
-        var width : CGFloat
+        var width: CGFloat
         if isCustomFrame {
             width = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin + paddingX
         } else {
@@ -558,16 +560,21 @@ public class KCFloatingActionButton: UIView {
             frame = CGRectMake(
                 (UIScreen.mainScreen().bounds.size.width - size) - paddingX,
                 (UIScreen.mainScreen().bounds.size.height - size - keyboardSize) - paddingY,
-                size + paddingX,
-                size + paddingY
+                size,
+                size
             )
         } else {
             frame = CGRectMake(
                 (superview!.bounds.size.width-size) - paddingX,
                 (superview!.bounds.size.height-size-keyboardSize) - paddingY,
-                size + paddingX,
-                size + paddingY
+                size,
+                size
             )
+        }
+        
+        if friendlyTap == true {
+            frame.size.width += paddingX
+            frame.size.height += paddingY
         }
     }
     
