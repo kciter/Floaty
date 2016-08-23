@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -33,13 +33,29 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-bO-oUz">
+                                <rect key="frame" x="229" y="251" width="51" height="31"/>
+                                <connections>
+                                    <action selector="customImageSwitched:" destination="BYZ-38-t0r" eventType="valueChanged" id="W9c-wW-hzF"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wk-tB-Wom">
+                                <rect key="frame" x="97" y="256" width="111" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EtJ-sz-GUf" firstAttribute="top" secondItem="fPA-BB-5Md" secondAttribute="bottom" constant="10" id="4b6-dY-noK"/>
+                            <constraint firstItem="6wk-tB-Wom" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-35" id="6IP-Sv-T4Q"/>
                             <constraint firstItem="fPA-BB-5Md" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GSm-GQ-tim"/>
                             <constraint firstItem="fPA-BB-5Md" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HFT-Qi-ewT"/>
+                            <constraint firstItem="NxG-bO-oUz" firstAttribute="centerY" secondItem="6wk-tB-Wom" secondAttribute="centerY" id="Iyc-Qn-P0y"/>
+                            <constraint firstItem="fPA-BB-5Md" firstAttribute="top" secondItem="6wk-tB-Wom" secondAttribute="bottom" constant="39" id="JrH-9q-Vm3"/>
                             <constraint firstItem="EtJ-sz-GUf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bf2-mE-Mwh"/>
+                            <constraint firstItem="NxG-bO-oUz" firstAttribute="leading" secondItem="6wk-tB-Wom" secondAttribute="trailing" constant="21" id="fcZ-Ez-bOP"/>
                         </constraints>
                         <connections>
                             <action selector="endEditing" destination="dkx-z0-nzr" eventType="touchUpInside" id="OCh-jJ-hRJ"/>

@@ -18,12 +18,27 @@ public class KCFloatingActionButtonItem: UIView {
     /**
      This object's button size.
      */
-    public var size: CGFloat = 42
+    public var size: CGFloat = 42 {
+        didSet {
+            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
+            _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
+            self.setNeedsDisplay()
+        }
+    }
     
     /**
      Button color.
      */
     public var buttonColor: UIColor = UIColor.whiteColor()
+    
+    /**
+     Title label color.
+     */
+    public var titleColor: UIColor = UIColor.whiteColor() {
+        didSet {
+            titleLabel.textColor = titleColor
+        }
+    }
     
     /**
      Circle Shadow color.
@@ -65,7 +80,7 @@ public class KCFloatingActionButtonItem: UIView {
         get {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
-                _titleLabel?.textColor = UIColor.whiteColor()
+                _titleLabel?.textColor = titleColor
                 addSubview(_titleLabel!)
             }
             return _titleLabel!
@@ -91,10 +106,9 @@ public class KCFloatingActionButtonItem: UIView {
     public var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
-                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 21, 23))
-                //                _iconImageView = UIImageView(frame: CGRectMake(frame.size.width - size, 0, 21, 23))
+                _iconImageView = UIImageView(frame: CGRectMake(0, 0, 25, 25))
                 _iconImageView?.center = CGPointMake(size/2, size/2) + imageOffset
-                _iconImageView?.contentMode = UIViewContentMode.ScaleToFill
+                _iconImageView?.contentMode = UIViewContentMode.ScaleAspectFill
                 addSubview(_iconImageView!)
             }
             return _iconImageView!
