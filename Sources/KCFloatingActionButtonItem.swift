@@ -95,7 +95,7 @@ open class KCFloatingActionButtonItem: UIView {
             titleLabel.text = title
             titleLabel.sizeToFit()
             titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
-            titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
+            titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
         }
     }
     

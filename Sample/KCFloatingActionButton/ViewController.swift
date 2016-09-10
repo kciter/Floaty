@@ -41,12 +41,13 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
         }
         
         fab.addItem(title: "I got a title")
-        fab.addItem("I got a icon", icon: UIImage(named: "icShare"))
+        var test = fab.addItem("I got a icon", icon: UIImage(named: "icShare"))
         fab.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
             let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            self.fab.close()
+            test.title = "TEST!!!"
+            //self.fab.close()
         }
         fab.addItem(item: item)
         fab.fabDelegate = self
