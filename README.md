@@ -12,14 +12,14 @@ Simple Floating Action Button for iOS
 
 ## Requirements
 * iOS 8.0+
-* Swift 2.2
-* Xcode 7
+* Swift 3.0
+* Xcode 8
 
 ## Installation
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "KCFloatingActionButton"
+pod "KCFloatingActionButton", "~> 2.0.0"
 ```
 ### Carthage
 ```ruby
