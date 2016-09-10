@@ -15,7 +15,7 @@ class KCFABWindow: UIWindow {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         self.windowLevel = UIWindowLevelStatusBar
     }
 
@@ -23,20 +23,20 @@ class KCFABWindow: UIWindow {
         super.init(coder: aDecoder)
     }
     
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         let fabViewController = rootViewController as? KCFABViewController
         if let fab = fabViewController?.fab {
             if fab.closed == false {
                 return true
             }
             
-            if CGRectContainsPoint(fab.frame, point) == true {
+            if fab.frame.contains(point) == true {
                 return true
             }
             
             for item in fab.items {
-                let itemFrame = self.convertRect(item.frame, fromView: fab)
-                if CGRectContainsPoint(itemFrame, point) == true {
+                let itemFrame = self.convert(item.frame, from: fab)
+                if itemFrame.contains(point) == true {
                     return true
                 }
             }
