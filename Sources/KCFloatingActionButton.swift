@@ -275,9 +275,11 @@ open class KCFloatingActionButton: UIView {
                 slideLeftAnimationWithOpen()
             case .slideUp:
                 slideUpAnimationWithOpen()
-            case .SlideDown:
+            case .slideDown:
                 slideDownAnimationWithOpen()
             case .none:
+                noneAnimationWithOpen()
+            default:
                 noneAnimationWithOpen()
             }
         }
@@ -312,7 +314,11 @@ open class KCFloatingActionButton: UIView {
                 slideLeftAnimationWithClose()
             case .slideUp:
                 slideUpAnimationWithClose()
+            case .slideDown:
+                slideDownAnimationWithClose()
             case .none:
+                noneAnimationWithClose()
+            case default:
                 noneAnimationWithClose()
             }
         }
@@ -830,7 +836,7 @@ extension KCFloatingActionButton {
     /**
         Slide down animation
      */
-    private func slideDownAnimationWithOpen() {
+    fileprivate func slideDownAnimationWithOpen() {
         var itemHeight: CGFloat = 0
         for item in items {
             if item.hidden == true { continue }
@@ -843,7 +849,7 @@ extension KCFloatingActionButton {
         }
     }
 
-    private func slideDownAnimationWithClose() {
+    fileprivate func slideDownAnimationWithClose() {
         for item in items.reverse() {
             if item.hidden == true { continue }
             UIView.animateWithDuration(0.2, delay: 0, options: [], animations: { () -> Void in
