@@ -128,7 +128,7 @@ open class KCFloatingActionButtonItem: UIView {
       itemBackgroundColor change
     */
     public var itemBackgroundColor: UIColor? = nil {
-      didSet { circleLayer.backgroundColor = itemBackgroundColor?.CGColor }
+      didSet { circleLayer.backgroundColor = itemBackgroundColor?.cgColor }
     }
 
     // MARK: - Initialize
