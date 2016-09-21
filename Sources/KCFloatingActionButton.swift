@@ -318,8 +318,6 @@ open class KCFloatingActionButton: UIView {
                 slideDownAnimationWithClose()
             case .none:
                 noneAnimationWithClose()
-            default:
-                noneAnimationWithClose()
             }
         }
 
