@@ -137,6 +137,8 @@ open class KCFloatingActionButton: UIView {
     
     open var friendlyTap: Bool = true
     
+    open var sticky: Bool = false
+    
     /**
      Delegate that can be used to learn more about the behavior of the FAB widget.
     */
@@ -570,6 +572,7 @@ open class KCFloatingActionButton: UIView {
                 width: size,
                 height: size
             )
+            print(frame)
         }
         
         if friendlyTap == true {
@@ -625,17 +628,39 @@ open class KCFloatingActionButton: UIView {
             } else {
                 size = min(frame.size.width, frame.size.height)
             }
+        } else if (object as? UIScrollView) == superview && keyPath == "contentOffset" {
+            let scrollView = object as! UIScrollView
+            frame.origin.x = ((self.superview!.bounds.size.width - size) - paddingX) + scrollView.contentOffset.x
+            frame.origin.y = ((self.superview!.bounds.size.height - size) - paddingY) + scrollView.contentOffset.y
         }
     }
     
     open override func willMove(toSuperview newSuperview: UIView?) {
         superview?.removeObserver(self, forKeyPath: "frame")
+        if sticky == true {
+            if let superviews = self.getAllSuperviews() {
+                for superview in superviews {
+                    if superview is UIScrollView {
+                        superview.removeObserver(self, forKeyPath: "contentOffset", context:nil)
+                    }
+                }
+            }
+        }
         super.willMove(toSuperview: newSuperview)
     }
     
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
         superview?.addObserver(self, forKeyPath: "frame", options: [], context: nil)
+        if sticky == true {
+            if let superviews = self.getAllSuperviews() {
+                for superview in superviews {
+                    if superview is UIScrollView {
+                        superview.addObserver(self, forKeyPath: "contentOffset", options: .new, context:nil)
+                    }
+                }
+            }
+        }
     }
     
     internal func deviceOrientationDidChange(_ notification: Notification) {
@@ -852,5 +877,22 @@ extension KCFloatingActionButton {
 extension KCFloatingActionButton {
     fileprivate func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
         return degrees / 180.0 * CGFloat(M_PI)
+    }
+}
+
+extension UIView {
+    fileprivate func getAllSuperviews() -> [UIView]? {
+        if (self.superview == nil) {
+            return nil
+        }
+        
+        var superviews: [UIView] = []
+        
+        superviews.append(self.superview!)
+        if let allSuperviews = self.superview!.getAllSuperviews() {
+            superviews.append(contentsOf: allSuperviews)
+        }
+        
+        return superviews
     }
 }
