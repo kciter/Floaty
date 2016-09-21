@@ -134,7 +134,7 @@ open class KCFloatingActionButton: UIView {
     */
     open var closed: Bool = true
 
-    open var openAnimationType: KCFABOpenAnimationType = .slideDown
+    open var openAnimationType: KCFABOpenAnimationType = .pop
 
     open var friendlyTap: Bool = true
     
