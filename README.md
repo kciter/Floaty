@@ -119,6 +119,13 @@ item.title = @"Custom item";
 ```
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
+### Sticky
+You can use the `sticky` property.
+```swift
+fab.sticky = true // sticking to parent UIScrollView(also UITableView, UICollectionView)
+scrollView.addSubview(fab)
+```
+
 ### Animation type
 <table>
 <tr>
