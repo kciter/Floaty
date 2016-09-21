@@ -1,5 +1,5 @@
 # KCFloatingActionButton
-![Swift 2.0](https://img.shields.io/badge/Swift-2.0-orange.svg)
+![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
 [![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
@@ -11,7 +11,7 @@ Simple Floating Action Button for iOS
 <img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Requirements
-* iOS 8.0+
+* iOS 9.0+
 * Swift 3.0
 * Xcode 8
 
@@ -19,7 +19,7 @@ Simple Floating Action Button for iOS
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "KCFloatingActionButton", "~> 2.0.0"
+pod "KCFloatingActionButton", "~> 2.1.0"
 ```
 ### Carthage
 ```ruby
