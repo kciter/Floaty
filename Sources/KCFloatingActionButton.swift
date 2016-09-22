@@ -668,7 +668,7 @@ open class KCFloatingActionButton: UIView {
         }
     }
 
-    internal func deviceOrientationDidChange(_ notification: Notification) {
+    internal func deviceOrientationDidChange(_ notification: NSNotification) {
         guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height else {
             return
         }
@@ -683,7 +683,7 @@ open class KCFloatingActionButton: UIView {
         }
     }
 
-    internal func keyboardWillShow(_ notification: Notification) {
+    internal func keyboardWillShow(_ notification: NSNotification) {
         guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height else {
             return
         }
@@ -704,7 +704,7 @@ open class KCFloatingActionButton: UIView {
             }, completion: nil)
     }
 
-    internal func keyboardWillHide(_ notification: Notification) {
+    internal func keyboardWillHide(_ notification: NSNotification) {
         UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
             if self.isCustomFrame == false {
                 self.setRightBottomFrame()
