@@ -687,6 +687,10 @@ open class KCFloatingActionButton: UIView {
         guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height else {
             return
         }
+        
+        if sticky == true {
+            return
+        }
 
         if isCustomFrame == false {
             setRightBottomFrame(keyboardSize)
@@ -705,6 +709,11 @@ open class KCFloatingActionButton: UIView {
     }
 
     internal func keyboardWillHide(_ notification: Notification) {
+        
+        if sticky == true {
+            return
+        }
+        
         UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
             if self.isCustomFrame == false {
                 self.setRightBottomFrame()
