@@ -577,7 +577,6 @@ open class KCFloatingActionButton: UIView {
                 width: size,
                 height: size
             )
-            print(frame)
         }
 
         if friendlyTap == true {
