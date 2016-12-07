@@ -37,7 +37,7 @@ open class KCFABManager: NSObject {
     }
     
     var _fabController: KCFABViewController? = nil
-    var fabController: KCFABViewController {
+    open var fabController: KCFABViewController {
         get {
             if _fabController == nil {
                 _fabController = KCFABViewController()

@@ -11,21 +11,18 @@ import UIKit
 /**
     KCFloatingActionButton dependent on UIWindow.
 */
-class KCFABViewController: UIViewController {
-    
+open class KCFABViewController: UIViewController {
     let fab = KCFloatingActionButton()
+    var statusBarStyle: UIStatusBarStyle = .default
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         view.addSubview(fab)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get {
+            return statusBarStyle
+        }
     }
-    
-    
 }
