@@ -864,7 +864,6 @@ extension KCFloatingActionButton {
             itemHeight += item.size + itemSpace
             UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: { () -> Void in
                                         item.frame.origin.y = itemHeight
-                                        item.frame.origin.x = 4
                                         item.alpha = 1
                 }, completion: nil)
         }
