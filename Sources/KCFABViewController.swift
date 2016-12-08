@@ -15,12 +15,12 @@ open class KCFABViewController: UIViewController {
     let fab = KCFloatingActionButton()
     var statusBarStyle: UIStatusBarStyle = .default
 
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(fab)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return statusBarStyle
         }
