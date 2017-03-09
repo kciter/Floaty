@@ -129,6 +129,17 @@ open class KCFloatingActionButtonItem: UIView {
             iconImageView.image = icon
         }
     }
+    
+    /**
+     Item's icon tint color change
+     */
+    open var iconTintColor: UIColor! = nil {
+        didSet {
+            let image = iconImageView.image?.withRenderingMode(.alwaysTemplate)
+            _iconImageView?.tintColor = iconTintColor
+            _iconImageView?.image = image
+        }
+    }
 
     /**
       itemBackgroundColor change
