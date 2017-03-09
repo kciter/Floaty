@@ -126,6 +126,14 @@ fab.sticky = true // sticking to parent UIScrollView(also UITableView, UICollect
 scrollView.addSubview(fab)
 ```
 
+### Friendly Tap
+You can use the `friendlyTap` property.
+```swifty
+fab.friendlyTap = true
+scrollView.addSubview(fab)
+```
+With the default location of the frame, the button is now tappable until the right and rightbottom of the screen. This prevents tapping behind it by accident.
+
 ### Animation type
 <table>
 <tr>
@@ -144,6 +152,9 @@ scrollView.addSubview(fab)
 <td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/none_ani.gif" width='187' alt="None animation gif"></td>
 </tr>
 </table>
+
+## ToDo
+* [ ] Labels to come at the right hand side of the FAB Item menu.
 
 ## License
 The MIT License (MIT)
