@@ -50,11 +50,16 @@ open class KCFloatingActionButtonItem: UIView {
      Title Shadow color.
      */
     open var titleShadowColor: UIColor = UIColor.black
+    
+    /**
+     The side in which the title should show
+     */
+    open var titleSide: KCFABItemTitleSide = .left
 
     /**
      If you touch up inside button, it execute handler.
      */
-    open var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
+    open var handler: ((KCFloatingActionButtonItem) -> Void)?
 
     open var imageOffset: CGPoint = CGPoint.zero
     open var imageSize: CGSize = CGSize(width: 25, height: 25) {
@@ -81,7 +86,7 @@ open class KCFloatingActionButtonItem: UIView {
     /**
      Item's title label.
      */
-    var _titleLabel: UILabel? = nil
+    var _titleLabel: UILabel?
     open var titleLabel: UILabel {
         get {
             if _titleLabel == nil {
@@ -100,7 +105,11 @@ open class KCFloatingActionButtonItem: UIView {
         didSet {
             titleLabel.text = title
             titleLabel.sizeToFit()
-            titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+            if titleSide == .left {
+                titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+            } else {
+                titleLabel.frame.origin.x = size + 10
+            }
             titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
         }
     }
@@ -108,7 +117,7 @@ open class KCFloatingActionButtonItem: UIView {
     /**
      Item's icon image view.
      */
-    var _iconImageView: UIImageView? = nil
+    var _iconImageView: UIImageView?
     open var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
@@ -183,7 +192,7 @@ open class KCFloatingActionButtonItem: UIView {
 
     fileprivate func createCircleLayer() {
         //        circleLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
-        let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
+        let castParent: KCFloatingActionButton = superview as! KCFloatingActionButton
         circleLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
         circleLayer.backgroundColor = buttonColor.cgColor
         circleLayer.cornerRadius = size/2
@@ -192,7 +201,7 @@ open class KCFloatingActionButtonItem: UIView {
 
     fileprivate func createTintLayer() {
         //        tintLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
-        let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
+        let castParent: KCFloatingActionButton = superview as! KCFloatingActionButton
         tintLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
         tintLayer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
         tintLayer.cornerRadius = size/2
