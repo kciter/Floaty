@@ -923,7 +923,7 @@ extension KCFloatingActionButton {
  */
 extension KCFloatingActionButton {
     fileprivate func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
-        return degrees / 180.0 * CGFloat(M_PI)
+        return degrees / 180.0 * CGFloat(Double.pi)
     }
 }
 
