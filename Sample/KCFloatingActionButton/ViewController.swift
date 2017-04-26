@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, KCFloatingActionButtonDelegate {
+class ViewController: UIViewController, FloatyDelegate {
     
-    var fab = KCFloatingActionButton()
+    var floaty = Floaty()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +24,14 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
     
     @IBAction func customImageSwitched(_ sender: UISwitch) {
         if sender.isOn == true {
-            fab.buttonImage = UIImage(named: "custom-add")
+            floaty.buttonImage = UIImage(named: "custom-add")
         } else {
-            fab.buttonImage = nil
+            floaty.buttonImage = nil
         }
     }
     
     func layoutFAB() {
-        let item = KCFloatingActionButtonItem()
+        let item = FloatyItem()
         item.buttonColor = UIColor.blue
         item.circleShadowColor = UIColor.red
         item.titleShadowColor = UIColor.blue
@@ -40,25 +40,25 @@ class ViewController: UIViewController, KCFloatingActionButtonDelegate {
             
         }
         
-        fab.addItem(title: "I got a title")
-        fab.addItem("I got a icon", icon: UIImage(named: "icShare"))
-        fab.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
+        floaty.addItem(title: "I got a title")
+        floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
+        floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
             let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        fab.addItem(item: item)
-        fab.fabDelegate = self
+        floaty.addItem(item: item)
+        floaty.fabDelegate = self
         
-        self.view.addSubview(fab)
+//        self.view.addSubview(floaty)
 
     }
     
-    func KCFABOpened(_ fab: KCFloatingActionButton) {
-        print("FAB Opened")
+    func floatyOpened(_ floaty: Floaty) {
+        print("Floaty Opened")
     }
     
-    func KCFABClosed(_ fab: KCFloatingActionButton) {
-        print("FAB Closed")
+    func floatyClosed(_ floaty: Floaty) {
+        print("Floaty Closed")
     }
 }

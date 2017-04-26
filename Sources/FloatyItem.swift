@@ -11,7 +11,7 @@ import UIKit
 /**
  Floating Action Button Object's item.
  */
-open class KCFloatingActionButtonItem: UIView {
+open class FloatyItem: UIView {
 
     // MARK: - Properties
 
@@ -54,7 +54,7 @@ open class KCFloatingActionButtonItem: UIView {
     /**
      If you touch up inside button, it execute handler.
      */
-    open var handler: ((KCFloatingActionButtonItem) -> Void)? = nil
+    open var handler: ((FloatyItem) -> Void)? = nil
 
     open var imageOffset: CGPoint = CGPoint.zero
     open var imageSize: CGSize = CGSize(width: 25, height: 25) {
@@ -66,7 +66,7 @@ open class KCFloatingActionButtonItem: UIView {
     /**
      Reference to parent
      */
-    open weak var actionButton: KCFloatingActionButton?
+    open weak var actionButton: Floaty?
 
     /**
      Shape layer of button.
@@ -172,7 +172,7 @@ open class KCFloatingActionButtonItem: UIView {
 
     fileprivate func createCircleLayer() {
         //        circleLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
-        let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
+        let castParent : Floaty = superview as! Floaty
         circleLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
         circleLayer.backgroundColor = buttonColor.cgColor
         circleLayer.cornerRadius = size/2
@@ -181,7 +181,7 @@ open class KCFloatingActionButtonItem: UIView {
 
     fileprivate func createTintLayer() {
         //        tintLayer.frame = CGRectMake(frame.size.width - size, 0, size, size)
-        let castParent : KCFloatingActionButton = superview as! KCFloatingActionButton
+        let castParent : Floaty = superview as! Floaty
         tintLayer.frame = CGRect(x: castParent.itemSize/2 - (size/2), y: 0, width: size, height: size)
         tintLayer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
         tintLayer.cornerRadius = size/2

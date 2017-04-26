@@ -1,5 +1,5 @@
 //
-//  KCFloatingActionButton.swift
+//  Floaty.swift
 //
 //  Created by LeeSunhyoup on 2015. 10. 4..
 //  Copyright © 2015년 kciter. All rights reserved.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum KCFABOpenAnimationType {
+public enum FloatyOpenAnimationType {
     case pop
     case fade
     case slideLeft
@@ -17,17 +17,17 @@ public enum KCFABOpenAnimationType {
 }
 
 /**
-    Floating Action Button Object. It has `KCFloatingActionButtonItem` objects.
-    KCFloatingActionButton support storyboard designable.
+    Floaty Object. It has `FloatyItem` objects.
+    Floaty support storyboard designable.
 */
 @IBDesignable
-open class KCFloatingActionButton: UIView {
+open class Floaty: UIView {
     // MARK: - Properties
 
     /**
-        `KCFloatingActionButtonItem` objects.
+        `FloatyItem` objects.
     */
-    open var items: [KCFloatingActionButtonItem] = []
+    open var items: [FloatyItem] = []
 
     /**
         This object's button size.
@@ -134,16 +134,22 @@ open class KCFloatingActionButton: UIView {
     */
     open var closed: Bool = true
 
-    open var openAnimationType: KCFABOpenAnimationType = .pop
+    open var openAnimationType: FloatyOpenAnimationType = .pop
 
     open var friendlyTap: Bool = true
     
     open var sticky: Bool = false
     
+    open static var global: FloatyManager {
+        get {
+            return FloatyManager.defaultInstance()
+        }
+    }
+    
     /**
      Delegate that can be used to learn more about the behavior of the FAB widget.
     */
-    @IBOutlet open weak var fabDelegate: KCFloatingActionButtonDelegate?
+    @IBOutlet open weak var fabDelegate: FloatyDelegate?
 
     /**
         Button shape layer.
@@ -291,7 +297,7 @@ open class KCFloatingActionButton: UIView {
             }
         }
 
-        fabDelegate?.KCFABOpened?(self)
+        fabDelegate?.floatyOpened?(self)
         closed = false
     }
 
@@ -330,7 +336,7 @@ open class KCFloatingActionButton: UIView {
             }
         }
 
-        fabDelegate?.KCFABClosed?(self)
+        fabDelegate?.floatyClosed?(self)
         closed = true
     }
 
@@ -345,14 +351,14 @@ open class KCFloatingActionButton: UIView {
                 close()
             }
         } else {
-            fabDelegate?.emptyKCFABSelected?(self)
+            fabDelegate?.emptyFloatySelected?(self)
         }
     }
 
     /**
         Add custom item
     */
-    open func addItem(item: KCFloatingActionButtonItem) {
+    open func addItem(item: FloatyItem) {
         let big = size > item.size ? size : item.size
         let small = size <= item.size ? size : item.size
         item.frame.origin = CGPoint(x: big/2-small/2, y: big/2-small/2)
@@ -366,8 +372,8 @@ open class KCFloatingActionButton: UIView {
         Add item with title.
     */
     @discardableResult
-    open func addItem(title: String) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(title: String) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
         addItem(item: item)
@@ -378,8 +384,8 @@ open class KCFloatingActionButton: UIView {
         Add item with title and icon.
     */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(_ title: String, icon: UIImage?) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
         item.icon = icon
@@ -391,8 +397,8 @@ open class KCFloatingActionButton: UIView {
      Add item with title and handler.
      */
     @discardableResult
-    open func addItem(title: String, handler: @escaping ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
         item.handler = handler
@@ -404,8 +410,8 @@ open class KCFloatingActionButton: UIView {
         Add item with title, icon or handler.
     */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?, handler: @escaping ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(_ title: String, icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
         item.icon = icon
@@ -418,8 +424,8 @@ open class KCFloatingActionButton: UIView {
         Add item with icon.
     */
     @discardableResult
-    open func addItem(icon: UIImage?) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(icon: UIImage?) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.icon = icon
         addItem(item: item)
@@ -430,8 +436,8 @@ open class KCFloatingActionButton: UIView {
         Add item with icon and handler.
     */
     @discardableResult
-    open func addItem(icon: UIImage?, handler: @escaping ((KCFloatingActionButtonItem) -> Void)) -> KCFloatingActionButtonItem {
-        let item = KCFloatingActionButtonItem()
+    open func addItem(icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+        let item = FloatyItem()
         itemDefaultSet(item)
         item.icon = icon
         item.handler = handler
@@ -442,7 +448,7 @@ open class KCFloatingActionButton: UIView {
     /**
         Remove item.
     */
-    open func removeItem(item: KCFloatingActionButtonItem) {
+    open func removeItem(item: FloatyItem) {
         guard let index = items.index(of: item) else { return }
         items[index].removeFromSuperview()
         items.remove(at: index)
@@ -473,7 +479,7 @@ open class KCFloatingActionButton: UIView {
         return super.hitTest(point, with: event)
     }
 
-    fileprivate func determineTapArea(item : KCFloatingActionButtonItem) -> CGRect {
+    fileprivate func determineTapArea(item : FloatyItem) -> CGRect {
         let tappableMargin : CGFloat = 30.0
         let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
         let y = item.bounds.origin.y
@@ -559,7 +565,7 @@ open class KCFloatingActionButton: UIView {
         return path
     }
 
-    fileprivate func itemDefaultSet(_ item: KCFloatingActionButtonItem) {
+    fileprivate func itemDefaultSet(_ item: FloatyItem) {
         item.buttonColor = itemButtonColor
 
 		/// Use separate color (if specified) for item button image, or default to the plusColor
@@ -736,7 +742,7 @@ open class KCFloatingActionButton: UIView {
 /**
     Opening animation functions
  */
-extension KCFloatingActionButton {
+extension Floaty {
     /**
         Pop animation
      */
@@ -921,7 +927,7 @@ extension KCFloatingActionButton {
 /**
     Util functions
  */
-extension KCFloatingActionButton {
+extension Floaty {
     fileprivate func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
         return degrees / 180.0 * CGFloat(M_PI)
     }

@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var fab = KCFloatingActionButton()
+    var fab = Floaty()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class TableViewController: UITableViewController {
     }
     
     func layoutFAB() {
-        let item = KCFloatingActionButtonItem()
+        let item = FloatyItem()
         item.buttonColor = UIColor.blue
         item.circleShadowColor = UIColor.red
         item.titleShadowColor = UIColor.blue
