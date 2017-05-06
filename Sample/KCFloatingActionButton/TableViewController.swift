@@ -8,21 +8,21 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, FloatyDelegate {
     
     var fab = Floaty()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutFAB()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 30
     }
@@ -47,6 +47,8 @@ class TableViewController: UITableViewController {
         fab.addItem(item: item)
         fab.sticky = true
         
+        fab.fabDelegate = self
+        
         print(tableView!.frame)
         
         self.view.addSubview(fab)
@@ -57,5 +59,12 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath)
         return cell
     }
-
+    // MARK: - Floaty Delegate Methods
+    func floatyOpened(_ floaty: Floaty) {
+        print("Floaty Opened")
+    }
+    
+    func floatyClosed(_ floaty: Floaty) {
+        print("Floaty Closed")
+    }
 }
