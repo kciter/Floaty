@@ -188,6 +188,11 @@ open class Floaty: UIView {
     */
     fileprivate var isCustomFrame: Bool = false
 
+    // ac
+    fileprivate var solidCircleView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    
+    fileprivate var cogImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    
     // MARK: - Initialize
 
     /**
@@ -296,6 +301,49 @@ open class Floaty: UIView {
                 noneAnimationWithOpen()
             }
         }
+        
+        self.isUserInteractionEnabled = false
+        
+        // ac animate solid circle
+        guard let sView = self.superview
+            else { return }
+        
+        solidCircleView.layer.cornerRadius = 30
+        solidCircleView.layer.backgroundColor = UIColor.blue.cgColor
+        solidCircleView.alpha = 0
+        
+        sView.insertSubview(solidCircleView, aboveSubview: overlayView)
+        
+        var f = solidCircleView.frame
+        f.size = CGSize(width: 60, height: 60)
+        f.origin = CGPoint(x: sView.frame.width - f.width, y: sView.frame.height - f.height)
+        solidCircleView.frame = f
+        
+        
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
+            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
+            // animate alpha
+            self.solidCircleView.alpha = 1
+            
+        }) { (completed) in
+            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
+            // animate alpha
+            self.solidCircleView.alpha = 1
+            self.isUserInteractionEnabled = true
+        }
+        
+        //
+        cogImageView.backgroundColor = UIColor.green
+        sView.insertSubview(cogImageView, aboveSubview: solidCircleView)
+        
+        cogImageView.center = self.center
+        
+        UIView.animate(withDuration: 0.8, animations: {
+            var c = self.cogImageView.center
+            c.x -= 200
+            self.cogImageView.center = c
+        }, completion: { finished in
+        })
 
         fabDelegate?.floatyOpened?(self)
         closed = false
@@ -335,6 +383,31 @@ open class Floaty: UIView {
                 noneAnimationWithClose()
             }
         }
+        
+        self.isUserInteractionEnabled = false
+        
+        // ac animate solid circle
+        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
+            self.solidCircleView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            // animate alpha
+            self.solidCircleView.alpha = 0
+            
+        }) { (completed) in
+            self.solidCircleView.transform = CGAffineTransform(scaleX: 1, y: 1)
+            // animate alpha
+            self.solidCircleView.alpha = 0
+            
+            self.solidCircleView.removeFromSuperview()
+            self.isUserInteractionEnabled = true
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            var c = self.cogImageView.center
+            c.x += 200
+            self.cogImageView.center = c
+        }, completion: { finished in
+            self.cogImageView.removeFromSuperview()
+        })
 
         fabDelegate?.floatyClosed?(self)
         closed = true
@@ -374,6 +447,7 @@ open class Floaty: UIView {
     @discardableResult
     open func addItem(title: String) -> FloatyItem {
         let item = FloatyItem()
+        item.isCircleHidden = true
         itemDefaultSet(item)
         item.title = title
         addItem(item: item)
