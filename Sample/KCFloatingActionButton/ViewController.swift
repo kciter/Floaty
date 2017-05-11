@@ -31,6 +31,8 @@ class ViewController: UIViewController, FloatyDelegate {
     }
     
     func layoutFAB() {
+        floaty.itemSize = 25.0
+        
         let item = FloatyItem()
         item.buttonColor = UIColor.blue
         item.circleShadowColor = UIColor.red
@@ -40,14 +42,10 @@ class ViewController: UIViewController, FloatyDelegate {
             
         }
         
-        floaty.addItem(title: "I got a title")
-        floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
-        floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
-            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-        floaty.addItem(item: item)
+        floaty.addItem(title: "Watch History")
+        floaty.addItem(title: "Series")
+        floaty.addItem(title: "Feed")
+        
         floaty.fabDelegate = self
         
 //        self.view.addSubview(floaty)
