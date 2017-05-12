@@ -29,6 +29,17 @@ open class Floaty: UIView {
     */
     open var items: [FloatyItem] = []
 
+    // ac
+    open var selectedItemIdx: Int = -1 {
+        didSet {
+            if oldValue >= 0 { // set to normal if exist
+                items[oldValue].titleFont = UIFont.systemFont(ofSize: 15)
+            }
+            
+            items[selectedItemIdx].titleFont = UIFont.systemFont(ofSize: 20)
+        }
+    }
+    
     /**
         This object's button size.
     */
@@ -278,8 +289,8 @@ open class Floaty: UIView {
                 usingSpringWithDamping: 0.55,
                 initialSpringVelocity: 0.3,
                 options: UIViewAnimationOptions(), animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
-                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(self.rotationDegrees))
+//                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
+//                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(self.rotationDegrees))
                     self.overlayView.alpha = 1
                 }, completion: {(f) -> Void in
                     self.overlayViewDidCompleteOpenAnimation = true
@@ -359,8 +370,8 @@ open class Floaty: UIView {
                 usingSpringWithDamping: 0.6,
                 initialSpringVelocity: 0.8,
                 options: [], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(0))
+//                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
+//                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(0))
                     self.overlayView.alpha = 0
                 }, completion: {(f) -> Void in
                     if self.overlayViewDidCompleteOpenAnimation {
@@ -473,6 +484,7 @@ open class Floaty: UIView {
     @discardableResult
     open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
+        item.isCircleHidden = true
         itemDefaultSet(item)
         item.title = title
         item.handler = handler

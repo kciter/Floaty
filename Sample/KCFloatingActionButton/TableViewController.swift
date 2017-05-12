@@ -29,10 +29,24 @@ class TableViewController: UITableViewController, FloatyDelegate {
     
     func layoutFAB() {
         fab.itemSize = 30.0
+        fab.buttonColor = UIColor.brown
+        fab.buttonImage = UIImage(named: "icMap")
         
-        fab.addItem(title: "Watch History")
-        fab.addItem(title: "Series")
-        fab.addItem(title: "Feed")
+        fab.addItem(title: "Watch History") { (item) in
+            if let idx = self.fab.items.index(of: item) {
+                self.fab.selectedItemIdx = idx
+            }
+        }
+        fab.addItem(title: "Series") { (item) in
+            if let idx = self.fab.items.index(of: item) {
+                self.fab.selectedItemIdx = idx
+            }
+        }
+        fab.addItem(title: "Feed") { (item) in
+            if let idx = self.fab.items.index(of: item) {
+                self.fab.selectedItemIdx = idx
+            }
+        }
         
         fab.fabDelegate = self
         

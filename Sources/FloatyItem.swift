@@ -87,6 +87,8 @@ open class FloatyItem: UIView {
                 else { return }
             
             titleLabel.font = tf
+            titleLabel.sizeToFit()
+            self.setNeedsLayout()
         }
     }
     
@@ -99,6 +101,7 @@ open class FloatyItem: UIView {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
                 _titleLabel?.textColor = titleColor
+//                _titleLabel?.textAlignment = .right
                 addSubview(_titleLabel!)
             }
             return _titleLabel!

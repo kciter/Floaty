@@ -15,7 +15,7 @@ class ViewController: UIViewController, FloatyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layoutFAB()
+//        layoutFAB()
     }
 
     @IBAction func endEditing() {
@@ -30,27 +30,29 @@ class ViewController: UIViewController, FloatyDelegate {
         }
     }
     
-    func layoutFAB() {
-        floaty.itemSize = 25.0
-        
-        let item = FloatyItem()
-        item.buttonColor = UIColor.blue
-        item.circleShadowColor = UIColor.red
-        item.titleShadowColor = UIColor.blue
-        item.title = "Custom item"
-        item.handler = { item in
-            
-        }
-        
-        floaty.addItem(title: "Watch History")
-        floaty.addItem(title: "Series")
-        floaty.addItem(title: "Feed")
-        
-        floaty.fabDelegate = self
-        
-//        self.view.addSubview(floaty)
-
-    }
+//    func layoutFAB() {
+//        floaty.itemSize = 25.0
+//        floaty.buttonImage = UIImage(named: "icMap")
+//        floaty.buttonColor = UIColor.brown
+//        
+//        let item = FloatyItem()
+//        item.buttonColor = UIColor.blue
+//        item.circleShadowColor = UIColor.red
+//        item.titleShadowColor = UIColor.blue
+//        item.title = "Custom item"
+//        item.handler = { item in
+//            
+//        }
+//        
+//        floaty.addItem(title: "Watch History")
+//        floaty.addItem(title: "Series")
+//        floaty.addItem(title: "Feed")
+//        
+//        floaty.fabDelegate = self
+//        
+////        self.view.addSubview(floaty)
+//
+//    }
     
     func floatyOpened(_ floaty: Floaty) {
         print("Floaty Opened")
