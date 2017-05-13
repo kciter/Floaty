@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UITableViewController, FloatyDelegate {
     
-    var fab = Floaty()
+    var floaty = FloatyManager.defaultInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,23 +28,31 @@ class TableViewController: UITableViewController, FloatyDelegate {
     }
     
     func layoutFAB() {
+        let fab = FloatyManager.defaultInstance().button
+        
         fab.itemSize = 30.0
-        fab.buttonColor = UIColor.brown
+        fab.overlayColor = UIColor.black.withAlphaComponent(0.1)
+        fab.itemShadowColor = UIColor.clear
+        fab.solidCircleRadius = 25.0
+        fab.buttonColor = UIColor(red: 0, green: 137/255.0, blue: 255/255.0, alpha: 1)
+        fab.solidCircleColor = UIColor(red: 0, green: 137/255.0, blue: 255/255.0, alpha: 1)
         fab.buttonImage = UIImage(named: "icMap")
+        fab.titleFontNormal = UIFont.systemFont(ofSize: 24)
+        fab.titleFontSelected = UIFont.systemFont(ofSize: 30)
         
         fab.addItem(title: "Watch History") { (item) in
-            if let idx = self.fab.items.index(of: item) {
-                self.fab.selectedItemIdx = idx
+            if let idx = fab.items.index(of: item) {
+                fab.selectedItemIdx = idx
             }
         }
         fab.addItem(title: "Series") { (item) in
-            if let idx = self.fab.items.index(of: item) {
-                self.fab.selectedItemIdx = idx
+            if let idx = fab.items.index(of: item) {
+                fab.selectedItemIdx = idx
             }
         }
         fab.addItem(title: "Feed") { (item) in
-            if let idx = self.fab.items.index(of: item) {
-                self.fab.selectedItemIdx = idx
+            if let idx = fab.items.index(of: item) {
+                fab.selectedItemIdx = idx
             }
         }
         
@@ -74,7 +82,7 @@ class TableViewController: UITableViewController, FloatyDelegate {
         
         print(tableView!.frame)
         
-        self.view.addSubview(fab)
+        floaty.show()
     }
     
     

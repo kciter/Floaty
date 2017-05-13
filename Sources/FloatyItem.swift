@@ -101,6 +101,7 @@ open class FloatyItem: UIView {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
                 _titleLabel?.textColor = titleColor
+                _titleLabel?.font = titleFont
 //                _titleLabel?.textAlignment = .right
                 addSubview(_titleLabel!)
             }

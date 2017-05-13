@@ -33,10 +33,9 @@ open class Floaty: UIView {
     open var selectedItemIdx: Int = -1 {
         didSet {
             if oldValue >= 0 { // set to normal if exist
-                items[oldValue].titleFont = UIFont.systemFont(ofSize: 15)
+                items[oldValue].titleFont = titleFontNormal
             }
-            
-            items[selectedItemIdx].titleFont = UIFont.systemFont(ofSize: 20)
+            items[selectedItemIdx].titleFont = titleFontSelected
         }
     }
     
@@ -200,6 +199,12 @@ open class Floaty: UIView {
     fileprivate var isCustomFrame: Bool = false
 
     // ac
+    open var titleFontNormal = UIFont.systemFont(ofSize: 14)
+    open var titleFontSelected = UIFont.systemFont(ofSize: 20)
+    
+    open var solidCircleColor: UIColor = UIColor.blue
+    open var solidCircleRadius: CGFloat = 15.0
+    
     fileprivate var solidCircleView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     fileprivate var cogImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -319,18 +324,19 @@ open class Floaty: UIView {
         guard let sView = self.superview
             else { return }
         
-        solidCircleView.layer.cornerRadius = 30
-        solidCircleView.layer.backgroundColor = UIColor.blue.cgColor
+        let dimension = solidCircleRadius * 2
+        solidCircleView.layer.cornerRadius = solidCircleRadius
+        solidCircleView.layer.backgroundColor = solidCircleColor.cgColor
         solidCircleView.alpha = 0
         
         sView.insertSubview(solidCircleView, aboveSubview: overlayView)
         
         var f = solidCircleView.frame
-        f.size = CGSize(width: 60, height: 60)
+        f.size = CGSize(width: dimension, height: dimension)
         f.origin = CGPoint(x: sView.frame.width - f.width, y: sView.frame.height - f.height)
         solidCircleView.frame = f
         
-        
+        layer.shadowColor = UIColor.clear.cgColor
         UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
             self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
             // animate alpha
@@ -409,6 +415,7 @@ open class Floaty: UIView {
             self.solidCircleView.alpha = 0
             
             self.solidCircleView.removeFromSuperview()
+            self.layer.shadowColor = UIColor.black.cgColor
             self.isUserInteractionEnabled = true
         }
         
@@ -660,6 +667,7 @@ open class Floaty: UIView {
         item.titleColor = itemTitleColor
         item.circleShadowColor = itemShadowColor
         item.titleShadowColor = itemShadowColor
+        item.titleFont = titleFontNormal
         item.size = itemSize
     }
 
