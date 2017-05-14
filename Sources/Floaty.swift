@@ -199,6 +199,7 @@ open class Floaty: UIView {
     fileprivate var isCustomFrame: Bool = false
 
     // ac
+    open var buttonShadowColor = UIColor.black
     open var titleFontNormal = UIFont.systemFont(ofSize: 14)
     open var titleFontSelected = UIFont.systemFont(ofSize: 20)
     
@@ -649,7 +650,7 @@ open class Floaty: UIView {
     fileprivate func setShadow() {
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowRadius = 2
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = buttonShadowColor.cgColor
         layer.shadowOpacity = 0.4
     }
 

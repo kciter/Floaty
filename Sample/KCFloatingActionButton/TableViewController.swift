@@ -43,6 +43,7 @@ class TableViewController: UITableViewController, FloatyDelegate {
         fab.cogButton.backgroundColor = UIColor.green
         fab.cogButtonSlideDistance = 100.0
         
+        fab.buttonShadowColor = UIColor.clear
         fab.cogButton.addTarget(self, action: #selector(cogButtonTapped), for: .touchUpInside)
         
         fab.addItem(title: "Watch History") { (item) in
