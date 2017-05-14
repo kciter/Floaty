@@ -205,9 +205,9 @@ open class Floaty: UIView {
     open var solidCircleColor: UIColor = UIColor.blue
     open var solidCircleRadius: CGFloat = 15.0
     
-    fileprivate var solidCircleView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    
-    fileprivate var cogImageView: UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    open var solidCircleView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    open var cogButton: UIButton = UIButton(type: .custom)
+    open var cogButtonSlideDistance: CGFloat = 200.0
     
     // MARK: - Initialize
 
@@ -350,15 +350,19 @@ open class Floaty: UIView {
         }
         
         //
-        cogImageView.backgroundColor = UIColor.green
-        sView.insertSubview(cogImageView, aboveSubview: solidCircleView)
+        sView.insertSubview(cogButton, aboveSubview: solidCircleView)
         
-        cogImageView.center = self.center
+        var cf = cogButton.frame
+        cf.size = CGSize(width: 40, height: 40)
+        cf.origin = CGPoint(x: self.frame.minX + (self.frame.width - cf.width) / 2.0,
+                            y: self.frame.minY + (self.frame.height - cf.height) / 2.0)
+        cf.origin.y -= 6 // manual adjust
+        cogButton.frame = cf
         
         UIView.animate(withDuration: 0.8, animations: {
-            var c = self.cogImageView.center
-            c.x -= 200
-            self.cogImageView.center = c
+            var c = self.cogButton.center
+            c.x -= self.cogButtonSlideDistance
+            self.cogButton.center = c
         }, completion: { finished in
         })
 
@@ -420,11 +424,11 @@ open class Floaty: UIView {
         }
         
         UIView.animate(withDuration: 0.5, animations: {
-            var c = self.cogImageView.center
-            c.x += 200
-            self.cogImageView.center = c
+            var c = self.cogButton.center
+            c.x += self.cogButtonSlideDistance
+            self.cogButton.center = c
         }, completion: { finished in
-            self.cogImageView.removeFromSuperview()
+            self.cogButton.removeFromSuperview()
         })
 
         fabDelegate?.floatyClosed?(self)

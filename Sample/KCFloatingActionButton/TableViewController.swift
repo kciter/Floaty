@@ -31,14 +31,19 @@ class TableViewController: UITableViewController, FloatyDelegate {
         let fab = FloatyManager.defaultInstance().button
         
         fab.itemSize = 30.0
-        fab.overlayColor = UIColor.black.withAlphaComponent(0.1)
-        fab.itemShadowColor = UIColor.clear
         fab.solidCircleRadius = 25.0
         fab.buttonColor = UIColor(red: 0, green: 137/255.0, blue: 255/255.0, alpha: 1)
         fab.solidCircleColor = UIColor(red: 0, green: 137/255.0, blue: 255/255.0, alpha: 1)
         fab.buttonImage = UIImage(named: "icMap")
+        
         fab.titleFontNormal = UIFont.systemFont(ofSize: 24)
         fab.titleFontSelected = UIFont.systemFont(ofSize: 30)
+        fab.overlayColor = UIColor.black.withAlphaComponent(0.1)
+        fab.itemShadowColor = UIColor.clear
+        fab.cogButton.backgroundColor = UIColor.green
+        fab.cogButtonSlideDistance = 100.0
+        
+        fab.cogButton.addTarget(self, action: #selector(cogButtonTapped), for: .touchUpInside)
         
         fab.addItem(title: "Watch History") { (item) in
             if let idx = fab.items.index(of: item) {
@@ -83,6 +88,10 @@ class TableViewController: UITableViewController, FloatyDelegate {
         print(tableView!.frame)
         
         floaty.show()
+    }
+    
+    func cogButtonTapped() {
+        print("cog button tapped")
     }
     
     
