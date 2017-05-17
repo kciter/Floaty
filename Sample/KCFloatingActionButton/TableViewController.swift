@@ -30,6 +30,8 @@ class TableViewController: UITableViewController, FloatyDelegate {
     func layoutFAB() {
         let fab = FloatyManager.defaultInstance().button
         
+        fab.openAnimationType = .none
+        
         fab.itemSize = 30.0
         fab.solidCircleRadius = 25.0
         fab.buttonColor = UIColor(red: 0, green: 137/255.0, blue: 255/255.0, alpha: 1)
