@@ -283,8 +283,12 @@ open class Floaty: UIView {
         Items open.
     */
     open func open() {
+        guard self.isUserInteractionEnabled else {
+            return // prevent double clicking
+        }
+        self.isUserInteractionEnabled = false
+        
         if(items.count > 0){
-
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubview(toFront: self)
@@ -319,8 +323,6 @@ open class Floaty: UIView {
             }
         }
         
-        self.isUserInteractionEnabled = false
-        
         // ac animate solid circle
         guard let sView = self.superview
             else { return }
@@ -338,7 +340,7 @@ open class Floaty: UIView {
         solidCircleView.frame = f
         
         layer.shadowColor = UIColor.clear.cgColor
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
             self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
             // animate alpha
             self.solidCircleView.alpha = 1
@@ -360,7 +362,7 @@ open class Floaty: UIView {
         cf.origin.y -= 6 // manual adjust
         cogButton.frame = cf
         
-        UIView.animate(withDuration: 0.8, animations: {
+        UIView.animate(withDuration: 0.6, animations: {
             var c = self.cogButton.center
             c.x -= self.cogButtonSlideDistance
             self.cogButton.center = c
@@ -375,6 +377,11 @@ open class Floaty: UIView {
         Items close.
     */
     open func close() {
+        guard self.isUserInteractionEnabled else {
+            return // prevent double clicking
+        }
+        self.isUserInteractionEnabled = false
+        
         if(items.count > 0){
             self.overlayView.removeTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
             UIView.animate(withDuration: 0.3, delay: 0,
@@ -406,10 +413,8 @@ open class Floaty: UIView {
             }
         }
         
-        self.isUserInteractionEnabled = false
-        
         // ac animate solid circle
-        UIView.animate(withDuration: 1.0, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
             self.solidCircleView.transform = CGAffineTransform(scaleX: 1, y: 1)
             // animate alpha
             self.solidCircleView.alpha = 0
@@ -424,7 +429,7 @@ open class Floaty: UIView {
             self.isUserInteractionEnabled = true
         }
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             var c = self.cogButton.center
             c.x += self.cogButtonSlideDistance
             self.cogButton.center = c
