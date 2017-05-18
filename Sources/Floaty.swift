@@ -283,30 +283,44 @@ open class Floaty: UIView {
         Items open.
     */
     open func open() {
-        guard self.isUserInteractionEnabled else {
-            return // prevent double clicking
-        }
-        self.isUserInteractionEnabled = false
+        
+        guard let sView = self.superview
+            else { return }
         
         if(items.count > 0){
+            
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubview(toFront: self)
             overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
-
+            
+            let dimension = solidCircleRadius * 2
+            solidCircleView.layer.cornerRadius = solidCircleRadius
+            solidCircleView.layer.backgroundColor = solidCircleColor.cgColor
+            solidCircleView.alpha = 0
+            
+            sView.insertSubview(solidCircleView, aboveSubview: overlayView)
+            
+            var f = solidCircleView.frame
+            f.size = CGSize(width: dimension, height: dimension)
+            f.origin = CGPoint(x: sView.frame.width - f.width, y: sView.frame.height - f.height)
+            solidCircleView.frame = f
+            
             overlayViewDidCompleteOpenAnimation = false
-            UIView.animate(withDuration: 0.3, delay: 0,
-                usingSpringWithDamping: 0.55,
-                initialSpringVelocity: 0.3,
-                options: UIViewAnimationOptions(), animations: { () -> Void in
-//                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
-//                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(self.rotationDegrees))
-                    self.overlayView.alpha = 1
-                }, completion: {(f) -> Void in
-                    self.overlayViewDidCompleteOpenAnimation = true
+            
+            UIView.animate(withDuration: 1.0, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0.5,
+                           options: UIViewAnimationOptions(), animations: { () -> Void in
+                            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
+                            self.solidCircleView.alpha = 1
+                            self.overlayView.alpha = 1
+            }, completion: {(f) -> Void in
+                self.overlayViewDidCompleteOpenAnimation = true
+                
             })
-
-
+            
+            
             switch openAnimationType {
             case .pop:
                 popAnimationWithOpen()
@@ -323,36 +337,8 @@ open class Floaty: UIView {
             }
         }
         
-        // ac animate solid circle
-        guard let sView = self.superview
-            else { return }
-        
-        let dimension = solidCircleRadius * 2
-        solidCircleView.layer.cornerRadius = solidCircleRadius
-        solidCircleView.layer.backgroundColor = solidCircleColor.cgColor
-        solidCircleView.alpha = 0
-        
-        sView.insertSubview(solidCircleView, aboveSubview: overlayView)
-        
-        var f = solidCircleView.frame
-        f.size = CGSize(width: dimension, height: dimension)
-        f.origin = CGPoint(x: sView.frame.width - f.width, y: sView.frame.height - f.height)
-        solidCircleView.frame = f
-        
         layer.shadowColor = UIColor.clear.cgColor
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
-            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
-            // animate alpha
-            self.solidCircleView.alpha = 1
-            
-        }) { (completed) in
-            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
-            // animate alpha
-            self.solidCircleView.alpha = 1
-            self.isUserInteractionEnabled = true
-        }
         
-        //
         sView.insertSubview(cogButton, aboveSubview: solidCircleView)
         
         var cf = cogButton.frame
@@ -362,41 +348,39 @@ open class Floaty: UIView {
         cf.origin.y -= 6 // manual adjust
         cogButton.frame = cf
         
-        UIView.animate(withDuration: 0.6, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             var c = self.cogButton.center
             c.x -= self.cogButtonSlideDistance
             self.cogButton.center = c
         }, completion: { finished in
         })
-
+        
         fabDelegate?.floatyOpened?(self)
         closed = false
     }
-
+    
     /**
-        Items close.
-    */
+     Items close.
+     */
     open func close() {
-        guard self.isUserInteractionEnabled else {
-            return // prevent double clicking
-        }
-        self.isUserInteractionEnabled = false
-        
         if(items.count > 0){
             self.overlayView.removeTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
-            UIView.animate(withDuration: 0.3, delay: 0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.8,
-                options: [], animations: { () -> Void in
-//                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-//                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(0))
-                    self.overlayView.alpha = 0
-                }, completion: {(f) -> Void in
-                    if self.overlayViewDidCompleteOpenAnimation {
-                        self.overlayView.removeFromSuperview()
-                    }
+            UIView.animate(withDuration: 1.5, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseIn, animations: { () -> Void in
+                            self.solidCircleView.transform = .identity
+                            // animate alpha
+                            self.solidCircleView.alpha = 0
+                            self.overlayView.alpha = 0
+            }, completion: {(f) -> Void in
+                if self.overlayViewDidCompleteOpenAnimation {
+                    self.solidCircleView.alpha = 0
+                    self.overlayView.removeFromSuperview()
+                    self.solidCircleView.removeFromSuperview()
+                }
             })
-
+            
             switch openAnimationType {
             case .pop:
                 popAnimationWithClose()
@@ -413,33 +397,18 @@ open class Floaty: UIView {
             }
         }
         
-        // ac animate solid circle
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { // enlarge circle
-            self.solidCircleView.transform = CGAffineTransform(scaleX: 1, y: 1)
-            // animate alpha
-            self.solidCircleView.alpha = 0
-            
-        }) { (completed) in
-            self.solidCircleView.transform = CGAffineTransform(scaleX: 1, y: 1)
-            // animate alpha
-            self.solidCircleView.alpha = 0
-            
-            self.solidCircleView.removeFromSuperview()
-            self.layer.shadowColor = UIColor.black.cgColor
-            self.isUserInteractionEnabled = true
-        }
-        
-        UIView.animate(withDuration: 0.35, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             var c = self.cogButton.center
             c.x += self.cogButtonSlideDistance
             self.cogButton.center = c
         }, completion: { finished in
             self.cogButton.removeFromSuperview()
         })
-
+        
         fabDelegate?.floatyClosed?(self)
         closed = true
     }
+    
 
     /**
         Items open or close.
