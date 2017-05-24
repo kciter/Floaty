@@ -643,7 +643,7 @@ open class Floaty: UIView {
         if (object as? UIView) == superview && keyPath == "frame" {
             if isCustomFrame == false {
                 setRightBottomFrame()
-                setOverlayView()
+                setOverlayFrame()
             } else {
                 size = min(frame.size.width, frame.size.height)
             }
