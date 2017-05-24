@@ -542,11 +542,13 @@ open class Floaty: UIView {
 
     }
 	fileprivate func setOverlayFrame() {
-		overlayView.frame = CGRect(
-			x: 0,y: 0,
-			width: UIScreen.main.bounds.width,
-			height: UIScreen.main.bounds.height
-		)
+        if let superview = superview {
+		    overlayView.frame = CGRect(
+			  x: 0,y: 0,
+			  width: superview.bounds.width,
+			  height: superview.bounds.height
+		    )
+        }
 	}
 
     fileprivate func setShadow() {
