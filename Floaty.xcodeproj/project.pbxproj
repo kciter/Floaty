@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84762CB01ECB4B98007C4ABD /* Floaty.h in Headers */ = {isa = PBXBuildFile; fileRef = 84762CA91ECB4B98007C4ABD /* Floaty.h */; };
+		84762CB01ECB4B98007C4ABD /* Floaty.h in Headers */ = {isa = PBXBuildFile; fileRef = 84762CA91ECB4B98007C4ABD /* Floaty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84762CB11ECB4B98007C4ABD /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84762CAA1ECB4B98007C4ABD /* Floaty.swift */; };
 		84762CB21ECB4B98007C4ABD /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84762CAB1ECB4B98007C4ABD /* FloatyDelegate.swift */; };
 		84762CB31ECB4B98007C4ABD /* FloatyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84762CAC1ECB4B98007C4ABD /* FloatyItem.swift */; };
@@ -24,7 +24,7 @@
 		84762CAD1ECB4B98007C4ABD /* FloatyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatyManager.swift; path = Sources/FloatyManager.swift; sourceTree = SOURCE_ROOT; };
 		84762CAE1ECB4B98007C4ABD /* FloatyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatyViewController.swift; path = Sources/FloatyViewController.swift; sourceTree = SOURCE_ROOT; };
 		84762CAF1ECB4B98007C4ABD /* FloatyWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatyWindow.swift; path = Sources/FloatyWindow.swift; sourceTree = SOURCE_ROOT; };
-		B65A2E531D5975130045483D /* KCFloatingActionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KCFloatingActionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B65A2E531D5975130045483D /* Floaty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Floaty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B65A2E6C1D5975610045483D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Supports/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -42,7 +42,7 @@
 		B65A2E491D5975130045483D = {
 			isa = PBXGroup;
 			children = (
-				B65A2E551D5975130045483D /* KCFloatingActionButton */,
+				B65A2E551D5975130045483D /* Floaty */,
 				B65A2E541D5975130045483D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,12 +50,12 @@
 		B65A2E541D5975130045483D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B65A2E531D5975130045483D /* KCFloatingActionButton.framework */,
+				B65A2E531D5975130045483D /* Floaty.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B65A2E551D5975130045483D /* KCFloatingActionButton */ = {
+		B65A2E551D5975130045483D /* Floaty */ = {
 			isa = PBXGroup;
 			children = (
 				84762CA91ECB4B98007C4ABD /* Floaty.h */,
@@ -67,7 +67,7 @@
 				84762CAF1ECB4B98007C4ABD /* FloatyWindow.swift */,
 				B65A2E6C1D5975610045483D /* Info.plist */,
 			);
-			path = KCFloatingActionButton;
+			name = Floaty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,9 +84,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B65A2E521D5975130045483D /* KCFloatingActionButton */ = {
+		B65A2E521D5975130045483D /* Floaty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B65A2E5B1D5975130045483D /* Build configuration list for PBXNativeTarget "KCFloatingActionButton" */;
+			buildConfigurationList = B65A2E5B1D5975130045483D /* Build configuration list for PBXNativeTarget "Floaty" */;
 			buildPhases = (
 				B65A2E4E1D5975130045483D /* Sources */,
 				B65A2E4F1D5975130045483D /* Frameworks */,
@@ -97,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = KCFloatingActionButton;
-			productName = KCFloatingActionButton;
-			productReference = B65A2E531D5975130045483D /* KCFloatingActionButton.framework */;
+			name = Floaty;
+			productName = Floaty;
+			productReference = B65A2E531D5975130045483D /* Floaty.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -117,7 +117,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B65A2E4D1D5975130045483D /* Build configuration list for PBXProject "KCFloatingActionButton" */;
+			buildConfigurationList = B65A2E4D1D5975130045483D /* Build configuration list for PBXProject "Floaty" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -129,7 +129,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B65A2E521D5975130045483D /* KCFloatingActionButton */,
+				B65A2E521D5975130045483D /* Floaty */,
 			);
 		};
 /* End PBXProject section */
@@ -270,7 +270,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kciter.KCFloatingActionButton;
+				PRODUCT_BUNDLE_IDENTIFIER = kciter.Floaty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -291,7 +291,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = kciter.KCFloatingActionButton;
+				PRODUCT_BUNDLE_IDENTIFIER = kciter.Floaty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -301,7 +301,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B65A2E4D1D5975130045483D /* Build configuration list for PBXProject "KCFloatingActionButton" */ = {
+		B65A2E4D1D5975130045483D /* Build configuration list for PBXProject "Floaty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B65A2E591D5975130045483D /* Debug */,
@@ -310,7 +310,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B65A2E5B1D5975130045483D /* Build configuration list for PBXNativeTarget "KCFloatingActionButton" */ = {
+		B65A2E5B1D5975130045483D /* Build configuration list for PBXNativeTarget "Floaty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B65A2E5C1D5975130045483D /* Debug */,
