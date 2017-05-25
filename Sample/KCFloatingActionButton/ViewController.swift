@@ -15,7 +15,7 @@ class ViewController: UIViewController, FloatyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        layoutFAB()
+//        layoutFAB()
     }
 
     @IBAction func endEditing() {
@@ -30,29 +30,29 @@ class ViewController: UIViewController, FloatyDelegate {
         }
     }
     
-    func layoutFAB() {
-        let item = FloatyItem()
-        item.buttonColor = UIColor.blue
-        item.circleShadowColor = UIColor.red
-        item.titleShadowColor = UIColor.blue
-        item.title = "Custom item"
-        item.handler = { item in
-            
-        }
-        
-        floaty.addItem(title: "I got a title")
-        floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
-        floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
-            let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-        floaty.addItem(item: item)
-        floaty.fabDelegate = self
-        
-//        self.view.addSubview(floaty)
-
-    }
+//    func layoutFAB() {
+//        floaty.itemSize = 25.0
+//        floaty.buttonImage = UIImage(named: "icMap")
+//        floaty.buttonColor = UIColor.brown
+//        
+//        let item = FloatyItem()
+//        item.buttonColor = UIColor.blue
+//        item.circleShadowColor = UIColor.red
+//        item.titleShadowColor = UIColor.blue
+//        item.title = "Custom item"
+//        item.handler = { item in
+//            
+//        }
+//        
+//        floaty.addItem(title: "Watch History")
+//        floaty.addItem(title: "Series")
+//        floaty.addItem(title: "Feed")
+//        
+//        floaty.fabDelegate = self
+//        
+////        self.view.addSubview(floaty)
+//
+//    }
     
     func floatyOpened(_ floaty: Floaty) {
         print("Floaty Opened")

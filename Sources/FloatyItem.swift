@@ -40,7 +40,7 @@ open class FloatyItem: UIView {
             titleLabel.textColor = titleColor
         }
     }
-
+    
     /**
      Circle Shadow color.
      */
@@ -78,6 +78,20 @@ open class FloatyItem: UIView {
      */
     fileprivate var tintLayer: CAShapeLayer = CAShapeLayer()
 
+    // ac
+    open var isCircleHidden = false
+    
+    open var titleFont: UIFont? {
+        didSet {
+            guard let tf = titleFont
+                else { return }
+            
+            titleLabel.font = tf
+            titleLabel.sizeToFit()
+            self.setNeedsLayout()
+        }
+    }
+    
     /**
      Item's title label.
      */
@@ -87,6 +101,8 @@ open class FloatyItem: UIView {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
                 _titleLabel?.textColor = titleColor
+                _titleLabel?.font = titleFont
+//                _titleLabel?.textAlignment = .right
                 addSubview(_titleLabel!)
             }
             return _titleLabel!
@@ -100,7 +116,16 @@ open class FloatyItem: UIView {
         didSet {
             titleLabel.text = title
             titleLabel.sizeToFit()
-            titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+            
+            // ac
+            var textLabelX: CGFloat = 0
+            if isCircleHidden {
+                textLabelX = -titleLabel.frame.size.width + 30
+            } else {
+                textLabelX = -titleLabel.frame.size.width - 10
+            }
+            titleLabel.frame.origin.x = textLabelX
+            
             titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
         }
     }
@@ -170,7 +195,9 @@ open class FloatyItem: UIView {
 
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
-        createCircleLayer()
+        if !isCircleHidden {
+            createCircleLayer()
+        }
         setShadow()
 
         if _titleLabel != nil {

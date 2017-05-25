@@ -20,7 +20,7 @@ open class FloatyManager: NSObject {
         static var instance: FloatyManager?
     }
     
-    class func defaultInstance() -> FloatyManager {
+    open class func defaultInstance() -> FloatyManager {
         _ = FloatyManager.__once
         return StaticInstance.instance!
     }
