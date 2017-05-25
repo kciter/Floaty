@@ -315,26 +315,25 @@ open class Floaty: UIView {
                             self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
                             self.solidCircleView.alpha = 1
                             self.overlayView.alpha = 1
+                            
+                            switch openAnimationType {
+                            case .pop:
+                                popAnimationWithOpen()
+                            case .fade:
+                                fadeAnimationWithOpen()
+                            case .slideLeft:
+                                slideLeftAnimationWithOpen()
+                            case .slideUp:
+                                slideUpAnimationWithOpen()
+                            case .slideDown:
+                                slideDownAnimationWithOpen()
+                            case .none:
+                                noneAnimationWithOpen()
+                            }
             }, completion: {(f) -> Void in
                 self.overlayViewDidCompleteOpenAnimation = true
                 
             })
-            
-            
-            switch openAnimationType {
-            case .pop:
-                popAnimationWithOpen()
-            case .fade:
-                fadeAnimationWithOpen()
-            case .slideLeft:
-                slideLeftAnimationWithOpen()
-            case .slideUp:
-                slideUpAnimationWithOpen()
-            case .slideDown:
-                slideDownAnimationWithOpen()
-            case .none:
-                noneAnimationWithOpen()
-            }
         }
         
         layer.shadowColor = UIColor.clear.cgColor
@@ -373,6 +372,21 @@ open class Floaty: UIView {
                             // animate alpha
                             self.solidCircleView.alpha = 0
                             self.overlayView.alpha = 0
+                            
+                            switch openAnimationType {
+                            case .pop:
+                                popAnimationWithClose()
+                            case .fade:
+                                fadeAnimationWithClose()
+                            case .slideLeft:
+                                slideLeftAnimationWithClose()
+                            case .slideUp:
+                                slideUpAnimationWithClose()
+                            case .slideDown:
+                                slideDownAnimationWithClose()
+                            case .none:
+                                noneAnimationWithClose()
+                            }
             }, completion: {(f) -> Void in
                 if self.overlayViewDidCompleteOpenAnimation {
                     self.solidCircleView.alpha = 0
@@ -381,20 +395,6 @@ open class Floaty: UIView {
                 }
             })
             
-            switch openAnimationType {
-            case .pop:
-                popAnimationWithClose()
-            case .fade:
-                fadeAnimationWithClose()
-            case .slideLeft:
-                slideLeftAnimationWithClose()
-            case .slideUp:
-                slideUpAnimationWithClose()
-            case .slideDown:
-                slideDownAnimationWithClose()
-            case .none:
-                noneAnimationWithClose()
-            }
         }
         
         UIView.animate(withDuration: 0.3, animations: {
