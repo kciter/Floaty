@@ -29,6 +29,16 @@ open class Floaty: UIView {
     */
     open var items: [FloatyItem] = []
 
+    // ac
+    open var selectedItemIdx: Int = -1 {
+        didSet {
+            if oldValue >= 0 { // set to normal if exist
+                items[oldValue].titleFont = titleFontNormal
+            }
+            items[selectedItemIdx].titleFont = titleFontSelected
+        }
+    }
+    
     /**
         This object's button size.
     */
@@ -188,6 +198,18 @@ open class Floaty: UIView {
     */
     fileprivate var isCustomFrame: Bool = false
 
+    // ac
+    open var buttonShadowColor = UIColor.black
+    open var titleFontNormal = UIFont.systemFont(ofSize: 14)
+    open var titleFontSelected = UIFont.systemFont(ofSize: 20)
+    
+    open var solidCircleColor: UIColor = UIColor.blue
+    open var solidCircleRadius: CGFloat = 15.0
+    
+    open var solidCircleView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    open var cogButton: UIButton = UIButton(type: .custom)
+    open var cogButtonSlideDistance: CGFloat = 200.0
+    
     // MARK: - Initialize
 
     /**
@@ -261,26 +283,44 @@ open class Floaty: UIView {
         Items open.
     */
     open func open() {
+        
+        guard let sView = self.superview
+            else { return }
+        
         if(items.count > 0){
-
+            
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubview(toFront: self)
             overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
-
+            
+            let dimension = solidCircleRadius * 2
+            solidCircleView.layer.cornerRadius = solidCircleRadius
+            solidCircleView.layer.backgroundColor = solidCircleColor.cgColor
+            solidCircleView.alpha = 0
+            
+            sView.insertSubview(solidCircleView, aboveSubview: overlayView)
+            
+            var f = solidCircleView.frame
+            f.size = CGSize(width: dimension, height: dimension)
+            f.origin = CGPoint(x: sView.frame.width - f.width, y: sView.frame.height - f.height)
+            solidCircleView.frame = f
+            
             overlayViewDidCompleteOpenAnimation = false
-            UIView.animate(withDuration: 0.3, delay: 0,
-                usingSpringWithDamping: 0.55,
-                initialSpringVelocity: 0.3,
-                options: UIViewAnimationOptions(), animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(self.rotationDegrees), 0.0, 0.0, 1.0)
-                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(self.rotationDegrees))
-                    self.overlayView.alpha = 1
-                }, completion: {(f) -> Void in
-                    self.overlayViewDidCompleteOpenAnimation = true
+            
+            UIView.animate(withDuration: 1.0, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0.5,
+                           options: UIViewAnimationOptions(), animations: { () -> Void in
+                            self.solidCircleView.transform = CGAffineTransform(scaleX: 10, y: 10)
+                            self.solidCircleView.alpha = 1
+                            self.overlayView.alpha = 1
+            }, completion: {(f) -> Void in
+                self.overlayViewDidCompleteOpenAnimation = true
+                
             })
-
-
+            
+            
             switch openAnimationType {
             case .pop:
                 popAnimationWithOpen()
@@ -296,30 +336,51 @@ open class Floaty: UIView {
                 noneAnimationWithOpen()
             }
         }
-
+        
+        layer.shadowColor = UIColor.clear.cgColor
+        
+        sView.insertSubview(cogButton, aboveSubview: solidCircleView)
+        
+        var cf = cogButton.frame
+        cf.size = CGSize(width: 40, height: 40)
+        cf.origin = CGPoint(x: self.frame.minX + (self.frame.width - cf.width) / 2.0,
+                            y: self.frame.minY + (self.frame.height - cf.height) / 2.0)
+        cf.origin.y -= 6 // manual adjust
+        cogButton.frame = cf
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            var c = self.cogButton.center
+            c.x -= self.cogButtonSlideDistance
+            self.cogButton.center = c
+        }, completion: { finished in
+        })
+        
         fabDelegate?.floatyOpened?(self)
         closed = false
     }
-
+    
     /**
-        Items close.
-    */
+     Items close.
+     */
     open func close() {
         if(items.count > 0){
             self.overlayView.removeTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
-            UIView.animate(withDuration: 0.3, delay: 0,
-                usingSpringWithDamping: 0.6,
-                initialSpringVelocity: 0.8,
-                options: [], animations: { () -> Void in
-                    self.plusLayer.transform = CATransform3DMakeRotation(self.degreesToRadians(0), 0.0, 0.0, 1.0)
-                    self.buttonImageView.transform = CGAffineTransform(rotationAngle: self.degreesToRadians(0))
-                    self.overlayView.alpha = 0
-                }, completion: {(f) -> Void in
-                    if self.overlayViewDidCompleteOpenAnimation {
-                        self.overlayView.removeFromSuperview()
-                    }
+            UIView.animate(withDuration: 1.5, delay: 0,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseIn, animations: { () -> Void in
+                            self.solidCircleView.transform = .identity
+                            // animate alpha
+                            self.solidCircleView.alpha = 0
+                            self.overlayView.alpha = 0
+            }, completion: {(f) -> Void in
+                if self.overlayViewDidCompleteOpenAnimation {
+                    self.solidCircleView.alpha = 0
+                    self.overlayView.removeFromSuperview()
+                    self.solidCircleView.removeFromSuperview()
+                }
             })
-
+            
             switch openAnimationType {
             case .pop:
                 popAnimationWithClose()
@@ -335,10 +396,19 @@ open class Floaty: UIView {
                 noneAnimationWithClose()
             }
         }
-
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            var c = self.cogButton.center
+            c.x += self.cogButtonSlideDistance
+            self.cogButton.center = c
+        }, completion: { finished in
+            self.cogButton.removeFromSuperview()
+        })
+        
         fabDelegate?.floatyClosed?(self)
         closed = true
     }
+    
 
     /**
         Items open or close.
@@ -374,6 +444,7 @@ open class Floaty: UIView {
     @discardableResult
     open func addItem(title: String) -> FloatyItem {
         let item = FloatyItem()
+        item.isCircleHidden = true
         itemDefaultSet(item)
         item.title = title
         addItem(item: item)
@@ -399,6 +470,7 @@ open class Floaty: UIView {
     @discardableResult
     open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
+        item.isCircleHidden = true
         itemDefaultSet(item)
         item.title = title
         item.handler = handler
@@ -554,7 +626,7 @@ open class Floaty: UIView {
     fileprivate func setShadow() {
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowRadius = 2
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = buttonShadowColor.cgColor
         layer.shadowOpacity = 0.4
     }
 
@@ -576,6 +648,7 @@ open class Floaty: UIView {
         item.titleColor = itemTitleColor
         item.circleShadowColor = itemShadowColor
         item.titleShadowColor = itemShadowColor
+        item.titleFont = titleFontNormal
         item.size = itemSize
     }
 
