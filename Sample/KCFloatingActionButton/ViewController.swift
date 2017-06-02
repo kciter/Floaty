@@ -14,6 +14,7 @@ class ViewController: UIViewController, FloatyDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         layoutFAB()
     }
@@ -35,7 +36,8 @@ class ViewController: UIViewController, FloatyDelegate {
         item.buttonColor = UIColor.blue
         item.circleShadowColor = UIColor.red
         item.titleShadowColor = UIColor.blue
-        item.title = "Custom item"
+        item.titleLabelPosition = .right
+        item.title = "titlePosition right"
         item.handler = { item in
             
         }
@@ -48,9 +50,10 @@ class ViewController: UIViewController, FloatyDelegate {
             self.present(alert, animated: true, completion: nil)
         }
         floaty.addItem(item: item)
+        floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
         floaty.fabDelegate = self
         
-//        self.view.addSubview(floaty)
+        self.view.addSubview(floaty)
 
     }
     

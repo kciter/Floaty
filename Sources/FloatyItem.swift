@@ -8,6 +8,11 @@
 
 import UIKit
 
+public enum FloatyItemLabelPositionType {
+    case left
+    case right
+}
+
 /**
  Floating Action Button Object's item.
  */
@@ -77,6 +82,12 @@ open class FloatyItem: UIView {
      If you keeping touch inside button, button overlaid with tint layer.
      */
     fileprivate var tintLayer: CAShapeLayer = CAShapeLayer()
+    
+    /**
+     Item's title label position.
+     deafult is left
+     */
+    open var titleLabelPosition: FloatyItemLabelPositionType = .left
 
     /**
      Item's title label.
@@ -100,7 +111,12 @@ open class FloatyItem: UIView {
         didSet {
             titleLabel.text = title
             titleLabel.sizeToFit()
-            titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+            if(titleLabelPosition == .left) {
+                titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+            } else { //titleLabel will be on right
+                titleLabel.frame.origin.x = iconImageView.frame.origin.x + iconImageView.frame.size.width + 20
+            }
+            
             titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
         }
     }

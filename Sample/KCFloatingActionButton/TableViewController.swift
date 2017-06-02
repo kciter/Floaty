@@ -38,6 +38,18 @@ class TableViewController: UITableViewController, FloatyDelegate {
         
         fab.addItem(title: "I got a title")
         fab.addItem("I got a icon", icon: UIImage(named: "icShare"))
+        fab.addItem("titlePosition right?", icon: UIImage(named: "icShare"), titlePosition: .right) { (item) in
+            let alert = UIAlertController(title: "titlePosition right", message: "titlePosition is right", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok...", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            self.fab.close()
+        }
+        fab.addItem("titlePosition nil?", icon: UIImage(named: "icShare"), titlePosition: nil) { (item) in
+            let alert = UIAlertController(title: "titlePosition nil", message: "titlePosition nil will be left", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok...", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            self.fab.close()
+        }
         fab.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
             let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
@@ -46,6 +58,7 @@ class TableViewController: UITableViewController, FloatyDelegate {
         }
         fab.addItem(item: item)
         fab.sticky = true
+        fab.paddingX = self.view.frame.width/2 - fab.frame.width/2
         
         fab.fabDelegate = self
         
