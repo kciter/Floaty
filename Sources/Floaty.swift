@@ -367,6 +367,25 @@ open class Floaty: UIView {
         items.append(item)
         addSubview(item)
     }
+    
+    
+    /**
+     Add item with title, titlePositon.
+     titlePosition's default value is left.
+     */
+    @discardableResult
+    open func addItem(title: String, titlePosition: FloatyItemLabelPositionType?) -> FloatyItem {
+        let item = FloatyItem()
+        itemDefaultSet(item)
+        if(titlePosition == nil) {
+            item.titleLabelPosition = .left // default
+        } else {
+            item.titleLabelPosition = titlePosition!
+        }
+        item.title = title
+        addItem(item: item)
+        return item
+    }
 
     /**
         Add item with title.
@@ -376,6 +395,25 @@ open class Floaty: UIView {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
+        addItem(item: item)
+        return item
+    }
+    
+    /**
+     Add item with title, titlePosition and icon.
+     titlePosition's default value is left.
+     */
+    @discardableResult
+    open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType?) -> FloatyItem {
+        let item = FloatyItem()
+        itemDefaultSet(item)
+        if(titlePosition == nil) {
+            item.titleLabelPosition = .left // default
+        } else {
+            item.titleLabelPosition = titlePosition!
+        }
+        item.title = title
+        item.icon = icon
         addItem(item: item)
         return item
     }
@@ -405,6 +443,25 @@ open class Floaty: UIView {
         addItem(item: item)
         return item
     }
+    
+    /**
+     Add item with titlePosition and handler.
+     titlePosition's default value is left.
+     */
+    @discardableResult
+    open func addItem(title: String, titlePosition: FloatyItemLabelPositionType?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+        let item = FloatyItem()
+        itemDefaultSet(item)
+        if(titlePosition == nil) {
+            item.titleLabelPosition = .left // default
+        } else {
+            item.titleLabelPosition = titlePosition!
+        }
+        item.title = title
+        item.handler = handler
+        addItem(item: item)
+        return item
+    }
 
     /**
         Add item with title, icon or handler.
@@ -415,6 +472,26 @@ open class Floaty: UIView {
         itemDefaultSet(item)
         item.title = title
         item.icon = icon
+        item.handler = handler
+        addItem(item: item)
+        return item
+    }
+    
+    /**
+     Add item with title, icon, titlePosition or handler.
+     titlePosition's default value is left
+     */
+    @discardableResult
+    open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+        let item = FloatyItem()
+        itemDefaultSet(item)
+        if(titlePosition == nil) {
+            item.titleLabelPosition = .left // default
+        } else {
+            item.titleLabelPosition = titlePosition!
+        }
+        item.title = title
+        item.icon = icon        
         item.handler = handler
         addItem(item: item)
         return item
@@ -481,9 +558,14 @@ open class Floaty: UIView {
 
     fileprivate func determineTapArea(item : FloatyItem) -> CGRect {
         let tappableMargin : CGFloat = 30.0
-        let x = item.titleLabel.frame.origin.x + item.bounds.origin.x
+        var x : CGFloat?
+        if(item.titleLabelPosition == .left) {
+            x = item.titleLabel.frame.origin.x + item.bounds.origin.x
+        } else {
+            x = item.bounds.origin.x
+        }
         let y = item.bounds.origin.y
-
+        
         var width: CGFloat
         if isCustomFrame {
             width = item.titleLabel.bounds.size.width + item.bounds.size.width + tappableMargin + paddingX
@@ -492,7 +574,7 @@ open class Floaty: UIView {
         }
         let height = item.bounds.size.height
 
-        return CGRect(x: x, y: y, width: width, height: height)
+        return CGRect(x: x!, y: y, width: width, height: height)
     }
 
     fileprivate func setCircleLayer() {
@@ -572,7 +654,6 @@ open class Floaty: UIView {
 
 		/// Use separate color (if specified) for item button image, or default to the plusColor
 		item.iconImageView.tintColor = itemImageColor ?? plusColor
-
         item.titleColor = itemTitleColor
         item.circleShadowColor = itemShadowColor
         item.titleShadowColor = itemShadowColor
