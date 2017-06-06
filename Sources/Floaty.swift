@@ -125,6 +125,11 @@ open class Floaty: UIView {
 	@IBInspectable open var itemImageColor: UIColor? = nil
 
     /**
+        Enable/disable shadow.
+     */
+    @IBInspectable open var hasShadow: Bool = true
+
+    /**
         Child item's default shadow color.
     */
     @IBInspectable open var itemShadowColor: UIColor = UIColor.black
@@ -634,6 +639,10 @@ open class Floaty: UIView {
 	}
 
     fileprivate func setShadow() {
+        if !hasShadow {
+            return
+        }
+        
         layer.shadowOffset = CGSize(width: 1, height: 1)
         layer.shadowRadius = 2
         layer.shadowColor = UIColor.black.cgColor

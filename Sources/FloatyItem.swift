@@ -47,6 +47,11 @@ open class FloatyItem: UIView {
     }
 
     /**
+     Enable/disable shadow.
+     */
+    open var hasShadow: Bool = true
+
+    /**
      Circle Shadow color.
      */
     open var circleShadowColor: UIColor = UIColor.black
@@ -216,6 +221,9 @@ open class FloatyItem: UIView {
     }
 
     fileprivate func setShadow() {
+        if !hasShadow {
+            return
+        }
         circleLayer.shadowOffset = CGSize(width: 1, height: 1)
         circleLayer.shadowRadius = 2
         circleLayer.shadowColor = circleShadowColor.cgColor
