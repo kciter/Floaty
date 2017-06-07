@@ -33,6 +33,7 @@ class ViewController: UIViewController, FloatyDelegate {
     
     func layoutFAB() {
         let item = FloatyItem()
+        item.hasShadow = false
         item.buttonColor = UIColor.blue
         item.circleShadowColor = UIColor.red
         item.titleShadowColor = UIColor.blue
@@ -41,7 +42,8 @@ class ViewController: UIViewController, FloatyDelegate {
         item.handler = { item in
             
         }
-        
+
+        floaty.hasShadow = false
         floaty.addItem(title: "I got a title")
         floaty.addItem("I got a icon", icon: UIImage(named: "icShare"))
         floaty.addItem("I got a handler", icon: UIImage(named: "icMap")) { item in
