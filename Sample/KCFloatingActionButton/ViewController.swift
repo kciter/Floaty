@@ -59,11 +59,20 @@ class ViewController: UIViewController, FloatyDelegate {
 
     }
     
-    func floatyOpened(_ floaty: Floaty) {
-        print("Floaty Opened")
+    // MARK: - Floaty Delegate Methods
+    func floatyWillOpen(_ floaty: Floaty) {
+        print("Floaty Will Open")
     }
     
-    func floatyClosed(_ floaty: Floaty) {
-        print("Floaty Closed")
+    func floatyDidOpen(_ floaty: Floaty) {
+        print("Floaty Did Open")
+    }
+    
+    func floatyWillClose(_ floaty: Floaty) {
+        print("Floaty Will Close")
+    }
+    
+    func floatyDidClose(_ floaty: Floaty) {
+        print("Floaty Did Close")
     }
 }

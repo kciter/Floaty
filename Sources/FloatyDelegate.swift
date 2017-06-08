@@ -21,7 +21,21 @@ import Foundation
      */
     @objc optional func emptyFloatySelected(_ floaty: Floaty)
     
+    @objc optional func floatyWillOpen(_ floaty: Floaty)
+    
+    @objc optional func floatyDidOpen(_ floaty: Floaty)
+    
+    @objc optional func floatyWillClose(_ floaty: Floaty)
+    
+    @objc optional func floatyDidClose(_ floaty: Floaty)
+    
+    /**
+     This method has been deprecated. Use floatyWillOpen and floatyDidOpen instead.
+     */
     @objc optional func floatyOpened(_ floaty: Floaty)
     
+    /**
+     This method has been deprecated. Use floatyWillClose and floatyDidClose instead.
+     */
     @objc optional func floatyClosed(_ floaty: Floaty)
 }
