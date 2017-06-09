@@ -72,12 +72,21 @@ class TableViewController: UITableViewController, FloatyDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell", for: indexPath)
         return cell
     }
+    
     // MARK: - Floaty Delegate Methods
-    func floatyOpened(_ floaty: Floaty) {
-        print("Floaty Opened")
+    func floatyWillOpen(_ floaty: Floaty) {
+        print("Floaty Will Open")
     }
     
-    func floatyClosed(_ floaty: Floaty) {
-        print("Floaty Closed")
+    func floatyDidOpen(_ floaty: Floaty) {
+        print("Floaty Did Open")
+    }
+    
+    func floatyWillClose(_ floaty: Floaty) {
+        print("Floaty Will Close")
+    }
+    
+    func floatyDidClose(_ floaty: Floaty) {
+        print("Floaty Did Close")
     }
 }
