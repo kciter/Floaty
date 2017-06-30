@@ -1067,7 +1067,7 @@ extension Floaty {
  */
 extension Floaty {
     fileprivate func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
-        return degrees / 180.0 * CGFloat(Double.pi)
+        return degrees / 180.0 * CGFloat.pi
     }
 }
 
