@@ -139,6 +139,11 @@ open class Floaty: UIView {
     */
     open var closed: Bool = true
 
+    /**
+     Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
+     */
+    @IBInspectable open var respondsToKeyboard: Bool = true
+    
     open var openAnimationType: FloatyOpenAnimationType = .pop
 
     open var friendlyTap: Bool = true
@@ -806,20 +811,17 @@ open class Floaty: UIView {
     }
 
     internal func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height else {
-            return
+        guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height,
+            respondsToKeyboard, !sticky else {
+                return
         }
         
-        if sticky == true {
-            return
-        }
-
         if isCustomFrame == false {
             setRightBottomFrame(keyboardSize)
         } else {
             size = min(frame.size.width, frame.size.height)
         }
-
+        
         UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
             self.frame = CGRect(
                 x: UIScreen.main.bounds.width-self.size - self.paddingX,
@@ -827,12 +829,11 @@ open class Floaty: UIView {
                 width: self.size,
                 height: self.size
             )
-            }, completion: nil)
+        }, completion: nil)
     }
 
     internal func keyboardWillHide(_ notification: Notification) {
-        
-        if sticky == true {
+        guard respondsToKeyboard, !sticky else {
             return
         }
         
@@ -842,8 +843,8 @@ open class Floaty: UIView {
             } else {
                 self.size = min(self.frame.size.width, self.frame.size.height)
             }
-
-            }, completion: nil)
+            
+        }, completion: nil)
     }
 }
 
