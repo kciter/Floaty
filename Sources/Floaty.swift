@@ -753,7 +753,7 @@ open class Floaty: UIView {
     }
 
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if (object as? UIView) == superview && keyPath == "frame" {
+        if (object as? UIView) == superview && (keyPath == "frame" || keyPath == "bounds") {
             if isCustomFrame == false {
                 setRightBottomFrame()
                 setOverlayFrame()
@@ -769,6 +769,7 @@ open class Floaty: UIView {
 
     open override func willMove(toSuperview newSuperview: UIView?) {
         superview?.removeObserver(self, forKeyPath: "frame")
+        superview?.removeObserver(self, forKeyPath: "bounds")
         if sticky == true {
             if let superviews = self.getAllSuperviews() {
                 for superview in superviews {
@@ -784,6 +785,7 @@ open class Floaty: UIView {
     open override func didMoveToSuperview() {
         super.didMoveToSuperview()
         superview?.addObserver(self, forKeyPath: "frame", options: [], context: nil)
+        superview?.addObserver(self, forKeyPath: "bounds", options: [], context: nil)
         if sticky == true {
             if let superviews = self.getAllSuperviews() {
                 for superview in superviews {
