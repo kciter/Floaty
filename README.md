@@ -14,6 +14,7 @@ Floaty is simple floating action button for iOS. (formerly KCFloatingActionButto
 <img src="https://github.com/kciter/Floaty/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Support
+If you like this open source, you can sponsor it. :smile:
 ```
 Litecoin: LZSFLGDLe1pBxQB7v54kEcobYnu1uAR9U6
 Bitcoin: 1Hrauu2sPczma53gpYU4Y2kap5Hi6K3Ma3
