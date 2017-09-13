@@ -52,6 +52,16 @@ open class FloatyManager: NSObject {
         }
     }
     
+    private var _rtlMode = false
+    open var rtlMode: Bool {
+        get {
+            return _rtlMode
+        }
+        set{
+            _rtlMode = newValue
+        }
+    }
+    
     open func show(_ animated: Bool = true) {
         if animated == true {
             floatyWindow.isHidden = false
