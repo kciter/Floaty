@@ -89,6 +89,17 @@ Floaty.global.button.addItem(item: item)
 ```
 <img src="https://github.com/kciter/Floaty/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
+
+### RTL Support
+You can use the `rtlMode` property to mirror the Floaty Button for rtl languages.
+```swift
+Floaty.global.rtlMode = true
+```
+<img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_enabled.png" width='187' alt="Rtl Enabled">
+<img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_disabled.png" width='187' alt="Rtl Disabled">
+
+
+
 ### Sticky
 You can use the `sticky` property.
 ```swift
