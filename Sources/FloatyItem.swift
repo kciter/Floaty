@@ -124,6 +124,13 @@ open class FloatyItem: UIView {
             }
             
             titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
+            
+            if FloatyManager.defaultInstance().rtlMode {
+                titleLabel.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);
+            }else {
+                titleLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0);
+            }
+            
         }
     }
 

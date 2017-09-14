@@ -253,7 +253,7 @@ open class Floaty: UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         if isCustomFrame == false {
-            setRightBottomFrame()
+            setBottomFrameAccordingToRTL()
         } else {
             size = min(frame.size.width, frame.size.height)
         }
@@ -690,6 +690,42 @@ open class Floaty: UIView {
         item.size = itemSize
     }
 
+    
+    fileprivate func setBottomFrameAccordingToRTL(_ keyboardSize: CGFloat = 0) {
+    
+        if FloatyManager.defaultInstance().rtlMode {
+            setLeftBottomFrame(keyboardSize)
+            self.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);
+        }else {
+            setRightBottomFrame(keyboardSize)
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0);
+        }
+    }
+    
+    fileprivate func setLeftBottomFrame(_ keyboardSize: CGFloat = 0) {
+        if superview == nil {
+            frame = CGRect(
+                x: 0,
+                y: (UIScreen.main.bounds.size.height - size - keyboardSize) - paddingY,
+                width: size,
+                height: size
+            )
+        } else {
+            frame = CGRect(
+                x: 0,
+                y: (superview!.bounds.size.height-size-keyboardSize) - paddingY,
+                width: size,
+                height: size
+            )
+        }
+        
+        if friendlyTap == true {
+            frame.size.width += paddingX
+            frame.size.height += paddingY
+        }
+    }
+
+    
     fileprivate func setRightBottomFrame(_ keyboardSize: CGFloat = 0) {
         if superview == nil {
             frame = CGRect(
@@ -755,7 +791,7 @@ open class Floaty: UIView {
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (object as? UIView) == superview && (keyPath == "frame" || keyPath == "bounds") {
             if isCustomFrame == false {
-                setRightBottomFrame()
+                setBottomFrameAccordingToRTL()
                 setOverlayFrame()
             } else {
                 size = min(frame.size.width, frame.size.height)
@@ -806,7 +842,7 @@ open class Floaty: UIView {
 		setOverlayFrame()
 
         if isCustomFrame == false {
-            setRightBottomFrame(keyboardSize)
+            setBottomFrameAccordingToRTL(keyboardSize)
         } else {
             size = min(frame.size.width, frame.size.height)
         }
@@ -819,7 +855,7 @@ open class Floaty: UIView {
         }
         
         if isCustomFrame == false {
-            setRightBottomFrame(keyboardSize)
+            setBottomFrameAccordingToRTL(keyboardSize)
         } else {
             size = min(frame.size.width, frame.size.height)
         }
@@ -841,7 +877,7 @@ open class Floaty: UIView {
         
         UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
             if self.isCustomFrame == false {
-                self.setRightBottomFrame()
+                self.setBottomFrameAccordingToRTL()
             } else {
                 self.size = min(self.frame.size.width, self.frame.size.height)
             }
