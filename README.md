@@ -1,24 +1,14 @@
-# Floaty
+# KCFloatingActionButton
 ![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Version](https://img.shields.io/cocoapods/v/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![License](https://img.shields.io/cocoapods/l/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![Platform](https://img.shields.io/cocoapods/p/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![Build Status](https://travis-ci.org/kciter/Floaty.svg?branch=master)](https://travis-ci.org/kciter/floaty)
+[![Version](https://img.shields.io/cocoapods/v/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
+[![License](https://img.shields.io/cocoapods/l/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
+[![Platform](https://img.shields.io/cocoapods/p/KCFloatingActionButton.svg?style=flat)](http://cocoapods.org/pods/kcfloatingactionbutton)
+[![Build Status](https://travis-ci.org/kciter/KCFloatingActionButton.svg?branch=master)](https://travis-ci.org/kciter/KCFloatingActionButton)
 
-Floaty is simple floating action button for iOS. (formerly KCFloatingActionButton)
-> Why change the name?
-> 1. Follow the swift naming convention.
-> 2. `KCFloatingActionButton` is too long.
+Simple Floating Action Button for iOS
 
 ## Preview
-<img src="https://github.com/kciter/Floaty/raw/master/Images/preview.gif" width='187' alt="Preview gif">
-
-## Support
-If you like this open source, you can sponsor it. :smile:
-```
-Litecoin: LZSFLGDLe1pBxQB7v54kEcobYnu1uAR9U6
-Bitcoin: 1Hrauu2sPczma53gpYU4Y2kap5Hi6K3Ma3
-```
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Requirements
 * iOS 9.0+
@@ -29,91 +19,112 @@ Bitcoin: 1Hrauu2sPczma53gpYU4Y2kap5Hi6K3Ma3
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "Floaty", "~> 3.0.0"
+pod "KCFloatingActionButton", "~> 2.1.0"
 ```
 ### Carthage
 ```ruby
-github "kciter/Floaty"
+github "kciter/KCFloatingActionButton"
 ```
 ### Manually
-To install manually the Floaty in an app, just drag the `Floaty/*.swift` file into your project.
+To install manually the KCFloatingActionButton in an app, just drag the `KCFloatingActionButton/*.swift` file into your project.
 
 ## Usage
 ### Storyboard support
-<img src="https://github.com/kciter/Floaty/raw/master/Images/storyboard_support1.png" height='300' alt="Storyboard support1">
-<img src="https://github.com/kciter/Floaty/raw/master/Images/storyboard_support2.png" height='300' alt="Storyboard support2">
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/storyboard_support1.png" height='300' alt="Storyboard support1">
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/storyboard_support2.png" height='300' alt="Storyboard support2">
 
 ### Dependent on the UIWindow.
+#### Swift
 ```swift
-Floaty.global.button.addItem(title: "Hello, World!")
-Floaty.global.show()
+KCFABManager.defaultInstance().getButton().addItem(title: "Hello, World!")
+KCFABManager.defaultInstance().show()
 ```
-<img src="https://github.com/kciter/Floaty/raw/master/Images/dependent_on_uiwindow.gif" width='187' alt="Dependent on the UIWindow">
+#### Objective-C
+````objc
+[[[KCFABManager defaultInstance] getButton] addItemWithTitle:@"Hello, world!"];
+[[KCFABManager defaultInstance] show:true];
+````
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/dependent_on_uiwindow.gif" width='187' alt="Dependent on the UIWindow">
 
 ### Dependent on the UIViewController.
+#### Swift
 ```swift
-let floaty = Floaty()
-floaty.addItem(title: "Hello, World!")
-self.view.addSubview(floaty)
+let fab = KCFloatingActionButton()
+fab.addItem(title: "Hello, World!")
+self.view.addSubview(fab)
 ```
-<img src="https://github.com/kciter/Floaty/raw/master/Images/dependent_on_uiviewcontroller.gif" width='187' alt="Dependent on the UIViewController">
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+[fab addItemWithTitle:@"Hello, World!"];
+[self.view addSubview:fab];
+```
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/dependent_on_uiviewcontroller.gif" width='187' alt="Dependent on the UIViewController">
 
 ### Use icon
+#### Swift
 ```swift
-let floaty = Floaty()
-floaty.addItem("Hello, World!", icon: UIImage(named: "icon")!)
-self.view.addSubview(floaty)
+let fab = KCFloatingActionButton()
+fab.addItem("Hello, World!", icon: UIImage(named: "icon")!)
+self.view.addSubview(fab)
 ```
-<img src="https://github.com/kciter/Floaty/raw/master/Images/icon.png" width='187' alt="Use icon">
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+[fab addItem:@"Hello, World" icon:[UIImage imageNamed:@"icon"]];
+[self.view addSubview:fab];
+```
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/icon.png" width='187' alt="Use icon">
 
 ### Use handler
 #### Swift
 ```swift
-let floaty = Floaty()
-floaty.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
+let fab = KCFloatingActionButton()
+fab.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
     let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
     alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
     self.presentViewController(alert, animated: true, completion: nil)
     fab.close()
 })
-self.view.addSubview(floaty)
+self.view.addSubview(fab)
 ```
-<img src="https://github.com/kciter/Floaty/raw/master/Images/handler.gif" width='187' alt="Use handler">
+#### Objective-C
+```objc
+KCFloatingActionButton *fab = [[KCFloatingActionButton alloc] init];
+__weak KCFloatingActionButton *_fab = fab;
+[fab addItem:@"I got a handler" icon:[UIImage imageNamed:@"icon"] handler:^(KCFloatingActionButtonItem *item) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hey" message:@"I'm hungry..." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Me too" style:UIAlertActionStyleDefault handler:nil]];
+    [self presentViewController:alert animated:true completion:nil];
+    [_fab close];
+}];
+[self.view addSubview:fab];
+```
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/handler.gif" width='187' alt="Use handler">
 
 ### Use custom item
+#### Swift
 ```swift
-let item = FloatyItem()
+let item = KCFloatingActionButtonItem()
 item.buttonColor = UIColor.blueColor()
 item.title = "Custom item"
-Floaty.global.button.addItem(item: item)
+KCFABManager.defaultInstance().getButton().addItem(item: item)
 ```
-<img src="https://github.com/kciter/Floaty/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
-
-
-### RTL Support
-You can use the `rtlMode` property to mirror the Floaty Button for rtl languages.
-```swift
-Floaty.global.rtlMode = true
+#### Objective-C
+```objc
+KCFloatingActionButtonItem *item = [[KCFloatingActionButtonItem alloc] init];
+item.buttonColor = [UIColor blueColor];
+item.title = @"Custom item";
+[[[KCFABManager defaultInstance] getButton] addItemWithItem:item];
 ```
-<img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_enabled.png" width='187' alt="Rtl Enabled">
-<img src="https://github.com/divgunsingh/Floaty/raw/master/Images/rtl_disabled.png" width='187' alt="Rtl Disabled">
-
-
+<img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/custom_item.png" width='187' alt="Use custom item">
 
 ### Sticky
 You can use the `sticky` property.
 ```swift
-floaty.sticky = true // sticking to parent UIScrollView(also UITableView, UICollectionView)
-scrollView.addSubview(floaty)
-```
-
-### Friendly Tap
-You can use the `friendlyTap` property.
-```swifty
-fab.friendlyTap = true
+fab.sticky = true // sticking to parent UIScrollView(also UITableView, UICollectionView)
 scrollView.addSubview(fab)
 ```
-With the default location of the frame, the button is now tappable until the right and rightbottom of the screen. This prevents tapping behind it by accident.
 
 ### Animation type
 <table>
@@ -121,21 +132,18 @@ With the default location of the frame, the button is now tappable until the rig
 <th>Pop</th><th>Fade</th><th>Slide Left</th>
 </tr>
 <tr>
-<td><img src="https://github.com/kciter/Floaty/raw/master/Images/preview.gif" width='187' alt="Pop animation gif"></td>
-<td><img src="https://github.com/kciter/Floaty/raw/master/Images/fade_ani.gif" width='187' alt="Fade animation gif"></td>
-<td><img src="https://github.com/kciter/Floaty/raw/master/Images/slideleft_ani.gif" width='187' alt="Slide left animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/preview.gif" width='187' alt="Pop animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/fade_ani.gif" width='187' alt="Fade animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideleft_ani.gif" width='187' alt="Slide left animation gif"></td>
 </tr>
 <tr>
 <th>Slide Up</th><th>None</th>
 </tr>
 <tr>
-<td><img src="https://github.com/kciter/Floaty/raw/master/Images/slideup_ani.gif" width='187' alt="Slide up animation gif"></td>
-<td><img src="https://github.com/kciter/Floaty/raw/master/Images/none_ani.gif" width='187' alt="None animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/slideup_ani.gif" width='187' alt="Slide up animation gif"></td>
+<td><img src="https://github.com/kciter/KCFloatingActionButton/raw/master/Images/none_ani.gif" width='187' alt="None animation gif"></td>
 </tr>
 </table>
-
-## ToDo
-* [ ] Labels to come at the right hand side of the FAB Item menu.
 
 ## License
 The MIT License (MIT)
