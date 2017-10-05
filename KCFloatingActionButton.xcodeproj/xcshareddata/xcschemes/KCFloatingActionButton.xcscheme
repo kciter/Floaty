@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B65A2E521D5975130045483D"
-               BuildableName = "Floaty.framework"
-               BlueprintName = "Floaty"
-               ReferencedContainer = "container:Floaty.xcodeproj">
+               BuildableName = "KCFloatingActionButton.framework"
+               BlueprintName = "KCFloatingActionButton"
+               ReferencedContainer = "container:KCFloatingActionButton.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B65A2E521D5975130045483D"
-            BuildableName = "Floaty.framework"
-            BlueprintName = "Floaty"
-            ReferencedContainer = "container:Floaty.xcodeproj">
+            BuildableName = "KCFloatingActionButton.framework"
+            BlueprintName = "KCFloatingActionButton"
+            ReferencedContainer = "container:KCFloatingActionButton.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B65A2E521D5975130045483D"
-            BuildableName = "Floaty.framework"
-            BlueprintName = "Floaty"
-            ReferencedContainer = "container:Floaty.xcodeproj">
+            BuildableName = "KCFloatingActionButton.framework"
+            BlueprintName = "KCFloatingActionButton"
+            ReferencedContainer = "container:KCFloatingActionButton.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
