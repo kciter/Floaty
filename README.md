@@ -22,14 +22,14 @@ Bitcoin: 1Hrauu2sPczma53gpYU4Y2kap5Hi6K3Ma3
 
 ## Requirements
 * iOS 9.0+
-* Swift 3.0
+* Swift 3.0+
 * Xcode 8
 
 ## Installation
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "Floaty", "~> 3.0.0"
+pod "Floaty", "~> 3.0.0" # Use version 4.0.0 for Swift 4.0
 ```
 ### Carthage
 ```ruby
