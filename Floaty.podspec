@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Floaty"
-  s.version      = "3.0.1"
+  s.version      = "4.0.0"
   s.summary      = "Floating Action Button for iOS"
   s.homepage     = "https://github.com/kciter/Floaty"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
