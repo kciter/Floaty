@@ -16,6 +16,11 @@ public enum FloatyOpenAnimationType {
     case none
 }
 
+public enum FloatyVerticalDirection {
+    case up
+    case down
+}
+
 /**
     Floaty Object. It has `FloatyItem` objects.
     Floaty support storyboard designable.
@@ -145,6 +150,8 @@ open class Floaty: UIView {
     @IBInspectable open var respondsToKeyboard: Bool = true
     
     open var openAnimationType: FloatyOpenAnimationType = .pop
+
+    open var verticalDirection: FloatyVerticalDirection = .up
 
     open var friendlyTap: Bool = true
     
@@ -903,7 +910,11 @@ extension Floaty {
             let big = size > item.size ? size : item.size
             let small = size <= item.size ? size : item.size
             item.frame.origin.x = big/2-small/2
-            item.frame.origin.y = -itemHeight
+            if verticalDirection == .up {
+                item.frame.origin.y = -itemHeight
+            } else {
+                item.frame.origin.y = itemHeight
+            }
             item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
             group.enter()
             UIView.animate(withDuration: 0.3, delay: delay,
@@ -944,7 +955,11 @@ extension Floaty {
         for item in items {
             if item.isHidden == true { continue }
             itemHeight += item.size + itemSpace
-            item.frame.origin.y = -itemHeight
+            if verticalDirection == .up {
+                item.frame.origin.y = -itemHeight
+            } else {
+                item.frame.origin.y = itemHeight
+            }
             group.enter()
             UIView.animate(withDuration: 0.4,
                                        delay: delay,
@@ -986,7 +1001,11 @@ extension Floaty {
             if item.isHidden == true { continue }
             itemHeight += item.size + itemSpace
             item.frame.origin.x = UIScreen.main.bounds.size.width - frame.origin.x
-            item.frame.origin.y = -itemHeight
+            if verticalDirection == .up {
+                item.frame.origin.y = -itemHeight
+            } else {
+                item.frame.origin.y = itemHeight
+            }
             group.enter()
             UIView.animate(withDuration: 0.3, delay: delay,
                                        usingSpringWithDamping: 0.55,
@@ -1024,7 +1043,11 @@ extension Floaty {
         var itemHeight: CGFloat = 0
         for item in items {
             if item.isHidden == true { continue }
-            itemHeight += item.size + itemSpace
+            if verticalDirection == .up {
+                itemHeight += item.size + itemSpace
+            } else {
+                itemHeight -= item.size + itemSpace
+            }
             group.enter()
             UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: { () -> Void in
                                         item.frame.origin.y = -itemHeight
@@ -1055,7 +1078,11 @@ extension Floaty {
         var itemHeight: CGFloat = 0
         for item in items {
             if item.isHidden == true { continue }
-            itemHeight += item.size + itemSpace
+            if verticalDirection == .up {
+                itemHeight += item.size + itemSpace
+            } else {
+                itemHeight -= item.size + itemSpace
+            }
             group.enter()
             UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: { () -> Void in
                                         item.frame.origin.y = itemHeight
@@ -1086,7 +1113,11 @@ extension Floaty {
         var itemHeight: CGFloat = 0
         for item in items {
             if item.isHidden == true { continue }
-            itemHeight += item.size + itemSpace
+            if verticalDirection == .up {
+                itemHeight += item.size + itemSpace
+            } else {
+                itemHeight -= item.size + itemSpace
+            }
             item.frame.origin.y = -itemHeight
             item.alpha = 1
         }
