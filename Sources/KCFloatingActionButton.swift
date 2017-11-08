@@ -80,6 +80,15 @@ open class KCFloatingActionButton: UIView {
         }
     }
     
+    open var isCustomButtom: Bool = false
+    
+    open var customButtonImage: UIImage? = nil{
+        didSet{
+            buttonImage = nil
+            isCustomButtom = true
+        }
+    }
+    
     /**
         Plus icon color inside button.
     */
@@ -493,7 +502,7 @@ open class KCFloatingActionButton: UIView {
     
     fileprivate func setButtonImage() {
         buttonImageView.removeFromSuperview()
-        buttonImageView = UIImageView(image: buttonImage)
+        buttonImageView = UIImageView(image: isCustomButtom ? customButtonImage : buttonImage)
 		buttonImageView.tintColor = plusColor
         buttonImageView.frame = CGRect(
             x: circleLayer.frame.origin.x + (size / 2 - buttonImageView.frame.size.width / 2),
