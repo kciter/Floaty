@@ -849,7 +849,7 @@ open class Floaty: UIView {
     }
 
     @objc internal func keyboardWillShow(_ notification: Notification) {
-        guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size.height,
+        guard let keyboardSize: CGFloat = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size.height,
             respondsToKeyboard, !sticky else {
                 return
         }
