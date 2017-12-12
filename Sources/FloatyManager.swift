@@ -52,6 +52,16 @@ open class FloatyManager: NSObject {
         }
     }
     
+    private var _font = UIFont()
+    open var font: UIFont {
+        get {
+            return _font
+        }
+        set {
+            _font = newValue
+        }
+    }
+    
     private var _rtlMode = false
     open var rtlMode: Bool {
         get {
