@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum FloatyItemLabelPositionType {
+@objc public enum FloatyItemLabelPositionType: Int {
     case left
     case right
 }
@@ -23,7 +23,7 @@ open class FloatyItem: UIView {
     /**
      This object's button size.
      */
-    open var size: CGFloat = 42 {
+    @objc open var size: CGFloat = 42 {
         didSet {
             self.frame = CGRect(x: 0, y: 0, width: size, height: size)
             titleLabel.frame.origin.y = self.frame.height/2-titleLabel.frame.size.height/2
@@ -35,12 +35,12 @@ open class FloatyItem: UIView {
     /**
      Button color.
      */
-    open var buttonColor: UIColor = UIColor.white
+    @objc open var buttonColor: UIColor = UIColor.white
 
     /**
      Title label color.
      */
-    open var titleColor: UIColor = UIColor.white {
+    @objc open var titleColor: UIColor = UIColor.white {
         didSet {
             titleLabel.textColor = titleColor
         }
@@ -49,25 +49,25 @@ open class FloatyItem: UIView {
     /**
      Enable/disable shadow.
      */
-    open var hasShadow: Bool = true
+    @objc open var hasShadow: Bool = true
 
     /**
      Circle Shadow color.
      */
-    open var circleShadowColor: UIColor = UIColor.black
+    @objc open var circleShadowColor: UIColor = UIColor.black
 
     /**
      Title Shadow color.
      */
-    open var titleShadowColor: UIColor = UIColor.black
+    @objc open var titleShadowColor: UIColor = UIColor.black
 
     /**
      If you touch up inside button, it execute handler.
      */
-    open var handler: ((FloatyItem) -> Void)? = nil
+    @objc open var handler: ((FloatyItem) -> Void)? = nil
 
-    open var imageOffset: CGPoint = CGPoint.zero
-    open var imageSize: CGSize = CGSize(width: 25, height: 25) {
+    @objc open var imageOffset: CGPoint = CGPoint.zero
+    @objc open var imageSize: CGSize = CGSize(width: 25, height: 25) {
         didSet {
             _iconImageView?.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
             _iconImageView?.center = CGPoint(x: size/2, y: size/2) + imageOffset
@@ -93,7 +93,7 @@ open class FloatyItem: UIView {
      Item's title label position.
      deafult is left
      */
-    open var titleLabelPosition: FloatyItemLabelPositionType = .left {
+    @objc open var titleLabelPosition: FloatyItemLabelPositionType = .left {
         didSet {
             if(titleLabelPosition == .left) {
                 titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
@@ -107,7 +107,7 @@ open class FloatyItem: UIView {
      Item's title label.
      */
     var _titleLabel: UILabel? = nil
-    open var titleLabel: UILabel {
+    @objc open var titleLabel: UILabel {
         get {
             if _titleLabel == nil {
                 _titleLabel = UILabel()
@@ -122,7 +122,7 @@ open class FloatyItem: UIView {
     /**
      Item's title.
      */
-    open var title: String? = nil {
+    @objc open var title: String? = nil {
         didSet {
             titleLabel.text = title
             titleLabel.sizeToFit()
@@ -147,7 +147,7 @@ open class FloatyItem: UIView {
      Item's icon image view.
      */
     var _iconImageView: UIImageView? = nil
-    open var iconImageView: UIImageView {
+    @objc open var iconImageView: UIImageView {
         get {
             if _iconImageView == nil {
                 _iconImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
@@ -162,7 +162,7 @@ open class FloatyItem: UIView {
     /**
      Item's icon.
      */
-    open var icon: UIImage? = nil {
+    @objc open var icon: UIImage? = nil {
         didSet {
             iconImageView.image = icon
         }
@@ -171,7 +171,7 @@ open class FloatyItem: UIView {
     /**
      Item's icon tint color change
      */
-    open var iconTintColor: UIColor! = nil {
+    @objc open var iconTintColor: UIColor! = nil {
         didSet {
             let image = iconImageView.image?.withRenderingMode(.alwaysTemplate)
             _iconImageView?.tintColor = iconTintColor

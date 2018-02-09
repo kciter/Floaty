@@ -7,7 +7,7 @@
 
 import UIKit
 
-public enum FloatyOpenAnimationType {
+@objc public enum FloatyOpenAnimationType: Int {
     case pop
     case fade
     case slideLeft
@@ -16,7 +16,7 @@ public enum FloatyOpenAnimationType {
     case none
 }
 
-public enum FloatyVerticalDirection {
+@objc public enum FloatyVerticalDirection: Int {
     case up
     case down
 }
@@ -32,12 +32,12 @@ open class Floaty: UIView {
     /**
      `FloatyItem` objects.
      */
-    open var items: [FloatyItem] = []
+    @objc open var items: [FloatyItem] = []
     
     /**
      This object's button size.
      */
-    open var size: CGFloat = 56 {
+    @objc open var size: CGFloat = 56 {
         didSet {
             self.setNeedsDisplay()
             self.recalculateItemsOrigin()
@@ -47,12 +47,12 @@ open class Floaty: UIView {
     /**
      Padding from bottom right of UIScreen or superview.
      */
-    open var paddingX: CGFloat = 14 {
+    @objc open var paddingX: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
         }
     }
-    open var paddingY: CGFloat = 14 {
+    @objc open var paddingY: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
         }
@@ -61,26 +61,31 @@ open class Floaty: UIView {
     /**
      Automatically closes child items when tapped
      */
-    @IBInspectable open var autoCloseOnTap: Bool = true
+    @IBInspectable
+    @objc open var autoCloseOnTap: Bool = true
     
     /**
      Degrees to rotate image
      */
-    @IBInspectable open var rotationDegrees: CGFloat = -45
+    @IBInspectable
+    @objc open var rotationDegrees: CGFloat = -45
     
     /**
      Animation speed of buttons
      */
-    @IBInspectable open var animationSpeed: Double = 0.1
+    @IBInspectable
+    @objc open var animationSpeed: Double = 0.1
     /**
      Button color.
      */
-    @IBInspectable open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+    @IBInspectable
+    @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
     
     /**
      Button image.
      */
-    @IBInspectable open var buttonImage: UIImage? = nil {
+    @IBInspectable
+    @objc open var buttonImage: UIImage? = nil {
         didSet {
             self.setNeedsDisplay()
         }
@@ -89,22 +94,26 @@ open class Floaty: UIView {
     /**
      Plus icon color inside button.
      */
-    @IBInspectable open var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
+    @IBInspectable
+    @objc open var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
     
     /**
      Background overlaying color.
      */
-    @IBInspectable open var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.3)
+    @IBInspectable
+    @objc open var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.3)
     
     /**
      The space between the item and item.
      */
-    @IBInspectable open var itemSpace: CGFloat = 14
+    @IBInspectable
+    @objc open var itemSpace: CGFloat = 14
     
     /**
      Child item's default size.
      */
-    @IBInspectable open var itemSize: CGFloat = 42 {
+    @IBInspectable
+    @objc open var itemSize: CGFloat = 42 {
         didSet {
             self.items.forEach { item in
                 item.size = self.itemSize
@@ -117,45 +126,51 @@ open class Floaty: UIView {
     /**
      Child item's default button color.
      */
-    @IBInspectable open var itemButtonColor: UIColor = UIColor.white
+    @IBInspectable
+    @objc open var itemButtonColor: UIColor = UIColor.white
     
     /**
      Child item's default title label color.
      */
-    @IBInspectable open var itemTitleColor: UIColor = UIColor.white
+    @IBInspectable
+    @objc open var itemTitleColor: UIColor = UIColor.white
     
     /**
      Child item's image color
      */
-    @IBInspectable open var itemImageColor: UIColor? = nil
+    @IBInspectable
+    @objc open var itemImageColor: UIColor? = nil
     
     /**
      Enable/disable shadow.
      */
-    @IBInspectable open var hasShadow: Bool = true
+    @IBInspectable
+    @objc open var hasShadow: Bool = true
     
     /**
      Child item's default shadow color.
      */
-    @IBInspectable open var itemShadowColor: UIColor = UIColor.black
+    @IBInspectable
+    @objc open var itemShadowColor: UIColor = UIColor.black
     
     /**
      
      */
-    open var closed: Bool = true
+    @objc open var closed: Bool = true
     
     /**
      Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
      */
-    @IBInspectable open var respondsToKeyboard: Bool = true
+    @IBInspectable
+    @objc open var respondsToKeyboard: Bool = true
     
-    open var openAnimationType: FloatyOpenAnimationType = .pop
+    @objc open var openAnimationType: FloatyOpenAnimationType = .pop
     
-    open var verticalDirection: FloatyVerticalDirection = .up
+    @objc open var verticalDirection: FloatyVerticalDirection = .up
     
-    open var friendlyTap: Bool = true
+    @objc open var friendlyTap: Bool = true
     
-    open var sticky: Bool = false
+    @objc open var sticky: Bool = false
     
     open static var global: FloatyManager {
         get {
@@ -277,7 +292,7 @@ open class Floaty: UIView {
     /**
      Items open.
      */
-    open func open() {
+    @objc open func open() {
         fabDelegate?.floatyWillOpen?(self)
         let animationGroup = DispatchGroup()
         
@@ -376,7 +391,7 @@ open class Floaty: UIView {
     /**
      Items open or close.
      */
-    open func toggle() {
+    @objc open func toggle() {
         if items.count > 0 {
             if closed == true {
                 open()
@@ -391,7 +406,7 @@ open class Floaty: UIView {
     /**
      Add custom item
      */
-    open func addItem(item: FloatyItem) {
+    @objc open func addItem(item: FloatyItem) {
         let big = size > item.size ? size : item.size
         let small = size <= item.size ? size : item.size
         item.frame.origin = CGPoint(x: big/2-small/2, y: big/2-small/2)
@@ -407,14 +422,10 @@ open class Floaty: UIView {
      titlePosition's default value is left.
      */
     @discardableResult
-    open func addItem(title: String, titlePosition: FloatyItemLabelPositionType?) -> FloatyItem {
+    @objc open func addItem(title: String, titlePosition: FloatyItemLabelPositionType = .left) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
-        if(titlePosition == nil) {
-            item.titleLabelPosition = .left // default
-        } else {
-            item.titleLabelPosition = titlePosition!
-        }
+        item.titleLabelPosition = titlePosition
         item.title = title
         addItem(item: item)
         return item
@@ -424,7 +435,7 @@ open class Floaty: UIView {
      Add item with title.
      */
     @discardableResult
-    open func addItem(title: String) -> FloatyItem {
+    @objc open func addItem(title: String) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
@@ -437,14 +448,10 @@ open class Floaty: UIView {
      titlePosition's default value is left.
      */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType?) -> FloatyItem {
+    @objc open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType = .left) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
-        if(titlePosition == nil) {
-            item.titleLabelPosition = .left // default
-        } else {
-            item.titleLabelPosition = titlePosition!
-        }
+        item.titleLabelPosition = titlePosition
         item.title = title
         item.icon = icon
         addItem(item: item)
@@ -455,7 +462,7 @@ open class Floaty: UIView {
      Add item with title and icon.
      */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?) -> FloatyItem {
+    @objc open func addItem(_ title: String, icon: UIImage?) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
@@ -468,7 +475,7 @@ open class Floaty: UIView {
      Add item with title and handler.
      */
     @discardableResult
-    open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+    @objc open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
@@ -482,14 +489,10 @@ open class Floaty: UIView {
      titlePosition's default value is left.
      */
     @discardableResult
-    open func addItem(title: String, titlePosition: FloatyItemLabelPositionType?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+    @objc open func addItem(title: String, titlePosition: FloatyItemLabelPositionType = .left, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
-        if(titlePosition == nil) {
-            item.titleLabelPosition = .left // default
-        } else {
-            item.titleLabelPosition = titlePosition!
-        }
+        item.titleLabelPosition = titlePosition
         item.title = title
         item.handler = handler
         addItem(item: item)
@@ -500,7 +503,7 @@ open class Floaty: UIView {
      Add item with title, icon or handler.
      */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+    @objc open func addItem(_ title: String, icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
@@ -515,14 +518,10 @@ open class Floaty: UIView {
      titlePosition's default value is left
      */
     @discardableResult
-    open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+    @objc open func addItem(_ title: String, icon: UIImage?, titlePosition: FloatyItemLabelPositionType = .left, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
-        if(titlePosition == nil) {
-            item.titleLabelPosition = .left // default
-        } else {
-            item.titleLabelPosition = titlePosition!
-        }
+        item.titleLabelPosition = titlePosition
         item.title = title
         item.icon = icon
         item.handler = handler
@@ -534,7 +533,7 @@ open class Floaty: UIView {
      Add item with icon.
      */
     @discardableResult
-    open func addItem(icon: UIImage?) -> FloatyItem {
+    @objc open func addItem(icon: UIImage?) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.icon = icon
@@ -546,7 +545,7 @@ open class Floaty: UIView {
      Add item with icon and handler.
      */
     @discardableResult
-    open func addItem(icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
+    @objc open func addItem(icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
         let item = FloatyItem()
         itemDefaultSet(item)
         item.icon = icon
@@ -558,7 +557,7 @@ open class Floaty: UIView {
     /**
      Remove item.
      */
-    open func removeItem(item: FloatyItem) {
+    @objc open func removeItem(item: FloatyItem) {
         guard let index = items.index(of: item) else { return }
         items[index].removeFromSuperview()
         items.remove(at: index)
@@ -567,12 +566,12 @@ open class Floaty: UIView {
     /**
      Remove item with index.
      */
-    open func removeItem(index: Int) {
+    @objc open func removeItem(index: Int) {
         items[index].removeFromSuperview()
         items.remove(at: index)
     }
     
-    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    @objc open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if closed == false {
             for item in items {
                 if item.isHidden == true { continue }
@@ -776,14 +775,14 @@ open class Floaty: UIView {
         NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if isTouched(touches) {
             setTintLayer()
         }
     }
     
-    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    @objc open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         tintLayer.removeFromSuperlayer()
         if isTouched(touches) {
