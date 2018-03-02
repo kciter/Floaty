@@ -156,7 +156,11 @@ open class Floaty: UIView {
     /**
      
      */
-    @objc open var closed: Bool = true
+    @objc open var closed: Bool = true {
+        didSet {
+            accessibilityViewIsModal = !closed
+        }
+    }
     
     /**
      Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
@@ -220,6 +224,11 @@ open class Floaty: UIView {
      */
     fileprivate var isCustomFrame: Bool = false
     
+    /**
+     An accessibility button for the main Fab Button
+     */
+    fileprivate var accessibilityView : UIView = UIView()
+    
     // MARK: - Initialize
     
     /**
@@ -229,6 +238,7 @@ open class Floaty: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         backgroundColor = UIColor.clear
         setObserver()
+        setAccessibilityView()
     }
     
     /**
@@ -239,6 +249,7 @@ open class Floaty: UIView {
         super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
         backgroundColor = UIColor.clear
         setObserver()
+        setAccessibilityView()
     }
     
     /**
@@ -250,6 +261,7 @@ open class Floaty: UIView {
         backgroundColor = UIColor.clear
         isCustomFrame = true
         setObserver()
+        setAccessibilityView()
     }
     
     /**
@@ -262,6 +274,7 @@ open class Floaty: UIView {
         clipsToBounds = false
         isCustomFrame = true
         setObserver()
+        setAccessibilityView()
     }
     
     // MARK: - Method
@@ -331,6 +344,8 @@ open class Floaty: UIView {
             case .none:
                 noneAnimationWithOpen()
             }
+            
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, items.first);
         }
         
         animationGroup.notify(queue: .main) {
@@ -379,6 +394,7 @@ open class Floaty: UIView {
             case .none:
                 noneAnimationWithClose()
             }
+            UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self);
         }
         
         animationGroup.notify(queue: .main) {
@@ -1157,3 +1173,63 @@ extension UIView {
     }
 }
 
+
+// MARK: - Accessibility Handling
+extension Floaty {
+    
+    func setAccessibilityView() {
+        self.addSubview(accessibilityView)
+        accessibilityView.isAccessibilityElement = true
+        accessibilityView.accessibilityTraits |= UIAccessibilityTraitButton
+        if #available(iOS 9.0, *) {
+            accessibilityView.translatesAutoresizingMaskIntoConstraints = false;
+            accessibilityView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+            accessibilityView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+            accessibilityView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+            accessibilityView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        } else {
+            // Fallback on earlier versions
+            accessibilityView.frame = self.frame
+        }
+    }
+    
+    open override var accessibilityLabel : String? {
+        get {
+            return accessibilityView.accessibilityLabel
+        }
+        set(newLabel) {
+            accessibilityView.accessibilityLabel = newLabel
+        }
+    }
+    
+    open override var accessibilityHint : String? {
+        get {
+            return accessibilityView.accessibilityHint
+        }
+        set(newHint) {
+            accessibilityView.accessibilityHint = newHint
+        }
+    }
+    
+    open override var accessibilityValue : String? {
+        get {
+            return accessibilityView.accessibilityValue
+        }
+        set(newHint) {
+            accessibilityView.accessibilityValue = newHint
+        }
+    }
+    
+    open override var accessibilityElements: [Any]? {
+        get {
+            if (closed) {
+                return [accessibilityView]
+            } else {
+                return [accessibilityView] + items
+            }
+        }
+        set {
+            
+        }
+    }
+}
