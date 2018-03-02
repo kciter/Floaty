@@ -1176,21 +1176,15 @@ extension UIView {
 
 // MARK: - Accessibility Handling
 extension Floaty {
+    open override func layoutSubviews() {
+        super.layoutSubviews();
+        accessibilityView.frame = CGRect(x: 0, y: 0, width: size, height: size)
+    }
     
     func setAccessibilityView() {
         self.addSubview(accessibilityView)
         accessibilityView.isAccessibilityElement = true
         accessibilityView.accessibilityTraits |= UIAccessibilityTraitButton
-        if #available(iOS 9.0, *) {
-            accessibilityView.translatesAutoresizingMaskIntoConstraints = false;
-            accessibilityView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            accessibilityView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            accessibilityView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-            accessibilityView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        } else {
-            // Fallback on earlier versions
-            accessibilityView.frame = self.frame
-        }
     }
     
     open override var accessibilityLabel : String? {
@@ -1233,3 +1227,4 @@ extension Floaty {
         }
     }
 }
+
