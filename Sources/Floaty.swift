@@ -1091,6 +1091,11 @@ extension Floaty {
      */
     fileprivate func slideDownAnimationWithOpen(group: DispatchGroup) {
         var itemHeight: CGFloat = 0
+        
+        if self.size > self.itemSize {
+            itemHeight = self.size - self.itemSize
+        }
+        
         for item in items {
             if item.isHidden == true { continue }
             if verticalDirection == .up {
