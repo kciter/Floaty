@@ -749,22 +749,30 @@ open class Floaty: UIView {
     
     
     fileprivate func setRightBottomFrame(_ keyboardSize: CGFloat = 0) {
+
+        var horizontalMargin = size;
+        var verticalMargin = size + keyboardSize;
+        if #available(iOS 11, *) {
+            horizontalMargin += safeAreaInsets.right
+            verticalMargin += safeAreaInsets.bottom
+        }
+
         if superview == nil {
             frame = CGRect(
-                x: (UIScreen.main.bounds.size.width - size) - paddingX,
-                y: (UIScreen.main.bounds.size.height - size - keyboardSize) - paddingY,
+                x: (UIScreen.main.bounds.size.width - horizontalMargin) - paddingX,
+                y: (UIScreen.main.bounds.size.height - verticalMargin) - paddingY,
                 width: size,
                 height: size
             )
         } else {
             frame = CGRect(
-                x: (superview!.bounds.size.width-size) - paddingX,
-                y: (superview!.bounds.size.height-size-keyboardSize) - paddingY,
+                x: (superview!.bounds.size.width - horizontalMargin) - paddingX,
+                y: (superview!.bounds.size.height - verticalMargin) - paddingY,
                 width: size,
                 height: size
             )
         }
-        
+
         if friendlyTap == true {
             frame.size.width += paddingX
             frame.size.height += paddingY
