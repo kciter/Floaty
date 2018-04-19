@@ -133,7 +133,7 @@ With the default location of the frame, the button is now tappable until the rig
 ## Donate
 If you like this open source, you can sponsor it. :smile:
 
-[Paypal me](paypal.me/kciter)
+[Paypal me](https://paypal.me/kciter)
 
 ## License
 The MIT License (MIT)
