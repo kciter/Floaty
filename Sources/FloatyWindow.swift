@@ -16,7 +16,7 @@ class FloatyWindow: UIWindow {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.clear
-        self.windowLevel = UIWindowLevelNormal
+        self.windowLevel = UIWindow.Level.normal
     }
 
     required init?(coder aDecoder: NSCoder) {
