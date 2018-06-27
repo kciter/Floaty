@@ -67,7 +67,7 @@ floaty.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item
     let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
     alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
     self.presentViewController(alert, animated: true, completion: nil)
-    fab.close()
+    floaty.close()
 })
 self.view.addSubview(floaty)
 ```
