@@ -21,7 +21,7 @@ open class FloatyItem: UIView {
     // MARK: - Properties
 
     /**
-     This object's button size.
+     This object's button size. Default value is 42 pt.
      */
     @objc open var size: CGFloat = 42 {
         didSet {
@@ -33,12 +33,12 @@ open class FloatyItem: UIView {
     }
 
     /**
-     Button color.
+     Button color. Default value is white.
      */
     @objc open var buttonColor: UIColor = UIColor.white
 
     /**
-     Title label color.
+     Title label color. Default value is white.
      */
     @objc open var titleColor: UIColor = UIColor.white {
         didSet {
@@ -47,17 +47,17 @@ open class FloatyItem: UIView {
     }
 
     /**
-     Enable/disable shadow.
+     Enable/disable shadow. Default value is true.
      */
     @objc open var hasShadow: Bool = true
 
     /**
-     Circle Shadow color.
+     Circle Shadow color. Default value is black.
      */
     @objc open var circleShadowColor: UIColor = UIColor.black
 
     /**
-     Title Shadow color.
+     Title Shadow color. Default value is black.
      */
     @objc open var titleShadowColor: UIColor = UIColor.black
 
@@ -66,7 +66,14 @@ open class FloatyItem: UIView {
      */
     @objc open var handler: ((FloatyItem) -> Void)? = nil
 
+    /**
+     Image offset. Default value is 0x0 pt.
+     */
     @objc open var imageOffset: CGPoint = CGPoint.zero
+
+    /**
+     Image size. Default value is 25x25 pt.
+     */
     @objc open var imageSize: CGSize = CGSize(width: 25, height: 25) {
         didSet {
             _iconImageView?.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
@@ -90,8 +97,7 @@ open class FloatyItem: UIView {
     fileprivate var tintLayer: CAShapeLayer = CAShapeLayer()
     
     /**
-     Item's title label position.
-     deafult is left
+     Item's title label position. Default value is left.
      */
     @objc open var titleLabelPosition: FloatyItemLabelPositionType = .left {
         didSet {
@@ -169,7 +175,7 @@ open class FloatyItem: UIView {
     }
     
     /**
-     Item's icon tint color change
+     Item's icon tint color change. Default value is nil.
      */
     @objc open var iconTintColor: UIColor! = nil {
         didSet {
@@ -180,7 +186,7 @@ open class FloatyItem: UIView {
     }
 
     /**
-      itemBackgroundColor change
+      itemBackgroundColor change. Default value is nil.
     */
     public var itemBackgroundColor: UIColor? = nil {
       didSet { circleLayer.backgroundColor = itemBackgroundColor?.cgColor }
