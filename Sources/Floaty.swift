@@ -35,7 +35,7 @@ open class Floaty: UIView {
     @objc open var items: [FloatyItem] = []
     
     /**
-     This object's button size.
+     This object's button size. Default value is 56 pt.
      */
     @objc open var size: CGFloat = 56 {
         didSet {
@@ -45,13 +45,17 @@ open class Floaty: UIView {
     }
     
     /**
-     Padding from bottom right of UIScreen or superview.
+     Padding from right of UIScreen or superview. Default value is 14 pt.
      */
     @objc open var paddingX: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
         }
     }
+
+    /**
+     Padding from bottom of UIScreen or superview. Default value is 14 pt.
+     */
     @objc open var paddingY: CGFloat = 14 {
         didSet {
             self.setNeedsDisplay()
@@ -59,24 +63,25 @@ open class Floaty: UIView {
     }
     
     /**
-     Automatically closes child items when tapped
+     Automatically closes child items when tapped. Default value is true.
      */
     @IBInspectable
     @objc open var autoCloseOnTap: Bool = true
     
     /**
-     Degrees to rotate image
+     Degrees to rotate image. Default value is -45 pt.
      */
     @IBInspectable
     @objc open var rotationDegrees: CGFloat = -45
     
     /**
-     Animation speed of buttons
+     Animation speed of buttons. Default value is 0.1.
      */
     @IBInspectable
     @objc open var animationSpeed: Double = 0.1
+
     /**
-     Button color.
+     Button color. Default value is rgba(73,151,241,1).
      */
     @IBInspectable
     @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
@@ -92,25 +97,25 @@ open class Floaty: UIView {
     }
     
     /**
-     Plus icon color inside button.
+     Plus icon color inside button. Default value is (white: 0.2, alpha: 1).
      */
     @IBInspectable
     @objc open var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
     
     /**
-     Background overlaying color.
+     Background overlaying color. Default value is black.withAlphaComponent(0.3).
      */
     @IBInspectable
     @objc open var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.3)
     
     /**
-     The space between the item and item.
+     The space between the item and item. Default value is 14 pt.
      */
     @IBInspectable
     @objc open var itemSpace: CGFloat = 14
     
     /**
-     Child item's default size.
+     Child item's default size. Default value is 42 pt.
      */
     @IBInspectable
     @objc open var itemSize: CGFloat = 42 {
@@ -124,37 +129,37 @@ open class Floaty: UIView {
     }
     
     /**
-     Child item's default button color.
+     Child item's default button color. Default value is white.
      */
     @IBInspectable
     @objc open var itemButtonColor: UIColor = UIColor.white
     
     /**
-     Child item's default title label color.
+     Child item's default title label color. Default value is white.
      */
     @IBInspectable
     @objc open var itemTitleColor: UIColor = UIColor.white
     
     /**
-     Child item's image color
+     Child item's image color. Default value is nil.
      */
     @IBInspectable
     @objc open var itemImageColor: UIColor? = nil
     
     /**
-     Enable/disable shadow.
+     Enable/disable shadow. Default value is true.
      */
     @IBInspectable
     @objc open var hasShadow: Bool = true
     
     /**
-     Child item's default shadow color.
+     Child item's default shadow color. Default value is black.
      */
     @IBInspectable
     @objc open var itemShadowColor: UIColor = UIColor.black
     
     /**
-     
+      Default value is true.
      */
     @objc open var closed: Bool = true {
         didSet {
@@ -163,17 +168,30 @@ open class Floaty: UIView {
     }
     
     /**
-     Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
+     Whether or not floaty responds to keyboard notifications and adjusts its position accordingly.
+     Default value is true.
      */
     @IBInspectable
     @objc open var respondsToKeyboard: Bool = true
-    
+
+    /**
+     Default value is pop.
+     */
     @objc open var openAnimationType: FloatyOpenAnimationType = .pop
-    
+
+    /**
+     Default value is up.
+     */
     @objc open var verticalDirection: FloatyVerticalDirection = .up
-    
+
+    /**
+     Default value is true.
+     */
     @objc open var friendlyTap: Bool = true
-    
+
+    /**
+     Default value is false.
+     */
     @objc open var sticky: Bool = false
     
     open static var global: FloatyManager {
@@ -216,11 +234,13 @@ open class Floaty: UIView {
     
     /**
      Keep track of whether overlay open animation completes, to avoid animation conflicts.
+     Default value is true.
      */
     fileprivate var overlayViewDidCompleteOpenAnimation: Bool = true
     
     /**
      If you created this object from storyboard or `initWithFrame`, this property set true.
+     Default value is false.
      */
     fileprivate var isCustomFrame: Bool = false
     
