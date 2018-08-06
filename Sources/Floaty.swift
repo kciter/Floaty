@@ -314,7 +314,7 @@ open class Floaty: UIView {
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubview(toFront: self)
-            overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
+            //overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
             
             overlayViewDidCompleteOpenAnimation = false
             animationGroup.enter()
