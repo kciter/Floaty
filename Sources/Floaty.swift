@@ -75,11 +75,18 @@ open class Floaty: UIView {
      */
     @IBInspectable
     @objc open var animationSpeed: Double = 0.1
+    
     /**
      Button color.
      */
     @IBInspectable
     @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+    
+    /**
+     Button shadow color.
+     */
+    @IBInspectable
+    @objc open var buttonShadowColor: UIColor = UIColor.black
     
     /**
      Button image.
@@ -688,7 +695,7 @@ open class Floaty: UIView {
         
         circleLayer.shadowOffset = CGSize(width: 1, height: 1)
         circleLayer.shadowRadius = 2
-        circleLayer.shadowColor = UIColor.black.cgColor
+        circleLayer.shadowColor = buttonShadowColor.cgColor
         circleLayer.shadowOpacity = 0.4
     }
     
