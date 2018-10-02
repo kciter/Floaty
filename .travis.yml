@@ -1,2 +1,4 @@
-language: objective-c
-osx_image: xcode8
+language: swift
+osx_image: xcode10
+
+xcode_project: Floaty.xcodeproj
