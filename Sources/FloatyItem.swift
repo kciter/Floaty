@@ -212,10 +212,10 @@ open class FloatyItem: UIView {
         setShadow()
 
         if _titleLabel != nil {
-            bringSubviewToFront(_titleLabel!)
+            bringSubviewToFront(_: titleLabel)
         }
         if _iconImageView != nil {
-            bringSubviewToFront(_iconImageView!)
+            bringSubviewToFront(_: iconImageView)
         }
     }
 
