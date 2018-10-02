@@ -17,7 +17,7 @@ import Foundation
     /**
      Indicates that the user has tapped on a FAB widget that does not
      contain any defined sub items.
-     - parameter fab: The FAB widget that was selected by the user.
+     - parameter floaty: The FAB widget that was selected by the user.
      */
     @objc optional func emptyFloatySelected(_ floaty: Floaty)
     

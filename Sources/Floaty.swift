@@ -75,11 +75,18 @@ open class Floaty: UIView {
      */
     @IBInspectable
     @objc open var animationSpeed: Double = 0.1
+    
     /**
      Button color.
      */
     @IBInspectable
     @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+    
+    /**
+     Button shadow color.
+     */
+    @IBInspectable
+    @objc open var buttonShadowColor: UIColor = UIColor.black
     
     /**
      Button image.
@@ -305,7 +312,7 @@ open class Floaty: UIView {
     /**
      Items open.
      */
-    @objc open func open() {
+    @objc public func open() {
         fabDelegate?.floatyWillOpen?(self)
         let animationGroup = DispatchGroup()
         
@@ -358,7 +365,7 @@ open class Floaty: UIView {
     /**
      Items close.
      */
-    @objc open func close() {
+    @objc public func close() {
         fabDelegate?.floatyWillClose?(self)
         let animationGroup = DispatchGroup()
         
@@ -688,7 +695,7 @@ open class Floaty: UIView {
         
         circleLayer.shadowOffset = CGSize(width: 1, height: 1)
         circleLayer.shadowRadius = 2
-        circleLayer.shadowColor = UIColor.black.cgColor
+        circleLayer.shadowColor = buttonShadowColor.cgColor
         circleLayer.shadowOpacity = 0.4
     }
     
@@ -1197,9 +1204,7 @@ extension Floaty {
     func setAccessibilityView() {
         self.addSubview(accessibilityView)
         accessibilityView.isAccessibilityElement = true
-        let accessibilityTrats = accessibilityView.accessibilityTraits.rawValue | UIAccessibilityTraits.button.rawValue
-        accessibilityView.accessibilityTraits = UIAccessibilityTraits(rawValue: accessibilityTrats)
-        accessibilityView.isAccessibilityElement = true
+        accessibilityView.accessibilityTraits.insert(.button)
     }
     
     open override var accessibilityLabel : String? {
