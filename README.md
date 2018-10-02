@@ -15,14 +15,14 @@ Floaty is simple floating action button for iOS. (formerly KCFloatingActionButto
 
 ## Requirements
 * iOS 9.0+
-* Swift 3.0+
-* Xcode 8
+* Swift 4.2
+* Xcode 10
 
 ## Installation
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "Floaty", "~> 3.0.0" # Use version 4.0.0 for Swift 4.0
+pod "Floaty", "~> 4.1.0"
 ```
 ### Carthage
 ```ruby
