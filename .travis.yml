@@ -1,4 +1,5 @@
-language: objective-c
+language: swift
+osx_image: xcode10
 xcode_project: Floaty.xcodeproj
 xcode_scheme: Floaty
 xcode_sdk: iphonesimulator

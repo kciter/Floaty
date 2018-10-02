@@ -12,7 +12,7 @@ import UIKit
     KCFloatingActionButton dependent on UIWindow.
 */
 open class FloatyViewController: UIViewController {
-    open let floaty = Floaty()
+    public let floaty = Floaty()
     var statusBarStyle: UIStatusBarStyle = .default
 
     override open func viewDidLoad() {
