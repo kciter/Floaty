@@ -44,7 +44,7 @@ class TableViewController: UITableViewController, FloatyDelegate {
             self.present(alert, animated: true, completion: nil)
             self.fab.close()
         }
-        fab.addItem("titlePosition nil?", icon: UIImage(named: "icShare"), titlePosition: nil) { (item) in
+        fab.addItem("titlePosition nil?", icon: UIImage(named: "icShare"), titlePosition: .left) { (item) in
             let alert = UIAlertController(title: "titlePosition nil", message: "titlePosition nil will be left", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "ok...", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
