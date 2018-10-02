@@ -1,2 +1,10 @@
-language: objective-c
-osx_image: xcode8
+language: swift
+osx_image: xcode10
+xcode_project: Floaty.xcodeproj
+xcode_scheme: Floaty
+xcode_sdk: iphonesimulator
+before_install:
+    - gem install xcpretty
+script:
+    - set -o pipefail
+    - xcodebuild -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME -sdk $TRAVIS_XCODE_SDK build | xcpretty

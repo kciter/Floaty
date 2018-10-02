@@ -1,9 +1,9 @@
 # Floaty
-![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg)
-[![Version](https://img.shields.io/cocoapods/v/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![License](https://img.shields.io/cocoapods/l/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![Platform](https://img.shields.io/cocoapods/p/Floaty.svg?style=flat)](http://cocoapods.org/pods/floaty)
-[![Build Status](https://travis-ci.org/kciter/Floaty.svg?branch=master)](https://travis-ci.org/kciter/floaty)
+![Swift 4.1](https://img.shields.io/badge/Swift-4.1-orange.svg)
+[![Version](https://img.shields.io/cocoapods/v/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
+[![License](https://img.shields.io/cocoapods/l/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
+[![Platform](https://img.shields.io/cocoapods/p/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
+[![Build Status](https://travis-ci.org/kciter/Floaty.svg?branch=master)](https://travis-ci.org/kciter/Floaty)
 
 Floaty is simple floating action button for iOS. (formerly KCFloatingActionButton)
 > Why change the name?
