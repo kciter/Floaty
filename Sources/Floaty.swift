@@ -312,7 +312,7 @@ open class Floaty: UIView {
   /**
    Items open.
    */
-  @objc public func open() {
+  @objc open func open() {
     fabDelegate?.floatyWillOpen?(self)
     let animationGroup = DispatchGroup()
     
@@ -365,7 +365,7 @@ open class Floaty: UIView {
   /**
    Items close.
    */
-  @objc public func close() {
+  @objc open func close() {
     fabDelegate?.floatyWillClose?(self)
     let animationGroup = DispatchGroup()
     
