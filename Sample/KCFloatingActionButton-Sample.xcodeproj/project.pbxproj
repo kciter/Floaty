@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801D03EC21E7110000CD67F0 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D03EB21E7110000CD67F0 /* UIView+Draggable.swift */; };
 		B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */; };
 		B671D9341EB11BA5005EE7E1 /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B671D92E1EB11BA5005EE7E1 /* Floaty.swift */; };
 		B671D9351EB11BA5005EE7E1 /* FloatyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B671D92F1EB11BA5005EE7E1 /* FloatyDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		801D03EB21E7110000CD67F0 /* UIView+Draggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Draggable.swift"; path = "../../Sources/UIView+Draggable.swift"; sourceTree = "<group>"; };
 		B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B671D92E1EB11BA5005EE7E1 /* Floaty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Floaty.swift; path = ../../Sources/Floaty.swift; sourceTree = "<group>"; };
 		B671D92F1EB11BA5005EE7E1 /* FloatyDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatyDelegate.swift; path = ../../Sources/FloatyDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				B671D9311EB11BA5005EE7E1 /* FloatyManager.swift */,
 				B671D9321EB11BA5005EE7E1 /* FloatyViewController.swift */,
 				B671D9331EB11BA5005EE7E1 /* FloatyWindow.swift */,
+				801D03EB21E7110000CD67F0 /* UIView+Draggable.swift */,
 			);
 			name = KCFloatingActionButton;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801D03EC21E7110000CD67F0 /* UIView+Draggable.swift in Sources */,
 				B671D9391EB11BA5005EE7E1 /* FloatyWindow.swift in Sources */,
 				B6F66E1C1BC1017F00E47769 /* ViewController.swift in Sources */,
 				B6F66E1A1BC1017F00E47769 /* AppDelegate.swift in Sources */,
