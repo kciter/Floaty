@@ -18,10 +18,14 @@ import Foundation
    - parameter floaty: The FAB widget that was selected by the user.
    */
   @objc optional func emptyFloatySelected(_ floaty: Floaty)
+
+  @objc optional func floatyShouldOpen(_ floaty: Floaty) -> Bool
   
   @objc optional func floatyWillOpen(_ floaty: Floaty)
   
   @objc optional func floatyDidOpen(_ floaty: Floaty)
+
+  @objc optional func floatyShouldClose(_ floaty: Floaty) -> Bool
   
   @objc optional func floatyWillClose(_ floaty: Floaty)
   
