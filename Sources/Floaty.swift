@@ -63,6 +63,12 @@ open class Floaty: UIView {
    */
   @IBInspectable
   @objc open var autoCloseOnTap: Bool = true
+
+  /**
+   Runs first item handler directly on tap (without opening menu)
+   */
+  @IBInspectable
+  @objc open var handleFirstItemDirectly: Bool = false
     
   /**
    Places button relative to the Safe Area
@@ -339,6 +345,11 @@ open class Floaty: UIView {
    Items open.
    */
   @objc open func open() {
+    if handleFirstItemDirectly, let item = items.first, let handler = item.handler {
+      handler(item)
+      return
+    }
+
     if let shouldOpen = fabDelegate?.floatyShouldOpen?(self), shouldOpen == false {
       return
     }
