@@ -16,6 +16,7 @@ class ViewController: UIViewController, FloatyDelegate {
     super.viewDidLoad()
     
     layoutFAB()
+    floaty.addDragging()
   }
   
   @IBAction func endEditing() {

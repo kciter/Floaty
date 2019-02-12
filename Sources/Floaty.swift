@@ -168,7 +168,18 @@ open class Floaty: UIView {
       accessibilityViewIsModal = !closed
     }
   }
-  
+
+  /**
+   Make the menu button draggable
+   */
+  @objc open var isDraggable: Bool = false {
+    didSet {
+      if isDraggable {
+        self.addDragging()
+      }
+    }
+  }
+
   /**
    Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
    */
@@ -182,7 +193,7 @@ open class Floaty: UIView {
   @objc open var friendlyTap: Bool = true
   
   @objc open var sticky: Bool = false
-  
+    
   public static var global: FloatyManager {
     get {
       return FloatyManager.defaultInstance()
