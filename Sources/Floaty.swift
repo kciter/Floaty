@@ -61,8 +61,14 @@ open class Floaty: UIView {
   /**
    Automatically closes child items when tapped
    */
-  @objc @IBInspectable
-  open var autoCloseOnTap: Bool = true
+  @IBInspectable
+  @objc open var autoCloseOnTap: Bool = true
+    
+  /**
+   Places button relative to the Safe Area
+   */
+  @IBInspectable
+  @objc open var relativeToSafeArea: Bool = true
   
   /**
    Degrees to rotate image
@@ -785,7 +791,8 @@ open class Floaty: UIView {
     
     var horizontalMargin = size;
     var verticalMargin = size + keyboardSize;
-    if #available(iOS 11, *) {
+    
+    if #available(iOS 11, *), relativeToSafeArea, let safeAreaInsets = UIApplication.shared.delegate?.window??.safeAreaInsets {
       horizontalMargin += safeAreaInsets.right
       verticalMargin += safeAreaInsets.bottom
     }
