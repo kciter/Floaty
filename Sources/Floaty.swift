@@ -195,6 +195,15 @@ open class Floaty: UIView {
   @IBOutlet open weak var fabDelegate: FloatyDelegate?
   
   /**
+   Button selected color.
+  */
+  @IBInspectable open var selectedColor: UIColor? = nil {
+    didSet {
+        self.setNeedsDisplay()
+    }
+  }
+    
+  /**
    Button shape layer.
    */
   fileprivate var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -358,6 +367,9 @@ open class Floaty: UIView {
     animationGroup.notify(queue: .main) {
       self.fabDelegate?.floatyDidOpen?(self)
     }
+    
+    circleLayer.backgroundColor = self.selectedColor != nil ? self.selectedColor?.cgColor : self.buttonColor.cgColor
+    
     fabDelegate?.floatyOpened?(self)
     closed = false
   }
@@ -407,6 +419,9 @@ open class Floaty: UIView {
     animationGroup.notify(queue: .main) {
       self.fabDelegate?.floatyDidClose?(self)
     }
+    
+    circleLayer.backgroundColor = self.buttonColor.cgColor
+    
     fabDelegate?.floatyClosed?(self)
     closed = true
   }
