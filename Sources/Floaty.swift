@@ -61,38 +61,38 @@ open class Floaty: UIView {
   /**
    Automatically closes child items when tapped
    */
-  @IBInspectable
-  @objc open var autoCloseOnTap: Bool = true
+  @objc @IBInspectable
+  open var autoCloseOnTap: Bool = true
   
   /**
    Degrees to rotate image
    */
-  @IBInspectable
-  @objc open var rotationDegrees: CGFloat = -45
+  @objc @IBInspectable
+  open var rotationDegrees: CGFloat = -45
   
   /**
    Animation speed of buttons
    */
-  @IBInspectable
-  @objc open var animationSpeed: Double = 0.1
+  @objc @IBInspectable
+  open var animationSpeed: Double = 0.1
   
   /**
    Button color.
    */
-  @IBInspectable
-  @objc open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
+  @objc @IBInspectable
+  open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
   
   /**
    Button shadow color.
    */
-  @IBInspectable
-  @objc open var buttonShadowColor: UIColor = UIColor.black
+  @objc @IBInspectable
+  open var buttonShadowColor: UIColor = UIColor.black
   
   /**
    Button image.
    */
-  @IBInspectable
-  @objc open var buttonImage: UIImage? = nil {
+  @objc @IBInspectable
+  open var buttonImage: UIImage? = nil {
     didSet {
       self.setNeedsDisplay()
     }
@@ -101,26 +101,26 @@ open class Floaty: UIView {
   /**
    Plus icon color inside button.
    */
-  @IBInspectable
-  @objc open var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
+  @objc @IBInspectable
+  open var plusColor: UIColor = UIColor(white: 0.2, alpha: 1)
   
   /**
    Background overlaying color.
    */
-  @IBInspectable
-  @objc open var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.3)
+  @objc @IBInspectable
+  open var overlayColor: UIColor = UIColor.black.withAlphaComponent(0.3)
   
   /**
    The space between the item and item.
    */
-  @IBInspectable
-  @objc open var itemSpace: CGFloat = 14
+  @objc @IBInspectable
+  open var itemSpace: CGFloat = 14
   
   /**
    Child item's default size.
    */
-  @IBInspectable
-  @objc open var itemSize: CGFloat = 42 {
+  @objc @IBInspectable
+  open var itemSize: CGFloat = 42 {
     didSet {
       self.items.forEach { item in
         item.size = self.itemSize
@@ -133,32 +133,32 @@ open class Floaty: UIView {
   /**
    Child item's default button color.
    */
-  @IBInspectable
-  @objc open var itemButtonColor: UIColor = UIColor.white
+  @objc @IBInspectable
+  open var itemButtonColor: UIColor = UIColor.white
   
   /**
    Child item's default title label color.
    */
-  @IBInspectable
-  @objc open var itemTitleColor: UIColor = UIColor.white
+  @objc @IBInspectable
+  open var itemTitleColor: UIColor = UIColor.white
   
   /**
    Child item's image color
    */
-  @IBInspectable
-  @objc open var itemImageColor: UIColor? = nil
+  @objc @IBInspectable
+  open var itemImageColor: UIColor? = nil
   
   /**
    Enable/disable shadow.
    */
-  @IBInspectable
-  @objc open var hasShadow: Bool = true
+  @objc @IBInspectable
+  open var hasShadow: Bool = true
   
   /**
    Child item's default shadow color.
    */
-  @IBInspectable
-  @objc open var itemShadowColor: UIColor = UIColor.black
+  @objc @IBInspectable
+  open var itemShadowColor: UIColor = UIColor.black
   
   /**
    
@@ -172,8 +172,8 @@ open class Floaty: UIView {
   /**
    Whether or not floaty responds to keyboard notifications and adjusts its position accordingly
    */
-  @IBInspectable
-  @objc open var respondsToKeyboard: Bool = true
+  @objc @IBInspectable
+  open var respondsToKeyboard: Bool = true
   
   @objc open var openAnimationType: FloatyOpenAnimationType = .pop
   
