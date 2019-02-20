@@ -22,7 +22,7 @@ Floaty is simple floating action button for iOS. (formerly KCFloatingActionButto
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod "Floaty", "~> 4.1.0"
+pod 'Floaty', '~> 4.1.0'
 ```
 ### Carthage
 ```ruby
