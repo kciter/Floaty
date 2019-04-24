@@ -64,9 +64,9 @@ self.view.addSubview(floaty)
 ```swift
 let floaty = Floaty()
 floaty.addItem("I got a handler", icon: UIImage(named: "icon")!, handler: { item in
-    let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .Alert)
-    alert.addAction(UIAlertAction(title: "Me too", style: .Default, handler: nil))
-    self.presentViewController(alert, animated: true, completion: nil)
+    let alert = UIAlertController(title: "Hey", message: "I'm hungry...", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Me too", style: .default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
     floaty.close()
 })
 self.view.addSubview(floaty)
