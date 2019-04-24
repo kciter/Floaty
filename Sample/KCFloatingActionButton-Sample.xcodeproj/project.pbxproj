@@ -139,10 +139,9 @@
 			};
 			buildConfigurationList = B6F66E111BC1017F00E47769 /* Build configuration list for PBXProject "KCFloatingActionButton-Sample" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
