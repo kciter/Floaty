@@ -47,7 +47,9 @@
 				B65A2E551D5975130045483D /* Floaty */,
 				B65A2E541D5975130045483D /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		B65A2E541D5975130045483D /* Products */ = {
 			isa = PBXGroup;
