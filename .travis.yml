@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode10
+osx_image: xcode10.2
 xcode_project: Floaty.xcodeproj
 xcode_scheme: Floaty
 xcode_sdk: iphonesimulator
