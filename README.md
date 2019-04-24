@@ -1,5 +1,5 @@
 # Floaty
-![Swift 4.1](https://img.shields.io/badge/Swift-4.1-orange.svg)
+![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
 [![License](https://img.shields.io/cocoapods/l/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
 [![Platform](https://img.shields.io/cocoapods/p/Floaty.svg?style=flat)](https://cocoapods.org/pods/floaty)
@@ -14,15 +14,14 @@ Floaty is simple floating action button for iOS. (formerly KCFloatingActionButto
 <img src="https://github.com/kciter/Floaty/raw/master/Images/preview.gif" width='187' alt="Preview gif">
 
 ## Requirements
-* iOS 9.0+
-* Swift 4.2
-* Xcode 10
+* iOS 10.0+
+* Swift 5.0
 
 ## Installation
 ### CocoaPods
 ```ruby
 use_frameworks!
-pod 'Floaty', '~> 4.1.0'
+pod 'Floaty', '~> 4.2.0'
 ```
 ### Carthage
 ```ruby
