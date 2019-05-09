@@ -693,25 +693,30 @@ open class Floaty: UIView {
   
   fileprivate func setPlusLayer() {
     plusLayer.removeFromSuperlayer()
+    let currentTransform = plusLayer.transform
+    plusLayer.transform = CATransform3DIdentity
     plusLayer.frame = CGRect(x: 0, y: 0, width: size, height: size)
+    plusLayer.transform = currentTransform
     plusLayer.lineCap = CAShapeLayerLineCap.round
     plusLayer.strokeColor = plusColor.cgColor
     plusLayer.lineWidth = 2.0
     plusLayer.path = plusBezierPath().cgPath
     layer.addSublayer(plusLayer)
   }
-  
+
   fileprivate func setButtonImage() {
     buttonImageView.removeFromSuperview()
     buttonImageView = UIImageView(image: buttonImage)
     buttonImageView.tintColor = plusColor
+    let currentTransform = buttonImageView.transform
+    buttonImageView.transform = .identity
     buttonImageView.frame = CGRect(
       x: circleLayer.frame.origin.x + (size / 2 - buttonImageView.frame.size.width / 2),
       y: circleLayer.frame.origin.y + (size / 2 - buttonImageView.frame.size.height / 2),
       width: buttonImageView.frame.size.width,
       height: buttonImageView.frame.size.height
     )
-    
+    buttonImageView.transform = currentTransform
     addSubview(buttonImageView)
   }
   
