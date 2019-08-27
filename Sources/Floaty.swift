@@ -21,6 +21,11 @@ import UIKit
   case down
 }
 
+@objc public enum FloatyHorizontalDirection: Int {
+  case left
+  case right
+}
+
 /**
  Floaty Object. It has `FloatyItem` objects.
  Floaty support storyboard designable.
@@ -207,10 +212,19 @@ open class Floaty: UIView {
   @objc open var openAnimationType: FloatyOpenAnimationType = .pop
   
   @objc open var verticalDirection: FloatyVerticalDirection = .up
-  
+
+  @objc open var horizontalDirection: FloatyHorizontalDirection = .left
+
   @objc open var friendlyTap: Bool = true
   
   @objc open var sticky: Bool = false
+
+  /**
+   Animations and spacing wll be horizontal not vertical
+   */
+  @IBInspectable
+  @objc open var supportLanscape: Bool = false
+
     
   public static var global: FloatyManager {
     get {
@@ -387,10 +401,14 @@ open class Floaty: UIView {
         self.overlayViewDidCompleteOpenAnimation = true
         animationGroup.leave()
       })
-      
+
       switch openAnimationType {
       case .pop:
-        popAnimationWithOpen(group: animationGroup)
+        if (fabDelegate?.shallWorkHorizontal?() ?? false) {
+          popAnimationWithOpenLandscape(group: animationGroup)
+        } else {
+          popAnimationWithOpen(group: animationGroup)
+        }
       case .fade:
         fadeAnimationWithOpen(group: animationGroup)
       case .slideLeft:
@@ -1035,7 +1053,43 @@ extension Floaty {
       delay += animationSpeed
     }
   }
-  
+
+  fileprivate func popAnimationWithOpenLandscape(group: DispatchGroup) {
+    var itemHeight: CGFloat = 0
+    var delay = 0.0
+    for item in items {
+      if item.isHidden == true { continue }
+      itemHeight += item.size + itemSpace
+      item.layer.transform = CATransform3DIdentity
+      let big = size > item.size ? size : item.size
+      let small = size <= item.size ? size : item.size
+
+      // HEREEEEE - pop tp left animation
+
+      item.frame.origin.y = big/2 - small/2
+
+      if horizontalDirection == .left {
+        item.frame.origin.x = -itemHeight
+      } else {
+        item.frame.origin.x = itemHeight
+      }
+
+      item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
+      group.enter()
+      UIView.animate(withDuration: 0.3, delay: delay,
+                     usingSpringWithDamping: 0.55,
+                     initialSpringVelocity: 0.3,
+                     options: UIView.AnimationOptions(), animations: { () -> Void in
+                      item.layer.transform = CATransform3DIdentity
+                      item.alpha = 1
+      }, completion: { _ in
+        group.leave()
+      })
+
+      delay += animationSpeed
+    }
+  }
+
   fileprivate func popAnimationWithClose(group: DispatchGroup) {
     var delay = 0.0
     for item in items.reversed() {
