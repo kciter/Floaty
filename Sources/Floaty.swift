@@ -65,6 +65,12 @@ open class Floaty: UIView {
   @objc open var autoCloseOnTap: Bool = true
 
   /**
+   Automatically closes when tappen on overlay
+   */
+  @IBInspectable
+  @objc open var autoCloseOnOverlayTap: Bool = true
+
+  /**
    Runs first item handler directly on tap (without opening menu)
    */
   @IBInspectable
@@ -362,8 +368,12 @@ open class Floaty: UIView {
       setOverlayView()
       self.superview?.insertSubview(overlayView, aboveSubview: self)
       self.superview?.bringSubviewToFront(self)
-      overlayView.addTarget(self, action: #selector(close), for: UIControl.Event.touchUpInside)
-      
+      if autoCloseOnOverlayTap {
+        overlayView.addTarget(self, action: #selector(close), for: UIControl.Event.touchUpInside)
+      } else {
+        overlayView.isUserInteractionEnabled = false
+      }
+
       overlayViewDidCompleteOpenAnimation = false
       animationGroup.enter()
       UIView.animate(withDuration: 0.3, delay: 0,
