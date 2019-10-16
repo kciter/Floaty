@@ -30,7 +30,9 @@ import Foundation
   @objc optional func floatyWillClose(_ floaty: Floaty)
   
   @objc optional func floatyDidClose(_ floaty: Floaty)
-  
+
+  @objc optional func shallWorkHorizontal() -> Bool
+
   /**
    This method has been deprecated. Use floatyWillOpen and floatyDidOpen instead.
    */
