@@ -27,6 +27,15 @@ pod 'Floaty', '~> 4.2.0'
 ```ruby
 github "kciter/Floaty"
 ```
+
+### Swift Package Manager
+Once you have your Swift package set up, adding Alamofire as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
+```ruby
+dependencies: [
+    .package(url: "https://github.com/kciter/Floaty")
+]
+```
+
 ### Manually
 To install manually the Floaty in an app, just drag the `Floaty/*.swift` file into your project.
 
