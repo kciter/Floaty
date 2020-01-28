@@ -27,6 +27,14 @@ pod 'Floaty', '~> 4.2.0'
 ```ruby
 github "kciter/Floaty"
 ```
+
+### Swift Package Manager
+```swift
+dependencies: [
+    .package(url: "https://github.com/kciter/Floaty.git", from: "4.2.1")
+]
+```
+
 ### Manually
 To install manually the Floaty in an app, just drag the `Floaty/*.swift` file into your project.
 
