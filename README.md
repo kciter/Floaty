@@ -30,9 +30,9 @@ github "kciter/Floaty"
 
 ### Swift Package Manager
 Once you have your Swift package set up, adding Alamofire as a dependency is as easy as adding it to the dependencies value of your `Package.swift`.
-```ruby
+```swift
 dependencies: [
-    .package(url: "https://github.com/kciter/Floaty")
+    .package(url: "https://github.com/kciter/Floaty.git", from: "4.2.1")
 ]
 ```
 
