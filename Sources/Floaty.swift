@@ -106,6 +106,12 @@ open class Floaty: UIView {
   open var buttonColor: UIColor = UIColor(red: 73/255.0, green: 151/255.0, blue: 241/255.0, alpha: 1)
   
   /**
+   Button highlighted color.
+   */
+  @objc @IBInspectable
+  open var buttonHighlightedColor: UIColor?
+
+  /**
    Button shadow color.
    */
   @objc @IBInspectable
@@ -750,9 +756,9 @@ open class Floaty: UIView {
   
   fileprivate func setTintLayer() {
     tintLayer.frame = CGRect(x: circleLayer.frame.origin.x, y: circleLayer.frame.origin.y, width: size, height: size)
-    tintLayer.backgroundColor = UIColor.white.withAlphaComponent(0.2).cgColor
+    tintLayer.backgroundColor = buttonHighlightedColor?.cgColor ?? UIColor.white.withAlphaComponent(0.2).cgColor
     tintLayer.cornerRadius = size/2
-    layer.addSublayer(tintLayer)
+    layer.insertSublayer(tintLayer, below: buttonImageView.layer)
   }
   
   fileprivate func setOverlayView() {
