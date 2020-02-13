@@ -13,6 +13,9 @@ import UIKit
   case slideLeft
   case slideUp
   case slideDown
+  case fullCircular
+  case semiCircular
+  case quadCircular
   case none
 }
 
@@ -48,7 +51,23 @@ open class Floaty: UIView {
       self.recalculateItemsOrigin()
     }
   }
-  
+  /**
+   This circleAnimationRadius.
+   */
+  @objc open var circleAnimationRadius: Double = 150 {
+    didSet {
+      self.setNeedsDisplay()
+    }
+  }
+  /**
+   This circleAnimationDegreeOffset.
+   */
+  @objc open var circleAnimationDegreeOffset: Double = 0.0 {
+    didSet {
+      self.circleAnimationDegreeOffset = self.circleAnimationDegreeOffset * .pi / 180.0
+      self.setNeedsDisplay()
+    }
+  }
   /**
    Padding from bottom right of UIScreen or superview.
    */
@@ -423,6 +442,12 @@ open class Floaty: UIView {
         slideUpAnimationWithOpen(group: animationGroup)
       case .slideDown:
         slideDownAnimationWithOpen(group: animationGroup)
+      case .fullCircular:
+        cirularAnimationWithOpen(itemCount: self.items.count, group: animationGroup)
+      case .semiCircular:
+        cirularAnimationWithOpen(itemCount: self.items.count*2, group: animationGroup)
+      case .quadCircular:
+        cirularAnimationWithOpen(itemCount: self.items.count*4, group: animationGroup)
       case .none:
         noneAnimationWithOpen()
       }
@@ -480,6 +505,8 @@ open class Floaty: UIView {
         slideUpAnimationWithClose(group: animationGroup)
       case .slideDown:
         slideDownAnimationWithClose(group: animationGroup)
+      case .fullCircular, .semiCircular , .quadCircular:
+        cirularAnimationWithClose(group: animationGroup)
       case .none:
         noneAnimationWithClose()
       }
@@ -1275,6 +1302,51 @@ extension Floaty {
       })
     }
   }
+  
+  /**
+  Circular animation for fullCircular, semiCircular and quadCircular based on params
+  */
+  fileprivate func cirularAnimationWithOpen(itemCount : Int,  group : DispatchGroup) {
+    
+    var curAngle = self.circleAnimationDegreeOffset
+    let incAngle = ( 360.0/(Double(itemCount)) ) * .pi / 180.0
+        
+    for item in items {
+        if item.isHidden == true { continue }
+        item.isUserInteractionEnabled = true
+        group.enter()
+        UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: { () -> Void in
+        item.frame.origin.y = 0
+        item.alpha = 1
+            
+        let radius = CGFloat(self.circleAnimationRadius)
+        let x = self.frame.origin.x + CGFloat(cos(curAngle)) * radius
+        let y = self.frame.origin.y + CGFloat(sin(curAngle)) * radius
+        item.center.y = self.frame.origin.y + (self.size/2) - y
+        item.center.x = self.frame.origin.x + (self.size/2) - x
+        curAngle += incAngle
+          
+        }, completion: { _ in
+            group.leave()
+        })
+    }
+  }
+  
+  fileprivate func cirularAnimationWithClose(group: DispatchGroup) {
+    for item in items.reversed() {
+      if item.isHidden == true { continue }
+      group.enter()
+      UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: { () -> Void in
+        item.frame.origin.y = 0
+        item.frame.origin.x = 0
+        item.isUserInteractionEnabled = false
+        item.alpha = 0
+      }, completion: { _ in
+        group.leave()
+      })
+    }
+  }
+
   
   /**
    None animation

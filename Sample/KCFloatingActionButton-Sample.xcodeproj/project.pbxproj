@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10DA570523F1A53E007B0F1A /* CircularAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA570423F1A53E007B0F1A /* CircularAnimationViewController.swift */; };
 		801D03EC21E7110000CD67F0 /* UIView+Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D03EB21E7110000CD67F0 /* UIView+Draggable.swift */; };
 		B6640EA21BCEA8DA0099510D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */; };
 		B671D9341EB11BA5005EE7E1 /* Floaty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B671D92E1EB11BA5005EE7E1 /* Floaty.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10DA570423F1A53E007B0F1A /* CircularAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularAnimationViewController.swift; sourceTree = "<group>"; };
 		801D03EB21E7110000CD67F0 /* UIView+Draggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Draggable.swift"; path = "../../Sources/UIView+Draggable.swift"; sourceTree = "<group>"; };
 		B6640EA11BCEA8DA0099510D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		B671D92E1EB11BA5005EE7E1 /* Floaty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Floaty.swift; path = ../../Sources/Floaty.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				B6F66E191BC1017F00E47769 /* AppDelegate.swift */,
 				B6F66E1B1BC1017F00E47769 /* ViewController.swift */,
 				B6CC36171D91CBFB00D04C6C /* TableViewController.swift */,
+				10DA570423F1A53E007B0F1A /* CircularAnimationViewController.swift */,
 				B6F66E1D1BC1017F00E47769 /* Main.storyboard */,
 				B6F66E201BC1017F00E47769 /* Assets.xcassets */,
 				B675871D1BCCFEBC00C4BEAF /* Icons.xcassets */,
@@ -182,6 +185,7 @@
 				B671D9381EB11BA5005EE7E1 /* FloatyViewController.swift in Sources */,
 				B671D9371EB11BA5005EE7E1 /* FloatyManager.swift in Sources */,
 				B6CC36181D91CBFB00D04C6C /* TableViewController.swift in Sources */,
+				10DA570523F1A53E007B0F1A /* CircularAnimationViewController.swift in Sources */,
 				B671D9351EB11BA5005EE7E1 /* FloatyDelegate.swift in Sources */,
 				B671D9361EB11BA5005EE7E1 /* FloatyItem.swift in Sources */,
 			);
