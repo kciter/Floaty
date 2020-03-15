@@ -29,6 +29,8 @@ class CircularAnimationViewController: UIViewController, FloatyDelegate {
 //        floatyCircular.openAnimationType = .semiCircular // define animation type
 //        floatyCircular.circleAnimationDegreeOffset = 15 // define offset in degrees
         
+        // For full circle top and bottom title
+//        layoutFABforFullCircleAnimation()
     }
     
     func layoutFABforQuadAnimation(floaty : Floaty) {
@@ -73,6 +75,37 @@ class CircularAnimationViewController: UIViewController, FloatyDelegate {
         floaty.addItem("", icon: UIImage(named: "icMap"))
         
         self.view.addSubview(floaty)
+    }
+    
+    func layoutFABforFullCircleAnimation() {
+        let floaty = Floaty()
+        floaty.addDragging()
+        floaty.circleAnimationRadius = 100
+        floaty.openAnimationType = .slideUp
+        floaty.circleAnimationDegreeOffset = 15
+        
+        floaty.buttonImage = UIImage(named: "custom-add")
+        floaty.hasShadow = false
+        floaty.paddingX = self.view.frame.width/2 - floaty.frame.width/2
+        floaty.paddingY = self.view.frame.height/2 - floaty.frame.height/2
+        floaty.fabDelegate = self
+        
+        self.view.addSubview(floaty)
+        
+        for index in 0...6 {
+            let item = FloatyItem()
+            item.buttonColor = .lightGray
+            if index.isMultiple(of: 2) {
+                item.title = "Map"
+                item.icon = UIImage(named: "icMap")
+                
+            } else {
+                item.title = "Share"
+                item.icon = UIImage(named: "icShare")
+            }
+            item.titleLabelPosition = .bottom // .top
+            floaty.addItem(item: item)
+        }
     }
     
     // MARK: - Floaty Delegate Methods
