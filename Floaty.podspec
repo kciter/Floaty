@@ -8,6 +8,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/kciter/Floaty.git", :tag => "#{s.version}" }
   s.platform     = :ios, '10.0'
   s.source_files = 'Sources/*.{swift}'
+  s.swift_version = '5.0'
   s.frameworks   = 'UIKit', 'Foundation'
   s.requires_arc = true
 end
