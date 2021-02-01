@@ -10,6 +10,8 @@ import UIKit
 @objc public enum FloatyItemLabelPositionType: Int {
   case left
   case right
+  case top
+  case bottom
 }
 
 /**
@@ -96,8 +98,16 @@ open class FloatyItem: UIView {
     didSet {
       if(titleLabelPosition == .left) {
         titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
-      } else { //titleLabel will be on right
+      } else if (titleLabelPosition == .right) {
         titleLabel.frame.origin.x = iconImageView.frame.origin.x + iconImageView.frame.size.width + 20
+      } else if (titleLabelPosition == .top) {
+        titleLabel.frame.origin.x = iconImageView.frame.origin.x
+        titleLabel.frame.origin.y = iconImageView.frame.origin.y - titleLabel.frame.size.height - 10
+      } else if (titleLabelPosition == .bottom) {
+        titleLabel.frame.origin.x = iconImageView.frame.origin.x
+        titleLabel.frame.origin.y = iconImageView.frame.origin.y + iconImageView.frame.size.height + 10
+      } else { // take default as left
+        titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
       }
     }
   }
