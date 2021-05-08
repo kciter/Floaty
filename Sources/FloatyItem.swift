@@ -145,7 +145,6 @@ open class FloatyItem: UIView {
     didSet {
       let titleViewLeftPadding: CGFloat = titleViewColor == .clear ? 0 : 14
       let titleViewTopPadding: CGFloat = 4
-      let titleViewCornerRadius: CGFloat = 17
       
       titleLabel.text = title
       titleLabel.sizeToFit()
@@ -161,7 +160,7 @@ open class FloatyItem: UIView {
                                        y: 0,
                                        width: titleLabel.frame.width + 10 + titleViewLeftPadding * 2,
                                        height: titleLabel.frame.height + 10 + titleViewTopPadding * 2))
-      titleView.layer.cornerRadius = titleViewCornerRadius
+      titleView.layer.cornerRadius = titleView.frame.height / 2
       titleView.backgroundColor = titleViewColor
       addSubview(titleView)
       titleView.center = titleLabel.center
