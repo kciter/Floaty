@@ -129,19 +129,36 @@ open class FloatyItem: UIView {
   }
   
   /**
+   Title background view
+   */
+  @objc open var titleView: UIView = UIView()
+  
+  /**
    Item's title.
    */
   @objc open var title: String? = nil {
     didSet {
+      let titleViewLeftPadding: CGFloat = 14
+      let titleViewTopPadding: CGFloat = 4
+      let titleViewCornerRadius: CGFloat = 17
+      
       titleLabel.text = title
       titleLabel.sizeToFit()
       if(titleLabelPosition == .left) {
-        titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10
+        titleLabel.frame.origin.x = -titleLabel.frame.size.width - 10 - titleViewLeftPadding * 2
       } else { //titleLabel will be on right
-        titleLabel.frame.origin.x = iconImageView.frame.origin.x + iconImageView.frame.size.width + 20
+        titleLabel.frame.origin.x = iconImageView.frame.origin.x + iconImageView.frame.size.width + 20 + titleViewLeftPadding * 2
       }
       
       titleLabel.frame.origin.y = self.size/2-titleLabel.frame.size.height/2
+      
+      titleView = UIView(frame: CGRect(x: 0,
+                                       y: 0,
+                                       width: titleLabel.frame.width + 10 + titleViewLeftPadding * 2,
+                                       height: titleLabel.frame.height + 10 + titleViewTopPadding * 2))
+      titleView.layer.cornerRadius = titleViewCornerRadius
+      addSubview(titleView)
+      titleView.center = titleLabel.center
       
       if FloatyManager.defaultInstance().rtlMode {
         titleLabel.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);

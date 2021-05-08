@@ -197,6 +197,12 @@ open class Floaty: UIView {
   open var itemImageColor: UIColor? = nil
   
   /**
+   Child item's label view color
+   */
+  @objc @IBInspectable
+  open var itemTitleViewColor: UIColor = .clear
+  
+  /**
    Enable/disable shadow.
    */
   @objc @IBInspectable
@@ -562,6 +568,7 @@ open class Floaty: UIView {
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     addItem(item: item)
     return item
   }
@@ -574,6 +581,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     addItem(item: item)
     return item
   }
@@ -588,6 +596,7 @@ open class Floaty: UIView {
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.icon = icon
     addItem(item: item)
     return item
@@ -601,6 +610,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.icon = icon
     addItem(item: item)
     return item
@@ -614,6 +624,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.handler = handler
     addItem(item: item)
     return item
@@ -629,6 +640,7 @@ open class Floaty: UIView {
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.handler = handler
     addItem(item: item)
     return item
@@ -642,6 +654,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.icon = icon
     item.handler = handler
     addItem(item: item)
@@ -658,6 +671,7 @@ open class Floaty: UIView {
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
     item.title = title
+    item.titleView.backgroundColor = itemTitleViewColor
     item.icon = icon
     item.handler = handler
     addItem(item: item)
