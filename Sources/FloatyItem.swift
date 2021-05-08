@@ -132,7 +132,11 @@ open class FloatyItem: UIView {
    Title background view
    */
   @objc open var titleView: UIView = UIView()
-  var titleViewColor: UIColor = .clear
+  var titleViewColor: UIColor = .clear {
+    didSet {
+      titleView.backgroundColor = titleViewColor
+    }
+  }
   
   /**
    Item's title.
