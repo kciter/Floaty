@@ -553,6 +553,7 @@ open class Floaty: UIView {
     item.frame.origin = CGPoint(x: big/2-small/2, y: big/2-small/2)
     item.alpha = 0
     item.actionButton = self
+    item.titleViewColor = itemTitleViewColor
     items.append(item)
     addSubview(item)
   }

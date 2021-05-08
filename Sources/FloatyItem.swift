@@ -158,6 +158,7 @@ open class FloatyItem: UIView {
                                        width: titleLabel.frame.width + 10 + titleViewLeftPadding * 2,
                                        height: titleLabel.frame.height + 10 + titleViewTopPadding * 2))
       titleView.layer.cornerRadius = titleViewCornerRadius
+      titleView.backgroundColor = titleViewColor
       addSubview(titleView)
       titleView.center = titleLabel.center
       
