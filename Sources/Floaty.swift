@@ -197,6 +197,12 @@ open class Floaty: UIView {
   open var itemImageColor: UIColor? = nil
   
   /**
+   Child item's label view color
+   */
+  @objc @IBInspectable
+  open var itemTitleViewColor: UIColor = .clear
+  
+  /**
    Enable/disable shadow.
    */
   @objc @IBInspectable
@@ -561,6 +567,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     addItem(item: item)
     return item
@@ -573,6 +580,7 @@ open class Floaty: UIView {
   @objc open func addItem(title: String) -> FloatyItem {
     let item = FloatyItem()
     itemDefaultSet(item)
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     addItem(item: item)
     return item
@@ -587,6 +595,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.icon = icon
     addItem(item: item)
@@ -600,6 +609,7 @@ open class Floaty: UIView {
   @objc open func addItem(_ title: String, icon: UIImage?) -> FloatyItem {
     let item = FloatyItem()
     itemDefaultSet(item)
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.icon = icon
     addItem(item: item)
@@ -613,6 +623,7 @@ open class Floaty: UIView {
   @objc open func addItem(title: String, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
     let item = FloatyItem()
     itemDefaultSet(item)
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.handler = handler
     addItem(item: item)
@@ -628,6 +639,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.handler = handler
     addItem(item: item)
@@ -641,6 +653,7 @@ open class Floaty: UIView {
   @objc open func addItem(_ title: String, icon: UIImage?, handler: @escaping ((FloatyItem) -> Void)) -> FloatyItem {
     let item = FloatyItem()
     itemDefaultSet(item)
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.icon = icon
     item.handler = handler
@@ -657,6 +670,7 @@ open class Floaty: UIView {
     let item = FloatyItem()
     itemDefaultSet(item)
     item.titleLabelPosition = titlePosition
+    item.titleViewColor = itemTitleViewColor
     item.title = title
     item.icon = icon
     item.handler = handler
