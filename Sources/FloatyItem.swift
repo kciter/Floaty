@@ -132,13 +132,14 @@ open class FloatyItem: UIView {
    Title background view
    */
   @objc open var titleView: UIView = UIView()
+  var titleViewColor: UIColor = .clear
   
   /**
    Item's title.
    */
   @objc open var title: String? = nil {
     didSet {
-      let titleViewLeftPadding: CGFloat = 14
+      let titleViewLeftPadding: CGFloat = titleViewColor == .clear ? 0 : 14
       let titleViewTopPadding: CGFloat = 4
       let titleViewCornerRadius: CGFloat = 17
       
