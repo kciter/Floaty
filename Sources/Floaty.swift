@@ -939,6 +939,11 @@ open class Floaty: UIView {
     }
   }
   
+  @objc open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesCancelled(touches, with: event)
+    if tintLayer.superlayer != nil { tintLayer.removeFromSuperlayer() }
+  }
+
   fileprivate func isTouched(_ touches: Set<UITouch>) -> Bool {
     return touches.count == 1 && touches.first?.tapCount == 1 && touches.first?.location(in: self) != nil
   }
