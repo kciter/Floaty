@@ -142,6 +142,7 @@ open class Floaty: UIView {
   @objc @IBInspectable
   open var buttonImage: UIImage? = nil {
     didSet {
+      self.buttonImageView = UIImageView(image: buttonImage)
       self.setNeedsDisplay()
     }
   }
@@ -767,7 +768,6 @@ open class Floaty: UIView {
 
   fileprivate func setButtonImage() {
     buttonImageView.removeFromSuperview()
-    buttonImageView = UIImageView(image: buttonImage)
     buttonImageView.tintColor = plusColor
     let currentTransform = buttonImageView.transform
     buttonImageView.transform = .identity
