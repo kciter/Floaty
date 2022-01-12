@@ -8,7 +8,7 @@
 import UIKit
 
 /**
- KCFloatingActionButton dependent on UIWindow.
+ Floaty dependent on UIWindow.
  */
 open class FloatyViewController: UIViewController {
   public let floaty = Floaty()
