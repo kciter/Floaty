@@ -8,7 +8,7 @@
 import UIKit
 
 /**
- KCFloatingActionButton dependent on UIWindow.
+ Floaty dependent on UIWindow.
  */
 class FloatyWindow: UIWindow {
   override init(frame: CGRect) {
